@@ -1,16 +1,50 @@
 <script>
-import { BContainer, BRow, BCol, BFormGroup, BFormInput } from "bootstrap-vue"
+import { BContainer, BRow, BCol, BFormGroup, BFormInput, BFormSelect } from "bootstrap-vue"
 export default {
   components: {
-    BContainer, BRow, BCol, BFormGroup, BFormInput
+    BContainer, BRow, BCol, BFormGroup, BFormInput, BFormSelect
   },
   data() {
     return {
-      cond: false,
+      name: null,
+      nickname: null,
+      email: null,
+      lastname: null,
+      age: null,
+      gender: null,
+      password: null,
+      confirmPassword: null,
+      genders: [
+        { value: 1, text: 'Мужской' },
+        { value: 2, text: 'Женский' },
+        { value: 3, text: 'Другой' }
+      ]
+    }
+  },
+  computed: {
+    regData() {
+      return {
+        name: this.name,
+        nickname: this.nickname,
+        email: this.email,
+        lastname: this.lastname,
+        age: this.age,
+        gender: this.gender,
+        password: this.password,
+        confirmPassword: this.confirmPassword,
+      }
+    }
+  },
+  watch: {
+    age() {
+      if (!Number.isInteger(+this.age) || this.age < 0 || this.age > 111)
+        this.age = null;
     }
   },
   methods: {
-
+    handleRegistration() {
+      console.log(this.regData)
+    },
   },
 }
 </script>
@@ -49,7 +83,7 @@ export default {
                 label="Почта"
                 label-for="input-email"
             >
-              <b-form-input class="reg-input" id="input-email" v-model="email"/>
+              <b-form-input class="reg-input" id="input-email" v-model="email" type="email"/>
             </b-form-group>
 
           </b-col>
@@ -76,7 +110,7 @@ export default {
                   <span class="need-circle"></span>
                 </div>
               </template>
-              <b-form-input class="reg-input" id="input-age" v-model="age"/>
+              <b-form-input class="reg-input" id="input-age" v-model="age" type="number"/>
             </b-form-group>
             <b-form-group
                 class="reg-group"
@@ -88,7 +122,7 @@ export default {
                   <span class="need-circle"></span>
                 </div>
               </template>
-              <b-form-input class="reg-input" id="input-gender" v-model="gender"/>
+              <b-form-select class="reg-input" v-model="gender" :options="genders" id="input-gender"/>
             </b-form-group>
           </b-col>
         </b-row>
@@ -99,18 +133,18 @@ export default {
                 label="Пароль"
                 label-for="input-password"
             >
-              <b-form-input class="reg-input" id="input-password" v-model="password"/>
+              <b-form-input class="reg-input" id="input-password" v-model="password" type="password"/>
             </b-form-group>
             <b-form-group
                 class="reg-group mb-0"
                 label="Подтверждение пароля"
                 label-for="input-confirm-password"
             >
-              <b-form-input class="reg-input" id="input-confirm-password" v-model="confirmPassword"/>
+              <b-form-input class="reg-input" id="input-confirm-password" v-model="confirmPassword" type="password"/>
             </b-form-group>
           </b-col>
           <b-col class="reg-col to-right-bottom">
-            <button class="reg-button">
+            <button class="reg-button" @click="handleRegistration">
               Зарегистрироваться
             </button>
           </b-col>
@@ -148,6 +182,9 @@ export default {
   font-size: 14px;
   width: 200px;
   margin-left: 20px;
+}
+.reg-input:deep(option) {
+  background: #859F8A;
 }
 .reg-col {
   padding: 0 50px;
@@ -201,5 +238,22 @@ export default {
   display: inline-flex;
   align-items: center;
   column-gap: 10px;
+}
+.reg-input[type="number"]::-webkit-outer-spin-button,
+.reg-input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+.reg-input[type="number"] {
+  -moz-appearance: none;
+  appearance: none;
+}
+.reg-input[type="number"]:hover,
+.reg-input[type="number"]:focus {
+  -moz-appearance: none;
+  appearance: none;
+}
+.reg-input[type="number"]::-webkit-inner-spin-button,
+.reg-input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
 }
 </style>
