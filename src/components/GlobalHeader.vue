@@ -1,21 +1,7 @@
 <script>
+import {BDropdown, BDropdownItem} from "bootstrap-vue"
 export default {
-  props: {
-    model: Object
-  },
-  data() {
-    return {
-      isOpen: false,
-      emails: ['chueva.elizaveta03@gmail.com', 'chueva@sfedu.ru', 'Почта 3']
-    }
-  },
-
-  methods: {
-    toggle() {
-      this.isOpen = !this.isOpen
-    },
-
-  }
+  components: {BDropdown, BDropdownItem}
 }
 
 </script>
@@ -27,18 +13,12 @@ export default {
     <a class="link" href="#">Статьи про экологию</a>
     <a class="link" href="#">Смотреть карту</a>
 
-    <span class="in-header" @click="toggle">
-    <div class="contacts" >Контакты</div>
-    <span v-if="isOpen"><img alt="close" class="logo-arrow" src="/src/assets/arrow.svg" /></span>
-    <span v-if="!isOpen"><img alt="open" class="logo-arrow" src="/src/assets/arrow_down.svg" /></span>
-  </span>
-  </div>
+    <b-dropdown id="dropdown-right" right text="Right align" variant="primary" class="m-2">
+      <b-dropdown-item href="#">Action</b-dropdown-item>
+      <b-dropdown-item href="#">Another action</b-dropdown-item>
+      <b-dropdown-item href="#">Something else here</b-dropdown-item>
+    </b-dropdown>
 
-  <div class="inf" v-if="isOpen">
-    <h3>Как с нами связаться?</h3>
-    <p class="email" v-for="el in emails">
-      - {{ el }}
-    </p>
   </div>
 </template>
 
