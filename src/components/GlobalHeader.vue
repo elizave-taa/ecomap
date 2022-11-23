@@ -13,10 +13,9 @@ export default {
     <a class="link" href="#">Статьи про экологию</a>
     <a class="link" href="#">Смотреть карту</a>
 
-    <b-dropdown id="dropdown-right" right text="Right align" variant="primary" class="m-2">
-      <b-dropdown-item href="#">Action</b-dropdown-item>
-      <b-dropdown-item href="#">Another action</b-dropdown-item>
-      <b-dropdown-item href="#">Something else here</b-dropdown-item>
+    <b-dropdown id="dropdown-right" right text="Контакты" variant="primary" class="contacts">
+      <b-dropdown-item href="#">Контакт 1</b-dropdown-item>
+      <b-dropdown-item href="#">Контакт 2</b-dropdown-item>
     </b-dropdown>
 
   </div>
@@ -42,37 +41,13 @@ export default {
   color: #fff !important;
 }
 
-.in-header:hover{
-  cursor: pointer;
-}
-.contacts{
-  font-family: Inter, sans-serif;
-  color: white;
-  font-size: 18px;
-  margin-right: 10px;
-}
-
-.logo-arrow{
-  width: 15px;
-}
-
-.in-header{
-  align-items: center;
-  display: flex;
-}
-
-.inf{
- /* position: absolute;
-  right: 0;*/
-  justify-content: flex-end;
-  background-color: rgba(82, 115, 89);
-  text-align: left;
-  padding: 20px;
+.contacts:deep(button){
+  padding: 0;
+  background: none!important;
+  border: none!important;
   font-family: Inter, sans-serif;
   font-size: 18px;
-  font-weight: 500;
-  text-decoration: none;
-  color: #fff !important;
 }
+
 
 </style>
