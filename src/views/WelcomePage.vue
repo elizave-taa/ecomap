@@ -1,31 +1,30 @@
 <script>
-
 import GlobalHeader from "/src/components/GlobalHeader.vue";
 import ButtonGeneral from "/src/components/ButtonGeneral.vue";
 import AccountLogIn from "/src/components/AccountLogIn.vue";
-
 export default {
-  components: { GlobalHeader, ButtonGeneral, AccountLogIn }
+  components: { GlobalHeader, ButtonGeneral, AccountLogIn },
+  methods: {
+    loginWithoutAuth() {
+      console.log()
+    }
+  }
 }
 </script>
 
 <template>
   <div class="app">
     <global-header />
-
     <div class="parent">
-
       <div class="login-form">
-
         <div><account-log-in/></div>
         <div class="text-or">ИЛИ</div>
         <div class="login-button">
-          <button-general variant="limpid">
+          <button-general variant="limpid" @click="loginWithoutAuth">
             <span>Продолжить без входа</span>
           </button-general>
         </div>
       </div>
-
       <div class ="second-container">
         <div class="description">
           <div class="in-description">
@@ -91,7 +90,6 @@ h2{
   line-height: 20px;
   color: #ffffff;
 }
-
 
 .login-form div{
   display: flex;

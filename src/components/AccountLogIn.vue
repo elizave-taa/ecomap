@@ -1,19 +1,31 @@
-
 <script>
 import ButtonLogIn from "/src/components/ButtonGeneral.vue";
 import InputForm from "/src/components/InputForm.vue";
 import {BFormInput} from "bootstrap-vue"
+import ButtonGeneral from "./ButtonGeneral.vue";
 export default {
-  components: { InputForm, ButtonLogIn, BFormInput },
+  components: {ButtonGeneral, InputForm, ButtonLogIn, BFormInput },
   data() {
     return {
       email: '',
       password: ''
     }
+  },
+  computed: {
+    loginData() {
+      return {
+        email: this.email,
+        password: this.password
+      }
+    }
+  },
+  methods: {
+    handleLogin() {
+      console.log(this.loginData)
+    }
   }
 }
 </script>
-
 
 <template>
     <div class="form-login">
@@ -21,17 +33,15 @@ export default {
       <b-form-input class="input" v-model="email" placeholder="Введите почту"></b-form-input>
       <b-form-input class="input" v-model="password" placeholder="Введите пароль"></b-form-input>
       <div class="login-button">
-        <button-log-in>
+        <button-general @click="handleLogin">
           <span>Войти</span>
-        </button-log-in>
+        </button-general>
       </div>
       <div><h3>Еще нет аккаунта? <a class="link" href="#"><u>Регистрация</u></a></h3></div>
     </div>
 </template>
 
-
 <style scoped>
-
 div{
   color: #ffffff;
 }
@@ -60,6 +70,7 @@ div h1{
   font-weight:  300;
   margin-bottom: 20px;
 }
+
 div h3{
   font-weight:  100;
   font-size: 18px;

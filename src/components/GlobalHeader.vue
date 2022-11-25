@@ -3,7 +3,6 @@ import {BDropdown, BDropdownItem} from "bootstrap-vue"
 export default {
   components: {BDropdown, BDropdownItem}
 }
-
 </script>
 
 <template>
@@ -12,12 +11,12 @@ export default {
     <a class="link text" href="#">О нашем проекте</a>
     <a class="link" href="#">Статьи про экологию</a>
     <a class="link" href="#">Смотреть карту</a>
-
     <b-dropdown id="dropdown-right" right text="Контакты" variant="primary" class="contacts">
+      <b-dropdown-item href="#">Как с нами связаться?</b-dropdown-item>
+      <hr/>
       <b-dropdown-item href="#">Контакт 1</b-dropdown-item>
       <b-dropdown-item href="#">Контакт 2</b-dropdown-item>
     </b-dropdown>
-
   </div>
 </template>
 
@@ -48,6 +47,4 @@ export default {
   font-family: Inter, sans-serif;
   font-size: 18px;
 }
-
-
 </style>
