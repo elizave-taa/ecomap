@@ -1,8 +1,10 @@
 <script>
 import ArticlesPageHeader from "../components/ArticlesPageHeader.vue";
+import ArticlesPageList from "../components/ArticlesPageList.vue";
 export default {
   components: {
-    ArticlesPageHeader
+    ArticlesPageHeader,
+    ArticlesPageList,
   },
   data() {
     return {}
@@ -12,9 +14,12 @@ export default {
 </script>
 
 <template>
-  <articles-page-header/>
+  <articles-page-header class="ap-header"/>
+  <articles-page-list/>
 </template>
 
 <style scoped>
-
+.ap-header {
+  margin-bottom: 40px;
+}
 </style>
