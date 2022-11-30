@@ -1,12 +1,13 @@
 import {createRouter, createWebHistory} from "vue-router";
-import WelcomePage from "../views/WelcomePage.vue";
+import WelcomePage from "/src/views/WelcomePage.vue";
+
 const router = createRouter({
     history: createWebHistory(),
     routes: [
         {
             name: 'WelcomePage',
             component: WelcomePage,
-            path: '/'
+            path: '/ecomap'
         }
     ]
 })
