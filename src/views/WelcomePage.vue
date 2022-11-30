@@ -1,9 +1,8 @@
 <script>
-import GlobalHeader from "/src/components/GlobalHeader.vue";
 import ButtonGeneral from "/src/components/ButtonGeneral.vue";
 import AccountLogIn from "/src/components/AccountLogIn.vue";
 export default {
-  components: { GlobalHeader, ButtonGeneral, AccountLogIn },
+  components: { ButtonGeneral, AccountLogIn },
   methods: {
     loginWithoutAuth() {
       console.log()
@@ -14,7 +13,6 @@ export default {
 
 <template>
   <div class="app">
-    <global-header />
     <div class="parent">
       <div class="login-form">
         <div><account-log-in/></div>
@@ -44,8 +42,9 @@ export default {
   background-image: url('/src/assets/map.png');
   background-size: cover;
   background-position: center;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
+  margin-top: -47px;
 }
 
 span{
@@ -62,7 +61,7 @@ span{
 }
 
 .parent {
-  margin-top: 10%;
+  padding-top: 10%;
   margin-left: 0;
   font-family: Inter, sans-serif;
   justify-content: space-around;

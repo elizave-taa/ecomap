@@ -27,6 +27,8 @@ export default {
   align-items: center;
   padding: 6px 150px;
   background-color: rgba(82, 115, 89, 0.75);
+  position: relative;
+  z-index: 10;
 }
 .logo {
   width: 35px;
