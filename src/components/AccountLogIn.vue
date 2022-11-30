@@ -38,6 +38,7 @@ export default {
         </button-general>
       </div>
       <div><h3>Еще нет аккаунта? <a class="link" href="#"><u>Регистрация</u></a></h3></div>
+      <!--<router-link to=""></router-link> -->
     </div>
 </template>
 
@@ -48,7 +49,7 @@ div{
 
 span{
   padding: 20px;
-  font-size: 22px;
+  font-size: 18px;
   line-height: 27px;
 }
 
@@ -56,7 +57,8 @@ span{
   color: #ffffff!important;
   background: none;
   margin-bottom: 10px;
-  width: 300px;
+  width: 250px;
+  height: 35px;
 }
 
 .input:focus {
@@ -66,20 +68,20 @@ span{
 }
 
 div h1{
-  font-size: 35px;
+  font-size: 25px;
   font-weight:  300;
   margin-bottom: 20px;
 }
 
 div h3{
   font-weight:  100;
-  font-size: 18px;
+  font-size: 16px;
 }
 
 .login-button{
-  margin-top: 10px;
-  padding: 8px 35px;
-  font-size: 22px;
+  margin-top: 5px;
+  padding: 10px;
+  font-size: 20px;
   margin-bottom: 10px;
 }
 
@@ -87,7 +89,7 @@ div h3{
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding:  30px 40px;
+  padding:  20px 30px;
   font-family: Inter, sans-serif;
   background-color: rgba(82, 115, 89, 0.75);
   border: none;

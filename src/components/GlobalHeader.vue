@@ -31,12 +31,12 @@ export default {
   z-index: 10;
 }
 .logo {
-  width: 35px;
-  height: 35px;
+  width: 25px;
+  height: 25px;
 }
 .link {
   font-family: Inter, sans-serif;
-  font-size: 18px;
+  font-size: 15px;
   font-weight: 500;
   text-decoration: none;
   color: #fff !important;
@@ -47,6 +47,6 @@ export default {
   background: none!important;
   border: none!important;
   font-family: Inter, sans-serif;
-  font-size: 18px;
+  font-size: 15px;
 }
 </style>

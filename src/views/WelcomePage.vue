@@ -44,20 +44,20 @@ export default {
   background-position: center;
   width: 100%;
   height: 100vh;
-  margin-top: -47px;
+  margin-top: -37px;
 }
 
 span{
-  padding: 30px 68px 30px 68px;
-  font-size: 22px;
-  line-height: 50px;
+  padding: 40px;
+  font-size: 20px;
+  line-height: 40px;
   font-weight: 100;
 }
 
 .text-or{
   color: #ffffff;
   font-weight: 300;
-  font-size : 22px;
+  font-size : 16px;
 }
 
 .parent {
@@ -68,11 +68,11 @@ span{
   display: flex;
 }
 h1{
-  font-size: 75px;
+  font-size: 65px;
   font-weight: 200;
 }
 h2{
-  font-size: 25px;
+  font-size: 20px;
   font-style: italic;
   font-weight: 300;
 }
