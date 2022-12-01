@@ -3,8 +3,10 @@ import ButtonLogIn from "/src/components/ButtonGeneral.vue";
 import InputForm from "/src/components/InputForm.vue";
 import {BFormInput} from "bootstrap-vue"
 import ButtonGeneral from "./ButtonGeneral.vue";
+import {RouterLink} from "vue-router";
+
 export default {
-  components: {ButtonGeneral, InputForm, ButtonLogIn, BFormInput },
+  components: {ButtonGeneral, InputForm, ButtonLogIn, BFormInput, RouterLink},
   data() {
     return {
       email: '',
@@ -37,7 +39,7 @@ export default {
           <span>Войти</span>
         </button-general>
       </div>
-      <div><h3>Еще нет аккаунта? <a class="link" href="#"><u>Регистрация</u></a></h3></div>
+      <div><h3>Еще нет аккаунта? <router-link class="link" to="/registration"><u>Регистрация</u></router-link></h3></div>
       <!--<router-link to=""></router-link> -->
     </div>
 </template>

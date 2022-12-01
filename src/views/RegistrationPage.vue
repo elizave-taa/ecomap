@@ -50,108 +50,111 @@ export default {
 </script>
 
 <template>
-  <div class="reg-page">
-    <div class="top-menu">
-      <button class="back-btn">
-        &lt; Назад
-      </button>
-      <div class="need-block">
-        <span class="need-circle"></span>
-        <p>Помечены необязательные поля</p>
+  <b-container>
+    <div class="reg-page">
+      <div class="top-menu">
+        <button class="back-btn">
+          &lt; Назад
+        </button>
+        <div class="need-block">
+          <span class="need-circle"></span>
+          <p>Помечены необязательные поля</p>
+        </div>
+      </div>
+      <div class="reg-form">
+        <b-container>
+          <b-row>
+            <b-col class="reg-col">
+              <b-form-group
+                  class="reg-group"
+                  label="Имя"
+                  label-for="input-name"
+              >
+                <b-form-input class="reg-input" id="input-name" v-model="name"/>
+              </b-form-group>
+              <b-form-group
+                  class="reg-group"
+                  label="Никнейм"
+                  label-for="input-nickname"
+              >
+                <b-form-input class="reg-input" id="input-nickname" v-model="nickname"/>
+              </b-form-group>
+              <b-form-group
+                  class="reg-group"
+                  label="Почта"
+                  label-for="input-email"
+              >
+                <b-form-input class="reg-input" id="input-email" v-model="email" type="email"/>
+              </b-form-group>
+
+            </b-col>
+            <b-col class="reg-col">
+              <b-form-group
+                  class="reg-group"
+                  label-for="input-lastname"
+              >
+                <template #label>
+                  <div class="custom-label">
+                    Фамилия
+                    <span class="need-circle"></span>
+                  </div>
+                </template>
+                <b-form-input class="reg-input" id="input-lastname" v-model="lastname"/>
+              </b-form-group>
+              <b-form-group
+                  class="reg-group"
+                  label-for="input-age"
+              >
+                <template #label>
+                  <div class="custom-label">
+                    Возраст
+                    <span class="need-circle"></span>
+                  </div>
+                </template>
+                <b-form-input class="reg-input" id="input-age" v-model="age" type="number"/>
+              </b-form-group>
+              <b-form-group
+                  class="reg-group"
+                  label-for="input-gender"
+              >
+                <template #label>
+                  <div class="custom-label">
+                    Пол
+                    <span class="need-circle"></span>
+                  </div>
+                </template>
+                <b-form-select class="reg-input" v-model="gender" :options="genders" id="input-gender"/>
+              </b-form-group>
+            </b-col>
+          </b-row>
+          <b-row class="mt-5">
+            <b-col class="reg-col">
+              <b-form-group
+                  class="reg-group"
+                  label="Пароль"
+                  label-for="input-password"
+              >
+                <b-form-input class="reg-input" id="input-password" v-model="password" type="password"/>
+              </b-form-group>
+              <b-form-group
+                  class="reg-group mb-0"
+                  label="Подтверждение пароля"
+                  label-for="input-confirm-password"
+              >
+                <b-form-input class="reg-input" id="input-confirm-password" v-model="confirmPassword" type="password"/>
+              </b-form-group>
+            </b-col>
+            <b-col class="reg-col to-right-bottom">
+              <button class="reg-button" @click="handleRegistration">
+                Зарегистрироваться
+              </button>
+            </b-col>
+          </b-row>
+        </b-container>
       </div>
     </div>
-    <div class="reg-form">
-      <b-container>
-        <b-row>
-          <b-col class="reg-col">
-            <b-form-group
-                class="reg-group"
-                label="Имя"
-                label-for="input-name"
-            >
-              <b-form-input class="reg-input" id="input-name" v-model="name"/>
-            </b-form-group>
-            <b-form-group
-                class="reg-group"
-                label="Никнейм"
-                label-for="input-nickname"
-            >
-              <b-form-input class="reg-input" id="input-nickname" v-model="nickname"/>
-            </b-form-group>
-            <b-form-group
-                class="reg-group"
-                label="Почта"
-                label-for="input-email"
-            >
-              <b-form-input class="reg-input" id="input-email" v-model="email" type="email"/>
-            </b-form-group>
+  </b-container>
 
-          </b-col>
-          <b-col class="reg-col">
-            <b-form-group
-                class="reg-group"
-                label-for="input-lastname"
-            >
-              <template #label>
-                <div class="custom-label">
-                  Фамилия
-                  <span class="need-circle"></span>
-                </div>
-              </template>
-              <b-form-input class="reg-input" id="input-lastname" v-model="lastname"/>
-            </b-form-group>
-            <b-form-group
-                class="reg-group"
-                label-for="input-age"
-            >
-              <template #label>
-                <div class="custom-label">
-                  Возраст
-                  <span class="need-circle"></span>
-                </div>
-              </template>
-              <b-form-input class="reg-input" id="input-age" v-model="age" type="number"/>
-            </b-form-group>
-            <b-form-group
-                class="reg-group"
-                label-for="input-gender"
-            >
-              <template #label>
-                <div class="custom-label">
-                  Пол
-                  <span class="need-circle"></span>
-                </div>
-              </template>
-              <b-form-select class="reg-input" v-model="gender" :options="genders" id="input-gender"/>
-            </b-form-group>
-          </b-col>
-        </b-row>
-        <b-row class="mt-5">
-          <b-col class="reg-col">
-            <b-form-group
-                class="reg-group"
-                label="Пароль"
-                label-for="input-password"
-            >
-              <b-form-input class="reg-input" id="input-password" v-model="password" type="password"/>
-            </b-form-group>
-            <b-form-group
-                class="reg-group mb-0"
-                label="Подтверждение пароля"
-                label-for="input-confirm-password"
-            >
-              <b-form-input class="reg-input" id="input-confirm-password" v-model="confirmPassword" type="password"/>
-            </b-form-group>
-          </b-col>
-          <b-col class="reg-col to-right-bottom">
-            <button class="reg-button" @click="handleRegistration">
-              Зарегистрироваться
-            </button>
-          </b-col>
-        </b-row>
-      </b-container>
-    </div>
-  </div>
 </template>
 
 <style scoped>
