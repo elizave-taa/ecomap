@@ -54,7 +54,7 @@ export default {
       </div>
     </div>
     <div class="map">
-      <yandex-map class="ymap" :settings="settings" :coords="[47.24, 39.73]" :zoom="12">
+      <yandex-map class="ymap" :settings="settings" :coords="[47.24, 39.73]" :zoom="12.42">
       </yandex-map>
     </div>
   </div>
@@ -112,14 +112,9 @@ span {
   box-shadow: 0 3px 2px rgba(0, 0, 0, 0.25);
 }
 
-.head {
-  box-shadow: 0 3px 2px rgba(0, 0, 0, 0.25);
-}
-
 .map{
   width: 100%;
   height: 100%;
-  background-color: #981111;
 }
 .ymap{
   width: 100%;
