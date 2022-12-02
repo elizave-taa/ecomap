@@ -1,7 +1,8 @@
 <script>
 import {BDropdown, BDropdownItem} from "bootstrap-vue"
+import {RouterLink} from "vue-router"
 export default {
-  components: {BDropdown, BDropdownItem}
+  components: {BDropdown, BDropdownItem, RouterLink}
 }
 </script>
 
@@ -9,7 +10,7 @@ export default {
   <div class="global-header">
     <img alt="ecomap" class="logo" src="/src/assets/logo.svg" />
     <a class="link text" href="#">О нашем проекте</a>
-    <a class="link" href="#">Статьи про экологию</a>
+    <router-link class="link" to="/articles">Статьи про экологию</router-link>
     <a class="link" href="#">Смотреть карту</a>
     <b-dropdown id="dropdown-right" right text="Контакты" variant="primary" class="contacts">
       <b-dropdown-item href="#">Как с нами связаться?</b-dropdown-item>
