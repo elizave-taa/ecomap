@@ -4,6 +4,7 @@ export default {
     image: String,
     title: String,
     likes: Number,
+    id: [String, Number],
   },
   data() {
     return {}
@@ -13,7 +14,7 @@ export default {
 </script>
 
 <template>
-  <div class="ac-card" :style="`background: linear-gradient(rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.75) 100%), url(${image})`">
+  <div @click="$router.push(`/article/${id}`)" class="ac-card" :style="`background: linear-gradient(rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.75) 100%), url(${image})`">
     <h5 class="ac-title">
       {{title}}
     </h5>
@@ -33,6 +34,7 @@ export default {
   min-height: 200px;
   align-items: flex-end;
   background-size: cover !important;
+  cursor: pointer;
 }
 .ac-title {
   margin-bottom: 0;
