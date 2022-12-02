@@ -18,7 +18,7 @@ export default {
 </script>
 
 <template>
-<button class="login-general" :class="variant">
+<button class="login-general" :class="variant" @click="$emit('click')">
   <slot/>
 </button>
 </template>
@@ -44,6 +44,14 @@ export default {
  background-color: rgba(61, 97, 68);
 }
 
+.login-general.blue{
+  background-color: #518590;
+}
+
+.login-general.blue:hover{
+  background-color: #3a6974;
+  cursor: pointer;
+}
 
 .login-general:hover{
   background-color: rgba(82, 115, 89);
