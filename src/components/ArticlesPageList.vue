@@ -15,15 +15,15 @@ export default {
 
 <template>
   <div class="ap-grid">
-    <article-card title="Экология человека и экологическая культура" :likes="8" image="https://pic.xenomorph.ru/2013-04/1365242838_16.jpg"/>
-    <article-card title="Экология человека и экологическая культура" :likes="8" image="https://pic.xenomorph.ru/2013-04/1365242838_16.jpg"/>
-    <article-card title="Экология человека и экологическая культура" :likes="8" image="https://pic.xenomorph.ru/2013-04/1365242838_16.jpg"/>
-    <article-card title="Экология человека и экологическая культура" :likes="8" image="https://pic.xenomorph.ru/2013-04/1365242838_16.jpg"/>
-    <article-card title="Экология человека и экологическая культура" :likes="8" image="https://pic.xenomorph.ru/2013-04/1365242838_16.jpg"/>
-    <article-card title="Экология человека и экологическая культура" :likes="8" image="https://pic.xenomorph.ru/2013-04/1365242838_16.jpg"/>
-    <article-card title="Экология человека и экологическая культура" :likes="8" image="https://pic.xenomorph.ru/2013-04/1365242838_16.jpg"/>
-    <article-card title="Экология человека и экологическая культура" :likes="8" image="https://pic.xenomorph.ru/2013-04/1365242838_16.jpg"/>
-    <article-card title="Экология человека и экологическая культура" :likes="8" image="https://pic.xenomorph.ru/2013-04/1365242838_16.jpg"/>
+    <article-card id="1" title="Экология человека и экологическая культура" :likes="8" image="https://pic.xenomorph.ru/2013-04/1365242838_16.jpg"/>
+    <article-card id="2" title="Экология человека и экологическая культура" :likes="8" image="https://pic.xenomorph.ru/2013-04/1365242838_16.jpg"/>
+    <article-card id="3" title="Экология человека и экологическая культура" :likes="8" image="https://pic.xenomorph.ru/2013-04/1365242838_16.jpg"/>
+    <article-card id="4" title="Экология человека и экологическая культура" :likes="8" image="https://pic.xenomorph.ru/2013-04/1365242838_16.jpg"/>
+    <article-card id="5" title="Экология человека и экологическая культура" :likes="8" image="https://pic.xenomorph.ru/2013-04/1365242838_16.jpg"/>
+    <article-card id="6" title="Экология человека и экологическая культура" :likes="8" image="https://pic.xenomorph.ru/2013-04/1365242838_16.jpg"/>
+    <article-card id="7" title="Экология человека и экологическая культура" :likes="8" image="https://pic.xenomorph.ru/2013-04/1365242838_16.jpg"/>
+    <article-card id="8" title="Экология человека и экологическая культура" :likes="8" image="https://pic.xenomorph.ru/2013-04/1365242838_16.jpg"/>
+    <article-card id="9" title="Экология человека и экологическая культура" :likes="8" image="https://pic.xenomorph.ru/2013-04/1365242838_16.jpg"/>
   </div>
   <div>
     <articles-paginator class="ap-paginator" :page-count="10" next-text=">" prev-text="<" />
