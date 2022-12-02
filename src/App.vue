@@ -7,7 +7,7 @@ export default {
 </script>
 
 <template>
-  <global-header/>
+  <global-header v-if="$route.name !== 'article'"/>
   <router-view/>
 </template>
 
