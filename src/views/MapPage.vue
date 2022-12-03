@@ -2,10 +2,10 @@
 import GlobalHeader from "/src/components/GlobalHeader.vue";
 import KindsOfTrash from "/src/components/KindsOfTrash.vue";
 import ButtonGeneral from "/src/components/ButtonGeneral.vue";
-import { yandexMap } from 'vue-yandex-maps'
+import { yandexMap, ymapMarker } from 'vue-yandex-maps'
 import {BFormCheckbox} from "bootstrap-vue";
 export default {
-  components: {GlobalHeader, KindsOfTrash, ButtonGeneral, BFormCheckbox, yandexMap},
+  components: {GlobalHeader, KindsOfTrash, ButtonGeneral, BFormCheckbox, yandexMap, ymapMarker},
   data() {
     return {
       checked1: false,
@@ -16,9 +16,15 @@ export default {
         coordorder: 'latlong', // Порядок задания географических координат
         debug: false, // Режим отладки
         version: '2.1' // Версия Я.Карт
-      }
+      },
+      coords: [47.24, 39.73],
     }
-  }
+  },
+  methods: {
+    onClick(e) {
+      this.coords = e.get('coords');
+    },
+  },
 }
 </script>
 
@@ -49,8 +55,16 @@ export default {
       </div>
     </div>
     <div class="map">
-      <yandex-map class="ymap" :settings="settings" :coords="[47.24, 39.73]" :zoom="12.42">
-        .
+      <yandex-map
+          :coords="coords"
+          :zoom="12.4"
+          @click="onClick"
+      >
+        <ymap-marker
+            :coords="coords"
+            marker-id="123"
+            hint-content="some hint"
+        />
       </yandex-map>
     </div>
   </div>
