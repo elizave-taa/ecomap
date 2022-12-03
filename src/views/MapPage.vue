@@ -29,7 +29,6 @@ export default {
 </script>
 
 <template>
-  <global-header class="head"/>
   <div class="map-page">
 
     <div class="left-nav">

@@ -10,7 +10,6 @@ export default {
 
 <template>
 <div class="app">
-  <global-header/>
   <div class="main-container">
     <div class="back_link">
       <button-general variant="limpid">
@@ -31,7 +30,7 @@ export default {
   background-position: center;
   width: 100%;
   height: 100vh;
-  /*margin-top: -37px;*/
+  margin-top: -37px;
 }
 
 .main-container{
