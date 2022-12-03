@@ -19,8 +19,8 @@ export default {
 </script>
 
 <template>
-  <global-header/>
 <div class="app">
+  Здесь вы можете посмотреть, как будет выглядеть ваш профиль:
  <div class="main-container">
     <div class="basic-inf">
       <basic-information/>

@@ -12,8 +12,7 @@ export default {
 <template>
   <div class="point-num">
     <div class="inside">
-    <div class="line1"></div>
-    <div class="line2"></div>
+    <div class="line1">{{count}} статей предложено</div>
     </div>
   </div>
 </template>
@@ -34,9 +33,17 @@ export default {
 .inside{
   display: flex;
   align-items: center;
+  justify-content: center;
   background-color: #0c5460;
+  border-radius: 8px;
   width: 85%;
   height: 70%;
+}
+
+.line1{
+  margin-left: 10px;
+  font-size: 22px;
+  color: #ffffff;
 }
 
 </style>
