@@ -97,7 +97,7 @@ export default {
     </div>
   </div>
   <div class="image-container">
-    <img src="src/assets/background.png" alt="Snow" class="background">
+    <img src="/src/assets/background.png" alt="Snow" class="background">
     <div class="centered">Раздельный сбор:
       <p>1.Сокращает рост свалок.
       В год житель России производит 400 килограмм отходов
