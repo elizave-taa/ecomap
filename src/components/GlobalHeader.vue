@@ -9,7 +9,7 @@ export default {
 <template>
   <div class="global-header">
     <img alt="ecomap" class="logo" src="/src/assets/logo.svg" />
-    <a class="link text" href="#">О нашем проекте</a>
+    <router-link class="link" to="/we">О проекте</router-link>
     <router-link class="link" to="/articles">Статьи про экологию</router-link>
     <router-link class="link" to="/map">Смотреть карту</router-link>
     <b-dropdown id="dropdown-right" right text="Контакты" variant="primary" class="contacts">
