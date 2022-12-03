@@ -50,6 +50,7 @@ export default {
     </div>
     <div class="map">
       <yandex-map class="ymap" :settings="settings" :coords="[47.24, 39.73]" :zoom="12.42">
+        .
       </yandex-map>
     </div>
   </div>
