@@ -70,25 +70,25 @@ export default {
         <div class="head-line">Добавьте фотографии</div>
         <div >
           <b-avatar
-              size="5rem"
+              size="4rem"
               rounded="sm"
               class="line-image"
               src="/src/assets/add_photo.svg">
           </b-avatar>
           <b-avatar
-              size="5rem"
+              size="4rem"
               rounded="sm"
               class="line-image"
               src="/src/assets/add_photo.svg">
           </b-avatar>
           <b-avatar
-              size="5rem"
+              size="4rem"
               rounded="sm"
               class="line-image"
               src="/src/assets/add_photo.svg">
           </b-avatar>
           <b-avatar
-              size="5rem"
+              size="4rem"
               rounded="sm"
               class="line-image"
               src="/src/assets/add_photo.svg">

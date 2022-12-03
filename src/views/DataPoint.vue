@@ -13,7 +13,9 @@ export default {
   <div class="main-container">
     <div class="back_link">
       <button-general variant="limpid">
-        Назад
+        <router-link class="link" to="/map">
+          <div class="btn-text">Назад</div>
+        </router-link>
       </button-general>
     </div>
     <inf-about-new-point class="inf"/>
@@ -35,7 +37,7 @@ export default {
 
 .main-container{
   width: 100%;
-  height: 90%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -43,13 +45,26 @@ export default {
 }
 
 .back_link {
-  width: 85%;
-  margin-bottom: 10px;
+  width: 77%;
+  margin-bottom: 7px;
+}
+
+.btn-text{
+  font-size: 16px;
+  padding: 5px;
+  line-height: 20px;
+  color: #ffffff!important;
+  text-decoration: none!important;
+}
+
+router-link:hover{
+  color: #ffffff!important;
+  text-decoration: none!important;
 }
 
 .inf{
-  width: 85%;
-  height: 85%;
+  width: 77%;
+  height: 77%;
 }
 
 

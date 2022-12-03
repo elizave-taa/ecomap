@@ -19,7 +19,9 @@ export default {
         <div class="text-or">ИЛИ</div>
         <div class="login-button">
           <button-general variant="limpid" @click="loginWithoutAuth">
-            <span>Продолжить без входа</span>
+            <router-link class="link" to="/map">
+              <div class="btn-text">Продолжить без входа</div>
+            </router-link>
           </button-general>
         </div>
       </div>
@@ -80,6 +82,21 @@ h2{
 .in-description{
   padding: 2px 20px 1px 20px;
   text-align: right;
+}
+
+.btn-text{
+  font-size: 20px;
+  padding-left: 32px;
+  padding-right: 32px;
+  padding-top: 10px;
+  line-height: 30px;
+  color: #ffffff!important;
+  text-decoration: none!important;
+}
+
+router-link:hover{
+  color: #ffffff!important;
+  text-decoration: none!important;
 }
 
 .description{

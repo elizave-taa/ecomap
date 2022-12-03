@@ -49,7 +49,7 @@ export default {
       <div>
         <button-general class="btn" variant="limpid">
           <router-link class="link" to="/point">
-            <div class="btn-text">Статьи про экологию</div>
+            <div class="btn-text">Предложить свою точку</div>
           </router-link>
         </button-general>
       </div>
@@ -98,15 +98,22 @@ p {
   font-weight: 500;
   font-size: 14px;
   color: #341A0C;
-  width: 80%;
+  width: 90%;
   margin-top: 15px;
   border-radius: 8px;
 }
 
 .btn-text{
   font-size: 16px;
-  padding: 10px;
-  line-height: 25px;
+  padding: 5px;
+  line-height: 20px;
+  color: #ffffff!important;
+  text-decoration: none!important;
+}
+
+router-link:hover{
+  color: #ffffff!important;
+  text-decoration: none!important;
 }
 
 .btn {
