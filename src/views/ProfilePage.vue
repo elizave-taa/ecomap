@@ -1,12 +1,18 @@
 <script>
 import GlobalHeader from "../components/GlobalHeader.vue";
+import BasicInformation from "../components/BasicInformation.vue";
+import PointStatistic from "../components/PointStatistic.vue";
+import ArticlesStatistic from "../components/ArticlesStatistic.vue";
 import {BAvatar, BToast, BButton} from "bootstrap-vue"
 export default {
   name: "ProfilePage",
-  components: {GlobalHeader, BAvatar, BToast, BButton},
+  components: {GlobalHeader, BAvatar, BToast, BButton, BasicInformation, PointStatistic, ArticlesStatistic},
   data() {
     return {
-      modalShow: false
+      modalShow: false,
+      friends_counter: 0,
+      likes_counter: 0,
+      user_name: 'Имя Юзера'
     }
   },
 }
@@ -15,100 +21,72 @@ export default {
 <template>
   <global-header/>
 <div class="app">
-  <div class="main-container">
+ <div class="main-container">
     <div class="basic-inf">
-      <div class="left">
-        <div class="avatar">
-            <b-avatar
-                size="10em"
-              class="line-image"
-              src="/src/assets/add_photo.svg">
-            </b-avatar>
+      <basic-information/>
+    </div>
+    <div class="activities">
+      <div class="blocks">
+        <div class="line">
+          <articles-statistic/>
+          <img src="/src/assets/background.png" alt="picture" class="image">
         </div>
-
-        <div class="about-me">
-          <div>
-            <div class="user-name">@Имя Юзера</div>
-            <div class="rank">Юный защитник природы</div>
-          </div>
-          <div class="status">Для иных природа — это дрова, уголь, руда, или дача, или просто пейзаж. Для меня природа — это среда, из которой, как цветы, выросли все наши человеческие таланты.</div>
+        <div class="line">
+          <img src="/src/assets/background2.png" alt="picture" class="image">
+          <point-statistic/>
         </div>
       </div>
     </div>
-
-    <div class="activities">
-
-    </div>
-  </div>
+ </div>
 </div>
 </template>
 
 <style scoped>
 .app{
   margin: auto;
-}
-
-.line-image{
-  background-color: #D7D7D7!important;
-  border-radius: 8px!important;
+  font-family: Inter, sans-serif;
 }
 
 .main-container{
-  background-color: #F0FAF2;
+  background-color: #c9e0cf;
   display: flex;
-  height: 20vw;
-}
-.basic-inf{
-  background-color: blue;
-  display: flex;
-  width: 50%;
-  align-items: center;
-  justify-content: center;
+  height: 23vw;
+  justify-content: space-between;
 }
 
-.about-me{
-  width: 65%;
-  align-items: flex-start;
-  height: 80%;
+.basic-inf{
+  display: flex;
+  width: 48%;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.activities {
+  width: 48%;
+  align-items: center;
+  display: flex;
+}
+
+.blocks{
+  width: 80%;
+  height: 85%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
-.left{
-  width: 80%;
-  height: 85%;
-  background-color: #ffffff;
-  border-radius: 8px;
+.line{
   display: flex;
-  align-items: center;
+  justify-content: space-between;
+  height: 48%;
+  width: 100%;
 }
 
-.avatar{
-  width: 35%;
-  height: 85%;
-  text-align: center;
-}
-.activities{
-  background-color: blueviolet;
-  width: 50%;
+.image{
+  width: 48%;
+  height: 100%;
+  border-radius: 8px;
+  box-shadow: 2px 2px 3px 0 rgba(0,0,0,0.3);
 }
 
-.user-name{
-  font-size: 35px;
-  font-weight: 600;
-  line-height: 33px;
-}
-
-.rank{
-  font-size: 20px;
-  color: #209d31;
-  margin-bottom: 25px;
-}
-
-.status{
-  font-size: 20px;
-  line-height: 23px;
-  width: 90%;
-}
 </style>
