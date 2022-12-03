@@ -18,12 +18,6 @@ export default {
         version: '2.1' // Версия Я.Карт
       }
     }
-  },
-  created() {
-    // Установить скрипты для использования яндекс карты
-    let scriptYandexMap = document.createElement('script');
-    scriptYandexMap.setAttribute('src', 'https://api-maps.yandex.ru/2.1/?lang=ru_RU');
-    document.head.appendChild(scriptYandexMap);
   }
 }
 </script>
