@@ -94,13 +94,12 @@ h2{
   text-decoration: none!important;
 }
 
-router-link:hover{
+.link:hover{
   color: #ffffff!important;
   text-decoration: none!important;
 }
 
 .description{
-
   border-right: #ffffff solid 4px;
   text-align: center;
   line-height: 20px;

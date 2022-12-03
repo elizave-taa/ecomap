@@ -23,7 +23,6 @@ export default {
 </div>
 </template>
 
-
 <style scoped>
 
 .app {
@@ -57,7 +56,7 @@ export default {
   text-decoration: none!important;
 }
 
-router-link:hover{
+.link:hover{
   color: #ffffff!important;
   text-decoration: none!important;
 }
@@ -66,6 +65,5 @@ router-link:hover{
   width: 77%;
   height: 77%;
 }
-
 
 </style>

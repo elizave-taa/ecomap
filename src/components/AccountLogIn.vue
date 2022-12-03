@@ -1,16 +1,17 @@
 <script>
 import ButtonLogIn from "/src/components/ButtonGeneral.vue";
 import InputForm from "/src/components/InputForm.vue";
-import {BFormInput} from "bootstrap-vue"
+import {BFormInput, BModal} from "bootstrap-vue"
 import ButtonGeneral from "./ButtonGeneral.vue";
 import {RouterLink} from "vue-router";
 
 export default {
-  components: {ButtonGeneral, InputForm, ButtonLogIn, BFormInput, RouterLink},
+  components: {ButtonGeneral, InputForm, ButtonLogIn, BFormInput, RouterLink, BModal},
   data() {
     return {
       email: '',
-      password: ''
+      password: '',
+      modalShow: false
     }
   },
   computed: {
@@ -35,9 +36,10 @@ export default {
       <b-form-input class="input" v-model="email" placeholder="Введите почту"></b-form-input>
       <b-form-input class="input" v-model="password" placeholder="Введите пароль"></b-form-input>
       <div class="login-button">
-        <button-general @click="handleLogin">
+        <button-general @click="modalShow = !modalShow">
           <span>Войти</span>
         </button-general>
+        <b-modal v-model="modalShow">Кнопка "вход" пока не работает, нажмите на кнопку "продолжить без входа" и посмотрите, что уже есть в проекте Ecomap &#10084;</b-modal>
       </div>
       <div><h3>Еще нет аккаунта? <router-link class="link" to="/registration"><u>Регистрация</u></router-link></h3></div>
       <!--<router-link to=""></router-link> -->

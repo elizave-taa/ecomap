@@ -6,6 +6,7 @@ import ArticleView from "../views/ArticleView.vue";
 import MapPage from "../views/MapPage.vue";
 import DataPoint from "../views/DataPoint.vue";
 import AboutUs from "../views/AboutUs.vue";
+import ProfilePage from "../views/ProfilePage.vue";
 
 const router = createRouter({
     history: createWebHistory("/ecomap/"),
@@ -45,6 +46,11 @@ const router = createRouter({
             path: '/we',
             name: 'about-us',
             component: AboutUs
+        },
+        {
+            path: '/profile',
+            name: 'profile',
+            component: ProfilePage
         }
     ]
 })

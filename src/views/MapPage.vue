@@ -106,7 +106,7 @@ p {
   text-decoration: none!important;
 }
 
-router-link:hover{
+.link:hover{
   color: #ffffff!important;
   text-decoration: none!important;
 }
