@@ -17,14 +17,8 @@ export default {
         debug: false, // Режим отладки
         version: '2.1' // Версия Я.Карт
       },
-      coords: [47.24, 39.73],
     }
-  },
-  methods: {
-    onClick(e) {
-      this.coords = e.get('coords');
-    },
-  },
+  }
 }
 </script>
 
@@ -55,16 +49,8 @@ export default {
       </div>
     </div>
     <div class="map">
-      <yandex-map
-          :coords="coords"
-          :zoom="12.4"
-          @click="onClick"
-      >
-        <ymap-marker
-            :coords="coords"
-            marker-id="123"
-            hint-content="some hint"
-        />
+      <yandex-map :settings="settings" :coords="[47.24, 39.73]" zoom="12.4">
+        +++<my-component slot="balloon"></my-component>
       </yandex-map>
     </div>
   </div>
@@ -130,10 +116,6 @@ router-link:hover{
 }
 
 .map{
-  width: 100%;
-  height: 100%;
-}
-.ymap{
   width: 100%;
   height: 100%;
 }
