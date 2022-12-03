@@ -11,7 +11,7 @@ export default {
     <img alt="ecomap" class="logo" src="/src/assets/logo.svg" />
     <a class="link text" href="#">О нашем проекте</a>
     <router-link class="link" to="/articles">Статьи про экологию</router-link>
-    <a class="link" href="#">Смотреть карту</a>
+    <router-link class="link" to="/map">Смотреть карту</router-link>
     <b-dropdown id="dropdown-right" right text="Контакты" variant="primary" class="contacts">
       <b-dropdown-item href="#">Как с нами связаться?</b-dropdown-item>
       <hr/>
