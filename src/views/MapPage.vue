@@ -49,7 +49,7 @@ export default {
       </div>
     </div>
     <div class="map">
-      <yandex-map :settings="settings" :coords="[47.24, 39.73]" zoom="12.4">
+      <yandex-map class="ymap" :settings="settings" :coords="[47.24, 39.73]" zoom="12.4">
         +++<my-component slot="balloon"></my-component>
       </yandex-map>
     </div>
@@ -116,6 +116,10 @@ router-link:hover{
 }
 
 .map{
+  width: 100%;
+  height: 100%;
+}
+.ymap{
   width: 100%;
   height: 100%;
 }
