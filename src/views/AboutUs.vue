@@ -75,23 +75,23 @@ export default {
     <div class="head-line">Наши преимущества:</div>
     <div class="advantages">
       <div class="point">
-        <img class="image" src="src/assets/point1.png">
+        <img class="image" src="/src/assets/point1.png">
         <div class="description">Удобная интерактивная карта</div>
       </div>
       <div class="point">
-        <img class="image" src="src/assets/point2.png">
+        <img class="image" src="/src/assets/point2.png">
         <div class="description">Приятный интерфейс</div>
       </div>
       <div class="point">
-        <img class="image" src="src/assets/point3.png">
+        <img class="image" src="/src/assets/point3.png">
         <div class="description">Возможность добавить свою точку</div>
       </div>
       <div class="point">
-        <img class="image" src="src/assets/point4.png">
+        <img class="image" src="/src/assets/point4.png">
         <div class="description">Блог об экологии</div>
       </div>
       <div class="point">
-        <img class="image" src="src/assets/point5.png">
+        <img class="image" src="/src/assets/point5.png">
         <div class="description">Получение рейтинга за добрые дела</div>
       </div>
     </div>
