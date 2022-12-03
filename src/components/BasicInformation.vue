@@ -18,7 +18,6 @@ export default {
         <div class="left">
           <div class="avatar">
             <b-avatar
-                size="9em"
                 class="line-image"
                 src="/src/assets/add_photo.svg">
             </b-avatar>
@@ -43,34 +42,32 @@ export default {
                 <svg width="18" height="18" viewBox="0 0 512 512"><path fill="currentColor" d="M389.053 126.3A302.909 302.909 0 0 0 280.012 18.15L272 13.516l-8.012 4.634A301.084 301.084 0 0 0 113.4 279.042c0 3.445.06 6.944.177 10.4c1.592 46.856 19.511 86.283 51.82 114.018c24.724 21.225 56.438 34.182 90.607 37.273V496h32V240H256v168.528c-54.064-6.263-107.873-44.455-110.444-120.174c-.106-3.095-.16-6.228-.16-9.312A270.286 270.286 0 0 1 272 50.673a270.286 270.286 0 0 1 126.6 228.369c0 3.084-.054 6.217-.16 9.313c-2.056 60.573-36.907 97.127-78.444 112.536v33.867a156.188 156.188 0 0 0 58.607-31.3c32.309-27.735 50.228-67.162 51.82-114.017c.117-3.456.177-6.955.177-10.4A300.948 300.948 0 0 0 389.053 126.3Z"/></svg>
               </div>
             </div>
-            <div class="status">Для иных природа — это дрова, уголь, руда, или дача, или просто пейзаж. Для меня природа — это среда, из которой, как цветы, выросли все наши человеческие таланты.</div>
+            <div class="status">Здесть можно будет написать что-то о себе</div>
           </div>
         </div>
 </template>
 
 <style scoped>
-  .app{
-  margin: auto;
-  font-family: Inter, sans-serif;
-}
 
   .line-image{
     background-color: #D7D7D7!important;
   border-radius: 8px!important;
   margin-bottom: 20px;
+    width: 70%;
+    height: 70%;
 }
 
   .about-me{
   width: 65%;
   align-items: flex-start;
-  height: 80%;
+  height: 70%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
   .left{
-  width: 80%;
+  width: 85%;
   height: 85%;
   background-color: #ffffff;
   border-radius: 8px;
@@ -81,26 +78,26 @@ export default {
 
   .avatar{
   width: 35%;
-  height: 80%;
+  height: 70%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
   .user-name{
-    font-size: 25px;
+    font-size: 22px;
   font-weight: 600;
   line-height: 27px;
 }
 
   .rank{
-    font-size: 16px;
+    font-size: 15px;
   color: #209d31;
   margin-bottom: 20px;
 }
 
   .status{
-    font-size: 15px;
+    font-size: 14px;
   line-height: 20px;
   width: 90%;
 }
