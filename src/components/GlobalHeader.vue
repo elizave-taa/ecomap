@@ -9,6 +9,7 @@ export default {
 <template>
   <div class="global-header">
     <img alt="ecomap" class="logo" src="/src/assets/logo.svg" />
+    <router-link class="link" to="/admin">Админ-панель</router-link>
     <router-link class="link" to="/we">О проекте</router-link>
     <router-link class="link" to="/articles">Статьи про экологию</router-link>
     <router-link class="link" to="/map">Смотреть карту</router-link>
