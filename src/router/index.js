@@ -7,6 +7,8 @@ import MapPage from "../views/MapPage.vue";
 import DataPoint from "../views/DataPoint.vue";
 import AboutUs from "../views/AboutUs.vue";
 import ProfilePage from "../views/ProfilePage.vue";
+import AdminPanel from "../views/AdminPanel.vue";
+import PostAdd from "../views/PostAdd.vue";
 
 const router = createRouter({
     history: createWebHistory("/ecomap/"),
@@ -51,7 +53,17 @@ const router = createRouter({
             path: '/profile',
             name: 'profile',
             component: ProfilePage
-        }
+        },
+        {
+            path: '/admin',
+            name: 'admin',
+            component: AdminPanel
+        },
+        {
+            path: '/admin/post/add',
+            name: 'post-add',
+            component: PostAdd
+        },
     ]
 })
 
