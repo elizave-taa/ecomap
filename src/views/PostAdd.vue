@@ -1,50 +1,17 @@
 <script>
 import { BContainer, BRow, BCol, BFormGroup, BFormInput, BFormSelect } from "bootstrap-vue"
+import CKEditor from '@ckeditor/ckeditor5-vue';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 export default {
   components: {
-    BContainer, BRow, BCol, BFormGroup, BFormInput, BFormSelect
+    BContainer, BRow, BCol, BFormGroup, BFormInput, BFormSelect, ckeditor: CKEditor.component
   },
   data() {
     return {
       name: null,
-      nickname: null,
-      email: null,
-      lastname: null,
-      age: null,
-      gender: null,
-      password: null,
-      confirmPassword: null,
-      genders: [
-        { value: 1, text: 'Мужской' },
-        { value: 2, text: 'Женский' },
-        { value: 3, text: 'Другой' }
-      ]
+      editor: ClassicEditor,
+      editorData: '<p>Content of the editor.</p>',
     }
-  },
-  computed: {
-    regData() {
-      return {
-        name: this.name,
-        nickname: this.nickname,
-        email: this.email,
-        lastname: this.lastname,
-        age: this.age,
-        gender: this.gender,
-        password: this.password,
-        confirmPassword: this.confirmPassword,
-      }
-    }
-  },
-  watch: {
-    age() {
-      if (!Number.isInteger(+this.age) || this.age < 0 || this.age > 111)
-        this.age = null;
-    }
-  },
-  methods: {
-    handleRegistration() {
-      console.log(this.regData)
-    },
   },
 }
 </script>
@@ -70,7 +37,7 @@ export default {
                 >
                   <b-form-input class="reg-input" id="input-name" v-model="name"/>
                 </b-form-group>
-
+                <ckeditor :editor="editor" v-model="editorData"/>
               </b-col>
               <b-col class="reg-col">
               </b-col>
