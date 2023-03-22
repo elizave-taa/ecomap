@@ -28,7 +28,7 @@ export default {
   justify-content: space-between;
   align-items: center;
   padding: 6px 150px;
-  background-color: rgba(82, 115, 89, 0.75);
+  background-color: rgba(50, 90, 50, 0.75);
   position: relative;
   z-index: 10;
 }
