@@ -46,7 +46,6 @@ export default {
   background-position: center;
   width: 100%;
   height: 100vh;
-  margin-top: -37px;
 }
 
 span{

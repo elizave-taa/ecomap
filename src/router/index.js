@@ -19,9 +19,9 @@ const router = createRouter({
             component: ArticlesPage,
         },
         {
-            name: 'WelcomePage',
+            path: '/',
+            name: 'welcome-page',
             component: WelcomePage,
-            path: '/'
         },
         {
             path: '/registration',
