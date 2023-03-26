@@ -49,7 +49,7 @@ export default {
 
 .ap-paginator:deep(li) {
   display: block;
-  background-color: #859F8A;
+  background-color: rgb(var(--c-primary-rgb));
   border-radius: 5px;
 }
 
@@ -60,7 +60,7 @@ export default {
 }
 
 .ap-paginator:deep(li.active) {
-  background-color: #3D6144;
+  background-color: rgb(var(--c-primary-light-rgb));
 }
 
 .ap-paginator:deep(li.disabled a) {
