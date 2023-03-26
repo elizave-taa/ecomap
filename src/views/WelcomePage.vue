@@ -18,7 +18,7 @@ export default {
         <div><account-log-in/></div>
         <div class="text-or">ИЛИ</div>
         <div class="login-button">
-          <button-general variant="limpid" @click="loginWithoutAuth">
+          <button-general @click="loginWithoutAuth">
             <router-link class="link" to="/map">
               <div class="btn-text">Продолжить без входа</div>
             </router-link>
