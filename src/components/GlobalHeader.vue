@@ -2,12 +2,17 @@
 import {BDropdown, BDropdownItem} from "bootstrap-vue"
 import {RouterLink} from "vue-router"
 export default {
-  components: {BDropdown, BDropdownItem, RouterLink}
+  components: {BDropdown, BDropdownItem, RouterLink},
+  data() {
+    return {
+      transparentRoutes: ['registration', 'new-point']
+    }
+  }
 }
 </script>
 
 <template>
-  <div class="global-header">
+  <div class="global-header" :class="{'global-header-transparent': transparentRoutes.includes($route.name)}">
     <img alt="ecomap" class="logo" src="/src/assets/logo.svg" />
     <router-link class="link" to="/admin">Админ-панель</router-link>
     <router-link class="link" to="/we">О проекте</router-link>
@@ -28,9 +33,12 @@ export default {
   justify-content: space-between;
   align-items: center;
   padding: 6px 150px;
-  background-color: rgba(50, 90, 50, 0.75);
+  background-color: rgb(var(--c-primary-rgb));
   position: relative;
   z-index: 10;
+}
+.global-header-transparent {
+  background-color: rgba(var(--c-primary-rgb), 0.75);
 }
 .logo {
   width: 25px;
