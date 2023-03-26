@@ -40,10 +40,10 @@ export default {
             </div>
         </div>
       </div>
-      <div>
-        <button-general class="btn" variant="limpid">
-          <router-link class="link" to="/point">
-            <div class="btn-text">Предложить свою точку</div>
+      <div class="mp-btn-wrapper">
+        <button-general class="mp-btn">
+          <router-link class="mp-btn-link" to="/point">
+            Предложить свою точку
           </router-link>
         </button-general>
       </div>
@@ -57,12 +57,12 @@ export default {
 </template>
 
 <style scoped>
-
-.map-page{
+.map-page {
   width: 100vw;
   height: 94vh;
   display: flex;
 }
+
 .left-nav {
   font-family: Inter, sans-serif;
   width: 25%;
@@ -98,28 +98,29 @@ p {
   border-radius: 8px;
 }
 
-.btn-text{
+.mp-btn-wrapper {
+  width: 90%;
+}
+
+.mp-btn {
+  width: 100%;
+}
+
+.mp-btn-link {
   font-size: 16px;
-  padding: 5px;
+  padding: 11px 0;
+  display: inline-block;
   line-height: 20px;
-  color: #ffffff!important;
-  text-decoration: none!important;
+  color: #ffffff !important;
+  text-decoration: none !important;
 }
 
-.link:hover{
-  color: #ffffff!important;
-  text-decoration: none!important;
-}
-
-.btn {
-  box-shadow: 0 3px 2px rgba(0, 0, 0, 0.25);
-}
-
-.map{
+.map {
   width: 100%;
   height: 100%;
 }
-.ymap{
+
+.ymap {
   width: 100%;
   height: 100%;
 }
