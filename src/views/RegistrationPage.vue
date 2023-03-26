@@ -1,8 +1,9 @@
 <script>
 import { BContainer, BRow, BCol, BFormGroup, BFormInput, BFormSelect } from "bootstrap-vue"
+import ButtonGeneral from "../components/ButtonGeneral.vue"
 export default {
   components: {
-    BContainer, BRow, BCol, BFormGroup, BFormInput, BFormSelect
+    BContainer, BRow, BCol, BFormGroup, BFormInput, BFormSelect, ButtonGeneral
   },
   data() {
     return {
@@ -54,10 +55,9 @@ export default {
     <b-container>
       <div class="reg-page">
         <div class="top-menu">
-          <button class="back-btn" @click="$router.go(-1)">
-            <svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentColor" d="M15.125 21.1L6.7 12.7q-.15-.15-.212-.325q-.063-.175-.063-.375t.063-.375q.062-.175.212-.325l8.425-8.425q.35-.35.875-.35t.9.375q.375.375.375.875t-.375.875L9.55 12l7.35 7.35q.35.35.35.862q0 .513-.375.888t-.875.375q-.5 0-.875-.375Z"/></svg>
-            Назад
-          </button>
+          <button-general class="back-btn" @click="$router.go(-1)">
+              Назад
+          </button-general>
           <div class="need-block">
             <span class="need-circle"></span>
             <p>Помечены необязательные поля</p>
@@ -147,9 +147,9 @@ export default {
                 </b-form-group>
               </b-col>
               <b-col class="reg-col to-right-bottom">
-                <button class="reg-button" @click="handleRegistration">
+                <button-general class="reg-button" @click="handleRegistration">
                   Зарегистрироваться
-                </button>
+                </button-general>
               </b-col>
             </b-row>
           </b-container>
@@ -173,7 +173,7 @@ export default {
   font-family: Inter,sans-serif;
 }
 .reg-form {
-  background-color: rgba(82, 115, 85, 0.85);
+  background-color: rgba(var(--c-primary-rgb), 0.75);
   border-radius: 8px;
   padding: 35px 0;
 }
@@ -198,16 +198,15 @@ export default {
   margin-left: 20px;
 }
 .reg-input:deep(option) {
-  background: #859F8A;
+  background-color: rgb(var(--c-button-rgb));
+}
+.reg-input:deep(option):hover {
+  background-color: rgb(var(--c-button-rgb));
 }
 .reg-col {
   padding: 0 50px;
 }
 .reg-button {
-  background: #859F8A;
-  color: #fff;
-  border: 0;
-  border-radius: 6px;
   padding: 12px 22px;
   font-size: 18px;
   font-weight: 500;
@@ -226,7 +225,7 @@ export default {
 .need-circle {
   height: 20px;
   width: 20px;
-  background-color: #859F8A;
+  background-color: rgb(var(--c-primary-light-rgb));
   display: inline-block;
   border-radius: 20px;
 }
@@ -242,14 +241,9 @@ export default {
   font-weight: 500;
 }
 .back-btn {
-  background: none;
-  border: none;
-  padding: 0;
-  color: #fff;
-  font-weight: 500;
-  display: flex;
-  align-items: center;
-  column-gap: 5px;
+  font-size: 16px;
+  padding: 6px 11px;
+  line-height: 20px;
 }
 .custom-label {
   display: inline-flex;
