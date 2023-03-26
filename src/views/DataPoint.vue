@@ -2,68 +2,52 @@
 import GlobalHeader from "../components/GlobalHeader.vue";
 import ButtonGeneral from "../components/ButtonGeneral.vue";
 import InfAboutNewPoint from "../components/InfAboutNewPoint.vue";
+import {BContainer} from "bootstrap-vue"
 export default {
   name: "DataPoint",
-  components: { GlobalHeader, ButtonGeneral, InfAboutNewPoint }
+  components: { GlobalHeader, ButtonGeneral, InfAboutNewPoint, BContainer }
 }
 </script>
 
 <template>
-<div class="app">
-  <div class="main-container">
-    <div class="back_link">
-      <button-general variant="limpid">
-        <router-link class="link" to="/map">
-          <div class="btn-text">Назад</div>
-        </router-link>
+<div class="dp-wrapper">
+  <b-container>
+    <div class="top-menu">
+      <button-general class="back-btn" @click="$router.go(-1)">
+        Назад
       </button-general>
     </div>
-    <inf-about-new-point class="inf"/>
-  </div>
+    <inf-about-new-point class="dp-form"/>
+  </b-container>
 </div>
 </template>
 
 <style scoped>
-
-.app {
+.dp-wrapper {
   background-image: url('/src/assets/map.png');
   background-size: cover;
   background-position: center;
-  width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   margin-top: -37px;
+  padding: 67px;
 }
 
-.main-container{
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.dp-form {
+  background-color: rgba(var(--c-primary-rgb), 0.75);
+  border-radius: 8px;
+  padding: 35px 0;
 }
 
-.back_link {
-  width: 77%;
-  margin-bottom: 7px;
-}
-
-.btn-text{
+.back-btn {
   font-size: 16px;
-  padding: 5px;
+  padding: 6px 11px;
   line-height: 20px;
-  color: #ffffff!important;
-  text-decoration: none!important;
 }
 
-.link:hover{
-  color: #ffffff!important;
-  text-decoration: none!important;
+.top-menu {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  width: 100%;
 }
-
-.inf{
-  width: 77%;
-  height: 77%;
-}
-
 </style>
