@@ -31,13 +31,15 @@ export default {
   border-radius: 8px;
   border-color: transparent;
   color: white;
+  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.25);
+  transition: background-color .2s;
 }
 .login-general.limpid{
   background-color: rgba(82, 115, 89, 0.75);
 }
 
 .login-general.basic{
-  background-color: rgba(133, 159, 138);
+  background-color: rgba(var(--c-button-rgb));
 }
 
 .login-general.dark{
@@ -54,7 +56,7 @@ export default {
 }
 
 .login-general:hover{
-  background-color: rgba(82, 115, 89);
+  background-color: rgb(var(--c-button-hover-rgb));
   cursor: pointer;
 }
 </style>

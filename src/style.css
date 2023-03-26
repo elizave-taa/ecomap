@@ -5,3 +5,10 @@ body {
   font-weight: 400;
 
 }
+
+:root {
+  --c-primary-rgb: 50, 90, 50;
+  --c-button-rgb: 30, 70, 40;
+  --c-button-hover-rgb: 30, 60, 30;
+
+}
