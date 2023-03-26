@@ -50,7 +50,7 @@ export default {
     </div>
     <div class="map">
       <yandex-map class="ymap" :settings="settings" :coords="[47.24, 39.73]" zoom="12.4">
-        +++<my-component slot="balloon"></my-component>
+        <my-component slot="balloon"></my-component>
       </yandex-map>
     </div>
   </div>
