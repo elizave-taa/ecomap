@@ -95,7 +95,7 @@ div h3{
   align-items: center;
   padding:  20px 30px;
   font-family: Inter, sans-serif;
-  background-color: rgba(82, 115, 89, 0.75);
+  background-color: rgba(var(--c-primary-rgb), 0.75);
   border: none;
   border-radius: 8px;
 }
