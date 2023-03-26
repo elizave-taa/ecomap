@@ -225,7 +225,7 @@ export default {
 .need-circle {
   height: 20px;
   width: 20px;
-  background-color: rgb(var(--c-primary-light-rgb));
+  background-color: rgb(var(--c-primary-lightest-rgb));
   display: inline-block;
   border-radius: 20px;
 }
