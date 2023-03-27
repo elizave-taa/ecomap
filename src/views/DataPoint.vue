@@ -2,7 +2,7 @@
 import GlobalHeader from "../components/GlobalHeader.vue";
 import ButtonGeneral from "../components/ButtonGeneral.vue";
 import InfAboutNewPoint from "../components/InfAboutNewPoint.vue";
-import {BContainer} from "bootstrap-vue"
+import { BContainer } from "bootstrap-vue"
 export default {
   name: "DataPoint",
   components: { GlobalHeader, ButtonGeneral, InfAboutNewPoint, BContainer }

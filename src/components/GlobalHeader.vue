@@ -24,6 +24,7 @@ export default {
       <b-dropdown-item href="#">Контакт 1</b-dropdown-item>
       <b-dropdown-item href="#">Контакт 2</b-dropdown-item>
     </b-dropdown>
+    <img alt="профиль" class="logo-user" src="/src/assets/user.svg" />
   </div>
 </template>
 
@@ -42,7 +43,12 @@ export default {
 }
 .logo {
   width: 25px;
-  height: 25px;
+  height: 23px;
+}
+.logo-user {
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
 }
 .link {
   font-family: Inter, sans-serif;
@@ -51,7 +57,6 @@ export default {
   text-decoration: none;
   color: #fff !important;
 }
-
 .contacts:deep(button){
   padding: 0;
   background: none!important;

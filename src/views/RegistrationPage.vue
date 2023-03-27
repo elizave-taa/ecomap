@@ -1,6 +1,7 @@
 <script>
 import { BContainer, BRow, BCol, BFormGroup, BFormInput, BFormSelect } from "bootstrap-vue"
 import ButtonGeneral from "../components/ButtonGeneral.vue"
+import axios from "axios";
 export default {
   components: {
     BContainer, BRow, BCol, BFormGroup, BFormInput, BFormSelect, ButtonGeneral
@@ -19,7 +20,8 @@ export default {
         { value: 1, text: 'Мужской' },
         { value: 2, text: 'Женский' },
         { value: 3, text: 'Другой' }
-      ]
+      ],
+      wasError: false
     }
   },
   computed: {
@@ -40,13 +42,22 @@ export default {
     age() {
       if (!Number.isInteger(+this.age) || this.age < 0 || this.age > 111)
         this.age = null;
-    }
+    },
   },
   methods: {
     handleRegistration() {
-      console.log(this.regData)
-    },
-  },
+      if (this.password.length < 6 || this.password !== this.confirmPassword)
+        this.wasError = true;
+      else {
+        axios.post("http://80.90.190.25:5243/api/registration", this.regData).then((response) => {
+          console.log(response.data)
+        }).catch((error) => {
+              console.log(error.response.data)
+            }
+        );
+      }
+    }
+  }
 }
 </script>
 
@@ -147,6 +158,7 @@ export default {
                 </b-form-group>
               </b-col>
               <b-col class="reg-col to-right-bottom">
+                <p class="mistake" v-if="wasError">Проверьте, что пароль длиннее 6 символов или что проверка пароля с ним совпадает</p>
                 <button-general class="reg-button" @click="handleRegistration">
                   Зарегистрироваться
                 </button-general>
@@ -266,5 +278,9 @@ export default {
 .reg-input[type="number"]::-webkit-inner-spin-button,
 .reg-input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
+}
+.mistake{
+  font-size: 16px;
+  color: #981111;
 }
 </style>

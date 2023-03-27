@@ -4,6 +4,7 @@ import InputForm from "/src/components/InputForm.vue";
 import {BFormInput, BModal} from "bootstrap-vue"
 import ButtonGeneral from "./ButtonGeneral.vue";
 import {RouterLink} from "vue-router";
+import axios from "axios";
 
 export default {
   components: {ButtonGeneral, InputForm, ButtonLogIn, BFormInput, RouterLink, BModal},
@@ -11,7 +12,7 @@ export default {
     return {
       email: '',
       password: '',
-      modalShow: false
+      wasError: false
     }
   },
   computed: {
@@ -23,9 +24,14 @@ export default {
     }
   },
   methods: {
-    handleLogin() {
-      console.log(this.loginData)
-    }
+      accLogin(){
+        axios.post("http://80.90.190.25:5243/api/login",this.loginData).then((response) =>
+        {console.log(response);
+          this.$router.push({name: 'profile'});
+          console.log(response.data)}).catch((error) => {
+          this.wasError = true;
+          console.log(error.response.data) });
+      }
   }
 }
 </script>
@@ -33,16 +39,16 @@ export default {
 <template>
     <div class="form-login">
       <div><h1>Вход в аккаунт</h1></div>
+
       <b-form-input class="input" v-model="email" placeholder="Введите почту"></b-form-input>
       <b-form-input class="input" v-model="password" placeholder="Введите пароль"></b-form-input>
       <div class="login-button">
-        <button-general @click="modalShow = !modalShow">
+        <button-general @click="accLogin">
           <span>Войти</span>
         </button-general>
-        <b-modal v-model="modalShow">Кнопка "вход" пока не работает, нажмите на кнопку "продолжить без входа" и посмотрите, что уже есть в проекте Ecomap &#10084;</b-modal>
       </div>
-      <div><h3>Еще нет аккаунта? <router-link class="link" to="/registration"><u>Регистрация</u></router-link></h3></div>
-      <!--<router-link to=""></router-link> -->
+      <p class="mistake" v-if="wasError">Неверный пароль или логин!</p>
+      <div>Еще нет аккаунта? <router-link class="link" to="/registration"><u>Регистрация</u></router-link></div>
     </div>
 </template>
 
@@ -86,7 +92,6 @@ div h3{
   margin-top: 5px;
   padding: 10px;
   font-size: 20px;
-  margin-bottom: 10px;
 }
 
 .form-login {
@@ -106,5 +111,11 @@ div h3{
 
 .link:hover{
   color: rgba(154,153,152)!important;
+}
+
+.mistake{
+  font-size: 16px;
+  line-height: 10px;
+  color: #981111;
 }
 </style>

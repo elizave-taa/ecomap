@@ -1,13 +1,10 @@
 <script>
 import ButtonGeneral from "/src/components/ButtonGeneral.vue";
 import AccountLogIn from "/src/components/AccountLogIn.vue";
+import axios from "axios";
 export default {
-  components: { ButtonGeneral, AccountLogIn },
-  methods: {
-    loginWithoutAuth() {
-      console.log()
-    }
-  }
+  components: { ButtonGeneral, AccountLogIn, axios },
+  name: "WelcomePage",
 }
 </script>
 
@@ -18,7 +15,7 @@ export default {
         <div><account-log-in/></div>
         <div class="text-or">ИЛИ</div>
         <div class="login-button">
-          <button-general @click="loginWithoutAuth">
+          <button-general>
             <router-link class="link" to="/map">
               <div class="btn-text">Продолжить без входа</div>
             </router-link>
@@ -36,7 +33,6 @@ export default {
     </div>
   </div>
   <div class = "description"></div>
-  <!--  <RouterView />-->
 </template>
 
 <style scoped>
