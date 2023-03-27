@@ -11,6 +11,7 @@ import {
   BCol
 } from "bootstrap-vue"
 import ButtonGeneral from "./ButtonGeneral.vue";
+import axios from "axios";
 
 export default {
   name: "EnterInformation",
@@ -33,12 +34,56 @@ export default {
       comment: '',
       selected: [], // Must be an array reference!
       options: [
-        {text: 'Бумага', value: 'бумага'},
-        {text: 'Стекло', value: 'стекло'},
-        {text: 'Пластик', value: 'пластик'},
-        {text: 'Одежда', value: 'одежда'},
-        {text: 'Тетра Пак', value: 'тетра пак'}
-      ]
+        {text: 'Бумага', value: 1},
+        {text: 'Стекло', value: 2},
+        {text: 'Пластик', value: 3},
+        {text: 'Одежда', value: 4},
+        {text: 'Тетра Пак', value: 5},
+        {text: 'Батареи', value: 6},
+        {text: 'Металл', value: 7},
+        {text: 'Опасные отходы', value: 8},
+        {text: 'Лампочки', value: 9},
+        {text: 'Бытовая техника', value: 10},
+        {text: 'Пластиковые крышки', value: 11},
+        {text: 'Другое', value: 12},
+      ],
+      images: {
+        img1: '/src/assets/add_photo.svg',
+        img2: '/src/assets/add_photo.svg',
+        img3: '/src/assets/add_photo.svg',
+        img4: '/src/assets/add_photo.svg',
+      }
+    }
+  },
+  methods: {
+    addPhoto(i) {
+      this.$refs[`file${i}`].click()
+    },
+    readFile(file, i) {
+      let fr = new FileReader();
+      fr.onload = ((file) => {
+        return (e) => {
+          this.images[`img${i}`] = e.target.result;
+        };
+      })(file);
+      fr.readAsDataURL(file);
+    },
+    sendImage(formData) {
+      axios.post("http://80.90.190.25:5243/api/upload_image", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+    },
+    handleChange(e, i) {
+      let file = e.target.files[0];
+      if (!file) return;
+
+      this.readFile(file, i);
+
+      let formData = new FormData();
+      formData.append("file", file);
+      this.sendImage(formData);
     }
   }
 }
@@ -60,21 +105,18 @@ export default {
           </div>
           <div>
             <span class="point">Виды мусора</span>
-            <b-form-group
-                v-slot="{ ariaDescribedby }"
-            >
+            <div class="checkboxes">
               <b-form-checkbox
                   v-for="option in options"
                   v-model="selected"
                   :key="option.value"
                   :value="option.value"
-                  :aria-describedby="ariaDescribedby"
                   name="flavour-3a"
                   class="check-box"
               >
                 {{ option.text }}
               </b-form-checkbox>
-            </b-form-group>
+            </div>
           </div>
           <div class="line">
             <span class="point">Комментарий</span>
@@ -89,29 +131,41 @@ export default {
             <div class="head-line">Добавьте фотографии</div>
             <div>
               <b-avatar
+                  button
+                  @click="addPhoto(1)"
                   size="4rem"
                   rounded="sm"
                   class="line-image"
-                  src="/src/assets/add_photo.svg">
+                  :src="images.img1">
               </b-avatar>
               <b-avatar
+                  button
+                  @click="addPhoto(2)"
                   size="4rem"
                   rounded="sm"
                   class="line-image"
-                  src="/src/assets/add_photo.svg">
+                  :src="images.img2">
               </b-avatar>
               <b-avatar
+                  button
+                  @click="addPhoto(3)"
                   size="4rem"
                   rounded="sm"
                   class="line-image"
-                  src="/src/assets/add_photo.svg">
+                  :src="images.img3">
               </b-avatar>
               <b-avatar
+                  button
+                  @click="addPhoto(4)"
                   size="4rem"
                   rounded="sm"
                   class="line-image"
-                  src="/src/assets/add_photo.svg">
+                  :src="images.img4">
               </b-avatar>
+              <input id="file-input" type="file" style="display: none" name="name" ref="file1" @change="handleChange($event, 1)"/>
+              <input id="file-input" type="file" style="display: none" name="name" ref="file2" @change="handleChange($event, 2)"/>
+              <input id="file-input" type="file" style="display: none" name="name" ref="file3" @change="handleChange($event, 3)"/>
+              <input id="file-input" type="file" style="display: none" name="name" ref="file4" @change="handleChange($event, 4)"/>
             </div>
           </div>
           <div class="text-ecomap">
@@ -213,7 +267,7 @@ export default {
 }
 
 .line-image:hover {
-  box-shadow: 2px 2px #523F34;
+  box-shadow: none;
   cursor: pointer;
 }
 
@@ -224,5 +278,11 @@ export default {
 
 .check-box:deep(label) {
   color: #ffffff;
+}
+
+.checkboxes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-bottom: 20px;
 }
 </style>
