@@ -12,8 +12,7 @@ export default {
 <template>
   <global-header v-if="$route.name !== 'article'"/>
   <!--<router-view/>-->
-  <map-page/>
-  <!--<profile-page/>-->
+  <profile-page/>
 
 </template>
 

@@ -1,5 +1,5 @@
 <script>
-import { BContainer, BRow, BCol, BFormGroup, BFormInput, BFormSelect } from "bootstrap-vue"
+import { BContainer, BRow, BCol, BFormGroup, BFormInput, BFormSelect } from "bootstrap-vue";
 import axios from "axios";
 export default {
   components: {
@@ -42,20 +42,21 @@ export default {
       if (!Number.isInteger(+this.age) || this.age < 0 || this.age > 111)
         this.age = null;
     },
-
-
   },
   methods: {
     handleRegistration() {
       if (this.password.length < 6 || this.password !== this.confirmPassword)
         this.wasError = true;
       else {
-      axios.post("http://80.90.190.25:5243/api/registration",this.regData).then((response) =>
-      {console.log(response.data)}).catch((error) => {
-        console.log(error.response.data)}
-      );
+        axios.post("http://80.90.190.25:5243/api/registration", this.regData).then((response) => {
+          console.log(response.data)
+        }).catch((error) => {
+              console.log(error.response.data)
+            }
+        );
+      }
     }
-  },
+  }
 }
 </script>
 

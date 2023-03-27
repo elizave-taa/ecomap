@@ -26,9 +26,11 @@ export default {
   methods: {
       accLogin(){
         axios.post("http://80.90.190.25:5243/api/login",this.loginData).then((response) =>
-        {console.log(response.data)}).catch((error) => {
-              this.wasError = true;
-              console.log(error.response.data) });
+        {console.log(response);
+          this.$router.push({name: 'profile'});
+          console.log(response.data)}).catch((error) => {
+          this.wasError = true;
+          console.log(error.response.data) });
       }
   }
 }
@@ -46,7 +48,7 @@ export default {
         </button-general>
       </div>
       <p class="mistake" v-if="wasError">Неверный пароль или логин!</p>
-      <div><h3>Еще нет аккаунта? <router-link class="link" to="/registration"><u>Регистрация</u></router-link></h3></div>
+      <div>Еще нет аккаунта? <router-link class="link" to="/registration"><u>Регистрация</u></router-link></div>
     </div>
 </template>
 
@@ -113,6 +115,7 @@ div h3{
 
 .mistake{
   font-size: 16px;
-  visibility: hidden;
+  line-height: 10px;
+  color: #981111;
 }
 </style>
