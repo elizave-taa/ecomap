@@ -63,7 +63,7 @@ export default {
   font-family: Inter,sans-serif;
 }
 .reg-form {
-  background-color: rgba(82, 115, 85, 0.85);
+  background-color: rgba(var(--c-primary-rgb), 0.75);
   border-radius: 8px;
   padding: 35px 0;
 }
