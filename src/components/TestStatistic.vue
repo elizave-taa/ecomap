@@ -1,6 +1,6 @@
 <script>
 export default {
-  name: "PointStatistic",
+  name: "TestStatistic",
   data() {
     return {
       count: 0
@@ -10,14 +10,13 @@ export default {
 </script>
 
 <template>
-<div class="point-num">
-  <div class="main-container">
-    <div class="count"> {{count}} </div>
-    <div class="description">
-      <div class ="text">Предложенных точек сбора</div>
+  <div class="point-num">
+      <div class="description">
+        <div class ="text">Пройдено тестов:</div>
+        <img src="src/assets/tests.svg" class="image">
+        <div class="count"> {{count}}/3 </div>
+      </div>
     </div>
-  </div>
-</div>
 </template>
 
 <style scoped>
@@ -32,35 +31,35 @@ export default {
   justify-content: center;
 }
 
-.main-container{
-  height: 90%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-}
+
 
 .description{
-  font-size: 14px;
+  height: 80%;
+  font-size: 15px;
   font-weight: 500;
   text-align: center;
-  display: flex;
   width: 100%;
   justify-content: space-around;
-
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .text{
-  width: 70%;
+  width: 80%;
   line-height: 25px;
 }
 
+.image{
+  width: 70%;
+  height: 60px;
+}
 
 .count{
-  font-size: 120px;
-  line-height: 75px;
+  font-size: 50px;
+  line-height: 45px;
   align-items: center;
-  color: #0c5460;
+  color: #AF7911;
 }
 
 </style>

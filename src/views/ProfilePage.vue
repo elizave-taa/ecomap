@@ -2,91 +2,87 @@
 import GlobalHeader from "../components/GlobalHeader.vue";
 import BasicInformation from "../components/BasicInformation.vue";
 import PointStatistic from "../components/PointStatistic.vue";
-import ArticlesStatistic from "../components/ArticlesStatistic.vue";
-import {BAvatar, BToast, BButton} from "bootstrap-vue"
+import RatingBlock from "../components/RatingBlock.vue";
+import TestStatistic from "../components/TestStatistic.vue";
+import EventsBlock from "../components/EventsBlock.vue";
+import InfAboutRanks from "../components/InfAboutRanks.vue";
+import {BAvatar, BToast, BButton, BContainer} from "bootstrap-vue"
+import Rating from "../components/RatingBlock.vue";
 export default {
   name: "ProfilePage",
-  components: {GlobalHeader, BAvatar, BToast, BButton, BasicInformation, PointStatistic, ArticlesStatistic},
+  components: {
+    Rating, GlobalHeader, InfAboutRanks,
+    BAvatar, BToast, BButton, BasicInformation,
+    PointStatistic, BContainer, RatingBlock, TestStatistic, EventsBlock},
   data() {
     return {
-      modalShow: false,
-      friends_counter: 0,
-      likes_counter: 0,
-      user_name: 'Имя Юзера'
+
+
     }
   },
 }
 </script>
 
 <template>
-<div class="app">
-  Здесь вы можете посмотреть, как будет выглядеть ваш профиль:
- <div class="main-container">
-    <div class="basic-inf">
+  <div class="app">
+    <b-container class="main_container">
+
+
+      <b-row class="row">
       <basic-information/>
-    </div>
-    <div class="activities">
-      <div class="blocks">
-        <div class="line">
-          <articles-statistic/>
-          <img src="/src/assets/background.png" alt="picture" class="image">
+        <div class="blocks">
+          <div class="statistic"> <point-statistic/> </div>
+          <div class="statistic"> <rating-block/> </div>
+          <div class="statistic"> <test-statistic/> </div>
+          <div class="statistic"> <events-block/> </div>
         </div>
-        <div class="line">
-          <img src="/src/assets/background2.png" alt="picture" class="image">
-          <point-statistic/>
-        </div>
-      </div>
-    </div>
- </div>
-</div>
+
+      </b-row>
+
+    </b-container>
+  </div>
 </template>
 
 <style scoped>
+
 .app{
-  margin: auto;
+  background-size: cover;
+  background-position: center;
+  background-color: #BCCABF;
   font-family: Inter, sans-serif;
 }
 
-.main-container{
-  background-color: #c9e0cf;
+.main_container{
+  width: 100%;
+  height: 95vh;
+  padding-top: 30px;
+}
+
+.row{
+  width: 100%;
+  height: 35%;
   display: flex;
-  height: 23vw;
   justify-content: space-between;
-}
-
-.basic-inf{
-  display: flex;
-  width: 48%;
-  justify-content: flex-end;
-  align-items: center;
-}
-
-.activities {
-  width: 48%;
-  align-items: center;
-  display: flex;
+  max-height: 225px;
 }
 
 .blocks{
-  width: 80%;
-  height: 85%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.line{
-  display: flex;
-  justify-content: space-between;
-  height: 48%;
-  width: 100%;
-}
-
-.image{
-  width: 48%;
+  width: 54%;
   height: 100%;
-  border-radius: 8px;
-  box-shadow: 2px 2px 3px 0 rgba(0,0,0,0.3);
+  display: flex;
+  justify-content: space-between;
 }
+
+.statistic{
+  width: 23%;
+  height: 100%;
+}
+
+.statistic:hover{
+  cursor: pointer;
+  width: 24%;
+  height: 102%;
+}
+
 
 </style>

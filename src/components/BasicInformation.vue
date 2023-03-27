@@ -1,15 +1,17 @@
 <script>
-import GlobalHeader from "../components/GlobalHeader.vue";
-import {BAvatar, BToast, BButton} from "bootstrap-vue"
+import {BAvatar, BToast, BButton, BDropdown, BDropdownItem, BPopover} from "bootstrap-vue"
+import InfAboutRanks from "../components/InfAboutRanks.vue";
 export default {
-  name: "ProfilePage",
-  components: {GlobalHeader, BAvatar, BToast, BButton},
+  components: {InfAboutRanks, BAvatar, BToast, BButton, BDropdown, BDropdownItem, BPopover},
   data() {
     return {
       modalShow: false,
       friends_counter: 0,
       likes_counter: 0,
-      user_name: 'Имя Юзера'
+      user_name: 'User_Name',
+      rank: 'Юный защитник природы',
+      status: 'Статус пользователя',
+      visible: true
     }
   },
 }
@@ -18,8 +20,9 @@ export default {
         <div class="left">
           <div class="avatar">
             <b-avatar
-                class="line-image"
-                src="/src/assets/add_photo.svg">
+                rounded="sm"
+                size="8em"
+                class="line-image">
             </b-avatar>
             <div class="friends_likes">
               <div class="friends">
@@ -36,90 +39,115 @@ export default {
           </div>
 
           <div class="about-me">
-            <div>
-              <div class="user-name">{{user_name}}</div>
-              <div class="rank">Юный защитник природы
+           <div class="user-name"> @{{user_name}}</div>
+              <div class="rank">
+                <b-button id="popover-2" class="rank-btn">
+                  <div class="rank">{{rank}}</div>
+                </b-button>
                 <svg width="18" height="18" viewBox="0 0 512 512"><path fill="currentColor" d="M389.053 126.3A302.909 302.909 0 0 0 280.012 18.15L272 13.516l-8.012 4.634A301.084 301.084 0 0 0 113.4 279.042c0 3.445.06 6.944.177 10.4c1.592 46.856 19.511 86.283 51.82 114.018c24.724 21.225 56.438 34.182 90.607 37.273V496h32V240H256v168.528c-54.064-6.263-107.873-44.455-110.444-120.174c-.106-3.095-.16-6.228-.16-9.312A270.286 270.286 0 0 1 272 50.673a270.286 270.286 0 0 1 126.6 228.369c0 3.084-.054 6.217-.16 9.313c-2.056 60.573-36.907 97.127-78.444 112.536v33.867a156.188 156.188 0 0 0 58.607-31.3c32.309-27.735 50.228-67.162 51.82-114.017c.117-3.456.177-6.955.177-10.4A300.948 300.948 0 0 0 389.053 126.3Z"/></svg>
               </div>
-            </div>
-            <div class="status">Здесть можно будет написать что-то о себе</div>
+                <b-popover
+                    placement="bottom"
+                    target="popover-2"
+                    triggers="hover focus"
+                    content="Embedding content using properties is easy"
+                > <inf-about-ranks/> </b-popover>
+            <div class="status">{{status}}</div>
           </div>
+
         </div>
 </template>
 
 <style scoped>
 
-  .line-image{
-    background-color: #D7D7D7!important;
-  border-radius: 8px!important;
-  margin-bottom: 20px;
-    width: 70%;
-    height: 70%;
-}
 
   .about-me{
-  width: 65%;
-  align-items: flex-start;
-  height: 70%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+    height: 85%;
+    width: 60%;
 }
 
   .left{
-  width: 85%;
-  height: 85%;
-  background-color: #ffffff;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  box-shadow: 2px 2px 3px 0 rgba(0,0,0,0.3);
+    display: flex;
+    justify-content: space-around;
+    width: 43%;
+    height: 100%;
+    box-shadow: 2px 2px 3px 0 rgba(0,0,0,0.3);
+    background-color: #ffffff;
+    align-items: center;
+    border-radius: 8px;
 }
 
+  .line-image{
+  }
+
   .avatar{
-  width: 35%;
-  height: 70%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 85%;
 }
 
   .user-name{
-    font-size: 22px;
-  font-weight: 600;
-  line-height: 27px;
+  font-size: 30px;
 }
 
   .rank{
-    font-size: 15px;
-  color: #209d31;
-  margin-bottom: 20px;
+color: #1c7430;
+    display: flex;
 }
+
+  .rank:hover{
+    cursor: pointer;
+  }
 
   .status{
-    font-size: 14px;
-  line-height: 20px;
-  width: 90%;
+font-size: 15px;
+    margin-top: 20px;
 }
+
 
   .counter {
-    font-size: 18px;
-  font-weight: 600;
   margin-right: 5px;
+
 }
 
+  .counter:hover {
+    cursor: pointer;
+  }
+
   .friends_likes {
-  width: 60%;
-  display: flex;
-  justify-content: space-around;
+    display: flex;
+    justify-content: space-around;
 }
 
   .friends{
-  display: flex;
+    display: flex;
+
 }
 
+  .friends:hover{
+    cursor: pointer;
+  }
+
+  .likes:hover{
+    cursor: pointer;
+
+  }
+
   .likes{
-  display: flex;
+    display: flex;
 }
+
+  .rank-btn,
+  .rank-btn:hover,
+  .rank-btn:focus{
+    padding: 0;
+    background-color: #ffffff!important;
+    border-color: transparent!important;
+    text-decoration: none;
+    box-shadow: none!important;
+    margin-right: 3px;
+    height: 20px!important;
+  }
 
 </style>

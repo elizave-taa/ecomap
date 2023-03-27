@@ -1,6 +1,6 @@
 <script>
 export default {
-  name: "PointStatistic",
+  name: "EventsBlock",
   data() {
     return {
       count: 0
@@ -10,14 +10,14 @@ export default {
 </script>
 
 <template>
-<div class="point-num">
-  <div class="main-container">
-    <div class="count"> {{count}} </div>
-    <div class="description">
-      <div class ="text">Предложенных точек сбора</div>
+  <div class="point-num">
+    <div class="main-container">
+      <div class="count"> {{count}} </div>
+      <div class="description">
+        <div class ="text">Мероприятий организовано</div>
+      </div>
     </div>
   </div>
-</div>
 </template>
 
 <style scoped>
@@ -60,7 +60,7 @@ export default {
   font-size: 120px;
   line-height: 75px;
   align-items: center;
-  color: #0c5460;
+  color: #341a0c;
 }
 
 </style>
