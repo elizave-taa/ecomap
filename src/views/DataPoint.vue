@@ -2,15 +2,17 @@
 import GlobalHeader from "../components/GlobalHeader.vue";
 import ButtonGeneral from "../components/ButtonGeneral.vue";
 import InfAboutNewPoint from "../components/InfAboutNewPoint.vue";
+import { BContainer} from "bootstrap-vue";
+
 export default {
   name: "DataPoint",
-  components: { GlobalHeader, ButtonGeneral, InfAboutNewPoint }
+  components: { GlobalHeader, ButtonGeneral, InfAboutNewPoint, BContainer }
 }
 </script>
 
 <template>
 <div class="app">
-  <div class="main-container">
+  <b-container class="main-container">
     <div class="back_link">
       <button-general variant="limpid">
         <router-link class="link" to="/map">
@@ -19,7 +21,7 @@ export default {
       </button-general>
     </div>
     <inf-about-new-point class="inf"/>
-  </div>
+  </b-container>
 </div>
 </template>
 
@@ -44,7 +46,7 @@ export default {
 }
 
 .back_link {
-  width: 77%;
+  width: 100%;
   margin-bottom: 7px;
 }
 
@@ -62,8 +64,8 @@ export default {
 }
 
 .inf{
-  width: 77%;
-  height: 77%;
+  width: 100%;
+  height: 75%;
 }
 
 </style>
