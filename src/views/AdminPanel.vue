@@ -6,6 +6,8 @@ import {
 } from "bootstrap-vue"
 import ButtonGeneral from "../components/ButtonGeneral.vue"
 import {RouterLink} from "vue-router"
+import ConfirmList from "../components/ConfirmList.vue"
+import PostAdd from "../components/PostAdd.vue"
 
 export default {
   components: {
@@ -14,9 +16,13 @@ export default {
     BCol,
     ButtonGeneral,
     RouterLink,
+    ConfirmList,
+    PostAdd,
   },
   data() {
-    return {}
+    return {
+      activeTab: 'points'
+    }
   },
   methods: {},
 }
@@ -25,20 +31,19 @@ export default {
 <template>
   <div class="adp-wrapper">
     <b-container class="adp-container">
-      <b-row>
-        <b-col>
-          <button-general>
+      <div class="adp-header">
+        <div class="adp-tabs">
+          <button-general class="adp-left" :class="{'adp-active': activeTab == 'points'}" @click="activeTab = 'points'">
             Список предложенных точек
           </button-general>
-        </b-col>
-        <b-col>
-          <router-link to="/admin/post/add">
-            <button-general>
-              Добавить статью
-            </button-general>
-          </router-link>
-        </b-col>
-      </b-row>
+          <button-general class="adp-right" :class="{'adp-active': activeTab == 'articles'}"
+                          @click="activeTab = 'articles'">
+            Добавить статью
+          </button-general>
+        </div>
+      </div>
+      <confirm-list v-if="activeTab == 'points'"/>
+      <post-add v-if="activeTab == 'articles'"/>
     </b-container>
   </div>
 </template>
@@ -47,9 +52,37 @@ export default {
 .adp-container {
   padding: 30px 0;
   height: calc(100vh - 25px);
-
 }
+
 .adp-wrapper {
-  background-color: #2d512d;
+  background-color: #bcc8c0;
+}
+
+.adp-header {
+  display: flex;
+  justify-content: center;
+}
+
+.adp-tabs {
+  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.adp-left {
+  border-radius: 0;
+  box-shadow: none;
+  padding: 10px 15px;
+}
+
+.adp-right {
+  border-radius: 0;
+  box-shadow: none;
+  padding: 10px 15px;
+}
+
+.adp-active {
+  background-color: rgb(var(--c-primary-light-rgb)) !important;
+  cursor: default !important;
 }
 </style>

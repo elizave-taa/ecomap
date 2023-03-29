@@ -8,7 +8,7 @@ import DataPoint from "../views/DataPoint.vue";
 import AboutUs from "../views/AboutUs.vue";
 import ProfilePage from "../views/ProfilePage.vue";
 import AdminPanel from "../views/AdminPanel.vue";
-import PostAdd from "../views/PostAdd.vue";
+import PostAdd from "../components/PostAdd.vue";
 
 const router = createRouter({
     history: createWebHistory("/ecomap/"),
