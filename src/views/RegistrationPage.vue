@@ -29,7 +29,7 @@ export default {
         name: this.name,
         nickname: this.nickname,
         email: this.email,
-        lastname: this.lastname,
+        surname: this.lastname,
         age: this.age,
         gender: this.gender,
         password: this.password,
@@ -71,7 +71,7 @@ export default {
           </button>
           <div class="need-block">
             <span class="need-circle"></span>
-            <p>Помечены необязательные поля</p>
+            <p>Необязательные поля</p>
           </div>
         </div>
         <div class="reg-form">
@@ -158,7 +158,7 @@ export default {
                 </b-form-group>
               </b-col>
               <b-col class="reg-col to-right-bottom">
-                <p class="mistake" v-if="wasError">Проверьте, что пароль длиннее 6 символов или что проверка пароля с ним совпадает</p>
+                <p class="mistake" v-if="wasError">Проверьте правильность пароля (он должен быть не менее 6 символов)</p>
                 <button class="reg-button" @click="handleRegistration">
                   Зарегистрироваться
                 </button>
@@ -177,10 +177,9 @@ export default {
   background-size: cover;
   background-position: center;
   min-height: 100vh;
-  margin-top: -37px;
+  margin-top: -35px;
   padding: 67px;
 }
-
 .reg-page {
   font-family: Inter,sans-serif;
 }
@@ -288,5 +287,58 @@ export default {
 .mistake{
   font-size: 16px;
   color: #981111;
+}
+@media (max-width: 600px) {
+.reg-input{
+  width: 160px;
+  height: 20px;
+}
+  .need-circle{
+    width: 12px;
+    height: 12px;
+  }
+  .reg-button{
+    margin-top: 25px;
+    font-size: 14px;
+    padding: 8px;
+  }
+}
+@media (max-width: 991px) {
+  .reg-button{
+    margin-top: 25px;
+  }
+}
+@media (max-width: 558px) {
+  .reg-input{
+    margin-left: 0;
+    width: 180px;
+    height: 22px;
+  }
+  .need-circle{
+    width: 12px;
+    height: 12px;
+  }
+  .reg-button{
+    margin-top: 25px;
+    font-size: 14px;
+    padding: 8px;
+  }
+  .reg-group{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .back-btn{
+    font-size: 13px;
+  }
+  .need-block{
+    font-size: 13px;
+  }
+  .reg-form {
+    padding: 10px 0;
+  }
+  .rp-wrapper {
+    padding: 60px 20px;
+  }
 }
 </style>

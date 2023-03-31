@@ -42,17 +42,8 @@ export default {
   background-position: center;
   width: 100%;
   height: 100vh;
-  margin-top: -37px;
-
+  margin-top: -35px;
 }
-
-span{
-  padding: 40px;
-  font-size: 20px;
-  line-height: 40px;
-  font-weight: 100;
-}
-
 .text-or{
   color: #ffffff;
   font-weight: 300;
@@ -60,11 +51,13 @@ span{
 }
 
 .parent {
-  padding-top: 10%;
-  margin-left: 0;
+  width: 100vw;
+  padding-top: 35px;
   font-family: Inter, sans-serif;
   justify-content: space-around;
+  align-items: center;
   display: flex;
+  height: 97vh;
 }
 h1{
   font-size: 65px;
@@ -74,6 +67,17 @@ h2{
   font-size: 20px;
   font-style: italic;
   font-weight: 300;
+}
+
+.login-form{
+  height: 65%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.second-container{
+  height: 65%;
 }
 
 .in-description{
@@ -108,5 +112,59 @@ h2{
   justify-content: center;
   margin-bottom: 10px;
 }
+
+@media (max-width: 415px) {
+  .login-form{
+    height: 55%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+  .btn-text{
+    font-size: 20px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 5px;
+    line-height: 20px;
+    color: #ffffff!important;
+    text-decoration: none!important;
+  }
+
+  .login-form div{
+    display: flex;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 380px) {
+   .btn-text {
+    font-size: 18px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    line-height: 20px;
+    color: #ffffff !important;
+    text-decoration: none !important;
+  }
+}
+
+@media (max-width: 900px) {
+  .second-container{
+    display: none;
+  }
+  }
+
+@media (max-width:  1200px){
+  .login-form{
+    height: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+  .second-container{
+    height: 40%;
+  }
+}
+
 
 </style>
