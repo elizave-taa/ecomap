@@ -93,7 +93,7 @@ export default {
       <img alt="шины" class="logo" src="/src/assets/lids.svg " />
     </b-button>
     <b-tooltip target="tooltip-target-11" triggers="hover">
-      Пластиковые крышки
+      Шины
     </b-tooltip>
 
     <b-button id="tooltip-target-12" class="btn other">
