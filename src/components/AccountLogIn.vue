@@ -11,7 +11,7 @@ export default {
   data() {
     return {
       email: '',
-      password: '',
+      Password: '',
       wasError: false
     }
   },
@@ -19,7 +19,7 @@ export default {
     loginData() {
       return {
         email: this.email,
-        password: this.password
+        password: this.Password
       }
     }
   },
@@ -38,17 +38,17 @@ export default {
 
 <template>
     <div class="form-login">
-      <div><h1>Вход в аккаунт</h1></div>
+      <div class="login">Вход в аккаунт</div>
 
       <b-form-input class="input" v-model="email" placeholder="Введите почту"></b-form-input>
-      <b-form-input class="input" v-model="password" placeholder="Введите пароль"></b-form-input>
+      <b-form-input class="input" id="input-password" placeholder="Введите пароль" v-model="Password" type="password"/>
       <div class="login-button">
         <button-general @click="accLogin">
           <span>Войти</span>
         </button-general>
       </div>
       <p class="mistake" v-if="wasError">Неверный пароль или логин!</p>
-      <div>Еще нет аккаунта? <router-link class="link" to="/registration"><u>Регистрация</u></router-link></div>
+      <div class="reg">Еще нет аккаунта? <router-link class="link" to="/registration"><u>Регистрация</u></router-link></div>
     </div>
 </template>
 
@@ -77,7 +77,7 @@ span{
   box-shadow: none;
 }
 
-div h1{
+.login{
   font-size: 25px;
   font-weight:  300;
   margin-bottom: 20px;
@@ -117,5 +117,44 @@ div h3{
   font-size: 16px;
   line-height: 10px;
   color: #981111;
+}
+
+@media (max-width: 410px) {
+
+  .login{
+    font-size: 18px;
+    font-weight:  300;
+    margin-bottom: 10px;
+  }
+  .input {
+    color: #ffffff!important;
+    background: none;
+    margin-bottom: 6px;
+    width: 190px;
+    height: 25px;
+  }
+  .mistake{
+    font-size: 12px;
+    line-height: 10px;
+    color: #981111;
+  }
+  span{
+    padding: 4px;
+    font-size: 14px;
+  }
+
+  .reg{
+    font-size: 12px;
+  }
+  .form-login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding:  10px 20px;
+    font-family: Inter, sans-serif;
+    background-color: rgba(82, 115, 89, 0.75);
+    border: none;
+    border-radius: 8px;
+  }
 }
 </style>
