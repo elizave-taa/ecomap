@@ -22,7 +22,15 @@ export default {
 
 <template>
   <div>
+    <div class="image-container">
+      <img src="/src/assets/background.png" loading="lazy" alt="Snow" class="background">
+      <div class="centered"><div class="head">О чем приложение Ecomap?</div>
+        В нашей стране зачастую нет привычки отправлять мусор на переработку. Мы верим, что если дать людям
+        доступ к быстрому поиску ближайших точек, больше
+        человек начнут правильно утилизировать мусор. </div>
+    </div>
     <b-carousel
+        class="header"
         id="carousel-1"
         v-model="slide"
         :interval="7000"
@@ -75,111 +83,237 @@ export default {
     <div class="head-line">Наши преимущества:</div>
     <div class="advantages">
       <div class="point">
-        <img class="image" src="/src/assets/point1.png">
+        <img loading="lazy" class="image" src="/src/assets/point1.png">
         <div class="description">Удобная интерактивная карта</div>
       </div>
       <div class="point">
-        <img class="image" src="/src/assets/point2.png">
+        <img loading="lazy" class="image" src="/src/assets/point2.png">
         <div class="description">Приятный интерфейс</div>
       </div>
       <div class="point">
-        <img class="image" src="/src/assets/point3.png">
+        <img loading="lazy" class="image" src="/src/assets/point3.png">
         <div class="description">Возможность добавить свою точку</div>
       </div>
       <div class="point">
-        <img class="image" src="/src/assets/point4.png">
+        <img loading="lazy" class="image" src="/src/assets/point4.png">
         <div class="description">Блог об экологии</div>
       </div>
       <div class="point">
-        <img class="image" src="/src/assets/point5.png">
+        <img loading="lazy" class="image" src="/src/assets/point5.png">
         <div class="description">Получение рейтинга за добрые дела</div>
       </div>
     </div>
   </div>
-  <div class="image-container">
-    <img src="/src/assets/background.png" alt="Snow" class="background">
-    <div class="centered">Раздельный сбор:
-      <p>1.Сокращает рост свалок.
-      В год житель России производит 400 килограмм отходов
-        (трудно представить, какой это большой объем!).</p>
-      <p>2. Улучшает экологическую ситуацию и сохраняет здоровье.
-      Такая система уменьшает влияние на окружающую среду, сокращает вредные
-      выбросы и восстанавливает природную систему. Следовательно, экология
-      улучшается, что положительно вляет на иммунитет и здоровье населения.</p>
-      <p>3. Решает проблему промышленных отходов.
-      Подробнее об этом можно прочесть в <router-link class="link" to="/article/:id">одной из наших статей</router-link></p></div>
+
+    <div class="container-2">
+      <div class="head-line">Наши преимущества:</div>
+      <div class="advantages">
+        <div class="point">
+          <img loading="lazy" class="image" src="/src/assets/point1.png">
+          <div class="description">Удобная интерактивная карта</div>
+        </div>
+        <div class="point">
+          <img loading="lazy" class="image" src="/src/assets/point2.png">
+          <div class="description">Приятный интерфейс</div>
+        </div>
+        <div class="point">
+          <img loading="lazy" class="image" src="/src/assets/point3.png">
+          <div class="description">Возможность добавить точку</div>
+        </div>
+      </div>
+    </div>
+      <div class="container-2">
+        <div class="advantages-2">
+          <div class="point">
+            <img loading="lazy" class="image" src="/src/assets/point4.png">
+            <div class="description">Блог об экологии</div>
+          </div>
+          <div class="point">
+            <img loading="lazy" class="image" src="/src/assets/point5.png">
+            <div class="description">Получение рейтинга</div>
+          </div>
+        </div>
+
+  </div>
+  <div class="inf">
+    <div class="info-field">
+      <b>Раздельный сбор:</b> <br>
+      <hr>
+      <p >Сокращает рост свалок
+        В год житель России производит 400 килограмм отходов
+        (трудно представить, какой это большой объем!). Раздельный сбор
+        позволяет перерабатывать до 90% отходов, образующихся у людей. </p>
+      <p>
+        Такая система уменьшает влияние на окружающую среду, сокращает вредные
+        выбросы и восстанавливает природную систему. Следовательно, экология
+        улучшается, что положительно вляет на иммунитет и здоровье населения.</p>
+      <p> Решает проблему промышленных отходов</p>
+      <hr>
+      И конечно же, многие другие достоинства. Присоединяйтесь к eco-community с приложением EcoMap!&#10084;
+    </div>
   </div>
 
 </template>
 
 <style scoped>
-
+template{
+  align-items: center;
+}
 .container{
   font-family: Inter, sans-serif;
-  width: 90%;
+  width: 100%;
   align-items: center;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
-
+.head{
+  font-size: 25px;
+}
 .head-line {
   font-size: 25px;
   margin: 20px;
 }
-
 .point {
-  width: 120px;
+  width: 110px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-
+.container-2{
+  display: none;
+}
 .advantages {
   display: flex;
+  width: 100%;
   justify-content: space-around;
-  margin-bottom: 30px;
+  margin-bottom: 35px;
 }
-
 .description{
   font-size: 13px;
   width: 100px;
   text-align: center;
   font-weight: 600;
 }
-
 .image {
  width: 110px;
   height: 110px;
   margin-bottom: 10px;
 }
-
 .background {
-  background-size: cover;
-  width: 100%;
-  height: 500px;
+  display: none;
 }
-
 .image-container {
   width: 100%;
   position: relative;
   text-align: center;
   color: white;
 }
-
 .centered {
+  width: 85%;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   font-weight: 500;
-  font-size: 19px;
+  font-size: 15px;
+}
+.inf{
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+.info-field{
+  background-color: #c3e8c3;
+  border-radius: 8px;
+  width: 93%;
+  padding: 14px;
 }
 
-.link{
-  color: #ffffff;
-  text-decoration: underline;
+@media (max-width: 990px) {
+.header{
+  display: none;
+}
+  .background {
+    display: flex;
+    background-size: cover;
+    width: 100%;
+    height: 200px;
+  }
+  .advantages {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 15px;
+  }
+  .image {
+    width: 90px;
+    height: 90px;
+  }
 }
 
-.link:hover{
-  cursor: pointer;
+
+@media (max-width: 770px) {
+  .header {
+    display: none;
+  }
+  .background {
+    display: flex;
+    background-size: cover;
+    width: 100%;
+  }
+  .centered{
+    font-size: 15px;
+  }
+  .head {
+    font-size: 18px;
+  }
+  .container {
+    display: none;
+  }
+  .container-2{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .advantages-2{
+    display: flex;
+    width: 60%;
+    justify-content: space-around;
+    margin-bottom: 25px;
+  }
+  .head-line{
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 560px) {
+ .head{
+   font-size: 18px;
+ }
+  .description{
+    font-size: 9px;
+  }
+  .image{
+    width: 75px;
+    height: 75px;
+  }
+  .description{
+    font-size: 14px;
+  }
+  .head{
+    font-size: 17px;
+  }
+}
+@media (max-width: 480px) {
+  .head{
+    font-size: 16px;
+  }
+  .head-line{
+    font-size: 20px;
+  }
 }
 </style>
