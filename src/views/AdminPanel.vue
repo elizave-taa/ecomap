@@ -51,7 +51,7 @@ export default {
 <style scoped>
 .adp-container {
   padding: 30px 0;
-  height: calc(100vh - 25px);
+  min-height: calc(100vh - 35px);
 }
 
 .adp-wrapper {
@@ -61,6 +61,7 @@ export default {
 .adp-header {
   display: flex;
   justify-content: center;
+  margin-bottom: 20px;
 }
 
 .adp-tabs {
