@@ -1,19 +1,34 @@
 <script>
 import {RouterView} from 'vue-router'
 import GlobalHeader from "./components/GlobalHeader.vue";
-import ProfilePage  from "./views/ProfilePage.vue";
-import DataPoint from "./views/DataPoint.vue";
-import MapPage from "./views/MapPage.vue";
+import axios from "axios";
+import{useUserStore} from "./PiniaStore.js";
+import { getCookie } from "./helpers/cookie.js";
 export default {
-  components: {MapPage, DataPoint, RouterView, GlobalHeader, ProfilePage }
+  components: {RouterView, GlobalHeader },
+  data(){
+   return{
+     userStore: useUserStore(),
+   }
+  },
+  created() {
+    axios.interceptors.request.use(
+        (config) => {
+          const token = getCookie("jwt");
+          if (token != null) {
+            this.userStore.fetchUser();
+            config.headers.authorization = token;
+          }
+          return config;
+        })
+    if (getCookie('jwt')) { this.userStore.fetchUser() }
+  },
 }
 </script>
 
 <template>
   <global-header v-if="$route.name !== 'article'"/>
   <router-view/>
-  <!--<profile-page/>-->
-
 </template>
 
 <style scoped>

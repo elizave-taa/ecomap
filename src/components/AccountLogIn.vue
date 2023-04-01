@@ -5,14 +5,18 @@ import {BFormInput, BModal} from "bootstrap-vue"
 import ButtonGeneral from "./ButtonGeneral.vue";
 import {RouterLink} from "vue-router";
 import axios from "axios";
+import {useUserStore} from "../PiniaStore.js";
+import {setCookie} from "../helpers/cookie.js"
 
 export default {
   components: {ButtonGeneral, InputForm, ButtonLogIn, BFormInput, RouterLink, BModal},
   data() {
     return {
+      token:'',
       email: '',
       Password: '',
-      wasError: false
+      wasError: false,
+      userStore: useUserStore()
     }
   },
   computed: {
@@ -27,10 +31,12 @@ export default {
       accLogin(){
         axios.post("http://80.90.190.25:5243/api/login",this.loginData).then((response) =>
         {console.log(response);
+          setCookie("jwt", response.data.token, {'max-age': 7*24*60*60});
           this.$router.push({name: 'profile'});
+          this.userStore.fetchUser();
           console.log(response.data)}).catch((error) => {
           this.wasError = true;
-          console.log(error.response.data) });
+          console.log(error)});
       }
   }
 }

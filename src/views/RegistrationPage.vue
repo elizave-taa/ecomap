@@ -1,7 +1,12 @@
 <script>
 import { BContainer, BRow, BCol, BFormGroup, BFormInput, BFormSelect } from "bootstrap-vue";
 import axios from "axios";
+import {getCookie} from "../helpers/cookie.js";
 export default {
+  created() {if (getCookie('jwt'))
+    this.$router.push({name:
+          'profile'})
+  },
   components: {
     BContainer, BRow, BCol, BFormGroup, BFormInput, BFormSelect
   },
@@ -44,12 +49,16 @@ export default {
     },
   },
   methods: {
+    showModal1() {
+      this.$root.$emit('bv::show::modal', 'modal-1', '#btnShow')
+    },
     handleRegistration() {
       if (this.password.length < 6 || this.password !== this.confirmPassword)
         this.wasError = true;
       else {
         axios.post("http://80.90.190.25:5243/api/registration", this.regData).then((response) => {
           console.log(response.data)
+          this.showModal1();
         }).catch((error) => {
               console.log(error.response.data)
             }
@@ -169,6 +178,10 @@ export default {
       </div>
     </b-container>
   </div>
+  <b-modal id="modal-1" title="Выберите картинку для вашей новой аватарки" @cancel="cancel()" >
+    Поздравляем, мы зарегистрировались в приложении Ecomap и сделали свой первый шаг к улучшению мира!
+    Вот ваши первые <h3><b>10</b></h3> Eco-очков!
+  </b-modal>
 </template>
 
 <style scoped>

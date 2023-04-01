@@ -2,9 +2,14 @@
 import ButtonGeneral from "/src/components/ButtonGeneral.vue";
 import AccountLogIn from "/src/components/AccountLogIn.vue";
 import axios from "axios";
+import { getCookie } from "../helpers/cookie.js";
 export default {
   components: { ButtonGeneral, AccountLogIn, axios },
   name: "WelcomePage",
+  created() {if (getCookie('jwt'))
+    this.$router.push({name:
+     'profile'})
+  }
 }
 </script>
 
