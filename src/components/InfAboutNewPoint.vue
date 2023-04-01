@@ -165,6 +165,7 @@ export default {
       let address = event.get('item').value;
       ymaps.geocode(address).then((res) => {
         let firstGeoObject = res.geoObjects.get(0);
+        this.address = firstGeoObject.properties._data.text;
         let coords = firstGeoObject.geometry.getCoordinates();
         this.pointX = coords[0];
         this.pointY = coords[1];
