@@ -1,18 +1,27 @@
 <script>
+import {useUserStore} from "../PiniaStore.js";
+
 export default {
   name: "PointStatistic",
   data() {
     return {
-      count: 0
+      userStore: useUserStore()
     }
-  }
+  },
+  computed: {
+    user() {
+      return this.userStore.user
+    },
+    userPoints() { return this.user?.points },
+  },
 }
 </script>
 
 <template>
 <div class="point-num">
   <div class="main-container">
-    <div class="count"> {{count}} </div>
+    <div v-if="userPoints && userPoints.length < 10" class="count"> {{userPoints.length}} </div>
+    <div v-if="userPoints && userPoints.length >= 10" class="count-small"> {{userPoints.length}} </div>
     <div class="description">
       <div class ="text">Предложенных точек сбора</div>
     </div>
@@ -21,7 +30,6 @@ export default {
 </template>
 
 <style scoped>
-
 .point-num{
   background-color: #ffffff;
   border-radius: 8px;
@@ -31,7 +39,6 @@ export default {
   flex-direction: column;
   justify-content: center;
 }
-
 .main-container{
   height: 90%;
   display: flex;
@@ -39,7 +46,6 @@ export default {
   justify-content: space-around;
   align-items: center;
 }
-
 .description{
   font-size: 14px;
   font-weight: 500;
@@ -47,17 +53,19 @@ export default {
   display: flex;
   width: 100%;
   justify-content: space-around;
-
 }
-
 .text{
   width: 70%;
   line-height: 25px;
 }
-
-
 .count{
   font-size: 120px;
+  line-height: 75px;
+  align-items: center;
+  color: #0c5460;
+}
+.count-small{
+  font-size: 85px;
   line-height: 75px;
   align-items: center;
   color: #0c5460;
