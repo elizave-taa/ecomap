@@ -3,9 +3,10 @@ import GlobalHeader from "/src/components/GlobalHeader.vue";
 import KindsOfTrash from "/src/components/KindsOfTrash.vue";
 import ButtonGeneral from "/src/components/ButtonGeneral.vue";
 import { yandexMap, ymapMarker } from 'vue-yandex-maps'
-import {BFormCheckbox} from "bootstrap-vue";
+import { SidebarPlugin } from 'bootstrap-vue'
+import {BFormCheckbox, BSidebar, BButton} from "bootstrap-vue";
 export default {
-  components: {GlobalHeader, KindsOfTrash, ButtonGeneral, BFormCheckbox, yandexMap, ymapMarker},
+  components: {GlobalHeader, KindsOfTrash, ButtonGeneral, BFormCheckbox, yandexMap, ymapMarker, BSidebar, BButton, SidebarPlugin},
   data() {
     return {
       checked1: false,
@@ -24,7 +25,6 @@ export default {
 
 <template>
   <div class="map-page">
-
     <div class="left-nav">
       <div class="choose-kind">
         <p>Какой вид мусора вы хотите выбросить?</p>
@@ -48,12 +48,24 @@ export default {
         </button-general>
       </div>
     </div>
+
     <div class="map">
       <yandex-map class="ymap" :settings="settings" :coords="[47.24, 39.73]" zoom="12.4" >
         <my-component slot="balloon"></my-component>
       </yandex-map>
     </div>
   </div>
+
+  <!--<div class="side-bar">
+    <b-button aria-controls="id" aria-expanded="false">Переключить боковую панель</b-button>
+    <b-sidebar id="sidebar-1" title="Sidebar" shadow>
+      <div>
+        <p>
+          123456
+        </p>
+      </div>
+    </b-sidebar>
+  </div> -->
 </template>
 
 <style scoped>
@@ -122,5 +134,19 @@ p {
 .ymap{
   width: 100%;
   height: 100%;
+}
+
+@media (max-width: 1235px){
+.left-nav{
+  display: none;
+}
+  .map{
+    width: 100%;
+    height: 100%;
+  }
+  .ymap{
+    width: 100%;
+    height: 100%;
+  }
 }
 </style>
