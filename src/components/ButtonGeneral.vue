@@ -1,62 +1,71 @@
-
 <script>
 export default {
   props: {
-  variant:{
-    type: String,
-    default:"basic"
-  }
-  },
-  data() {
-    return {
+    variant: {
+      type: String,
+      default: "basic"
     }
-  }
-
+  },
 }
-
-
 </script>
 
 <template>
-<button class="login-general" :class="variant" @click="$emit('click')">
-  <slot/>
-</button>
+  <button class="button-general" :class="variant" @click="$emit('click')">
+    <slot/>
+  </button>
 </template>
 
-
 <style scoped>
-.login-general{
+.button-general {
   font-weight: 400;
   align-items: center;
   border-radius: 8px;
-  border-color: transparent;
-  color: white;
+  border: 1px solid var(--btn-border-color);
+  color: var(--btn-text-color);
   box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.25);
   transition: background-color .2s;
-}
-.login-general.limpid{
-  background-color: rgba(82, 115, 89, 0.75);
-}
-
-.login-general.basic{
-  background-color: rgba(var(--c-button-rgb));
+  background-color: var(--btn-color);
+  cursor: pointer;
 }
 
-.login-general.dark{
- background-color: rgba(61, 97, 68);
+.button-general:hover {
+  background-color: var(--btn-hover-color);
 }
 
-.login-general.blue{
+.button-general:active {
+  background-color: var(--btn-active-color);
+}
+
+.button-general.basic {
+  --btn-color: rgb(var(--c-button-rgb));
+  --btn-hover-color: rgb(var(--c-button-hover-rgb));
+  --btn-active-color: rgb(var(--c-button-active-rgb));
+  --btn-border-color: rgb(var(--c-button-border-rgb));
+  --btn-text-color: #fff;
+}
+
+.button-general.red {
+  --btn-color: rgb(var(--c-button-red-rgb));
+  --btn-hover-color: rgb(var(--c-button-red-hover-rgb));
+  --btn-active-color: rgb(var(--c-button-red-active-rgb));
+  --btn-border-color: rgb(var(--c-button-red-border-rgb));
+  --btn-text-color: #fff;
+}
+
+.button-general.dark {
+  background-color: rgba(61, 97, 68);
+}
+
+.button-general.blue {
   background-color: #518590;
 }
 
-.login-general.blue:hover{
+.button-general.blue:hover {
   background-color: #3a6974;
   cursor: pointer;
 }
 
-.login-general:hover{
-  background-color: rgb(var(--c-button-hover-rgb));
-  cursor: pointer;
+.button-general.limpid {
+  background-color: rgba(82, 115, 89, 0.75);
 }
 </style>
