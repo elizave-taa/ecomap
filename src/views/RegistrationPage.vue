@@ -71,8 +71,8 @@ export default {
         axios.post("http://80.90.190.25:5243/api/registration", this.regData).then((response) => {
           console.log(response.data)
           this.showModal1();
+          // this.$router.push({name: 'welcome-page'})
         }).catch((error) => {
-              console.log(error.response.data)
             }
         );
       }
@@ -89,10 +89,10 @@ export default {
           <button-general class="back-btn" @click="$router.go(-1)">
               Назад
           </button-general>
-          <div class="need-block">
-            <span class="need-circle"></span>
-            <p>Необязательные поля</p>
-          </div>
+<!--          <div class="need-block">-->
+<!--            <span class="need-circle"></span>-->
+<!--            <p>Необязательные поля</p>-->
+<!--          </div>-->
         </div>
         <div class="reg-form">
           <b-container>
@@ -129,7 +129,7 @@ export default {
                   <template #label>
                     <div class="custom-label">
                       Фамилия
-                      <span class="need-circle"></span>
+<!--                      <span class="need-circle"></span>-->
                     </div>
                   </template>
                   <b-form-input class="reg-input" id="input-lastname" v-model="lastname"/>
@@ -141,7 +141,7 @@ export default {
                   <template #label>
                     <div class="custom-label">
                       Возраст
-                      <span class="need-circle"></span>
+<!--                      <span class="need-circle"></span>-->
                     </div>
                   </template>
                   <b-form-input class="reg-input" id="input-age" v-model="age" type="number"/>
@@ -153,7 +153,7 @@ export default {
                   <template #label>
                     <div class="custom-label">
                       Пол
-                      <span class="need-circle"></span>
+<!--                      <span class="need-circle"></span>-->
                     </div>
                   </template>
                   <b-form-select class="reg-input" v-model="gender" :options="genders" id="input-gender"/>
@@ -189,7 +189,7 @@ export default {
       </div>
     </b-container>
   </div>
-  <b-modal id="modal-1" >
+  <b-modal id="modal-1">
     Поздравляем, мы зарегистрировались в приложении Ecomap и сделали свой первый шаг к улучшению мира!
     Вот ваши первые <h4><b>10</b></h4> Eco-очков!
   </b-modal>

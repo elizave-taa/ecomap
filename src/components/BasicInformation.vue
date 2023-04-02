@@ -54,16 +54,15 @@ export default {
       this.$root.$emit('bv::show::modal', 'modal-2', '#btnShow')
     },
     putImage(link){
-      axios.put("http://80.90.190.25:5243/api/profile", link, {
-        'Content-Type': 'multipart/form-data'
-      }).then((response) =>{
+      axios.put("http://80.90.190.25:5243/api/profile", {avatar: link}
+      ).then((response) =>{
         console.log(response.data)}).catch((error) => {
         this.wasError = true;
         console.log(error)});
     },
     sendImage(formData) {
       if(this.formData != null) {
-        axios.post("http://80.90.190.25:5243/api/upload_image", formData, {
+        axios.post("http://80.90.190.25:5243/api/images", formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
