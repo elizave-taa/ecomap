@@ -25,7 +25,7 @@ export default {
       <div class="coins">
         <div v-if="userRate < 10" class="count"> {{userRate}} </div>
         <div v-if="userRate >= 10" class="count-small"> {{userRate}} </div>
-        <img src="src/assets/coins.svg" class="image">
+        <img src="/src/assets/coins.svg" class="image">
       </div>
 
     </div>

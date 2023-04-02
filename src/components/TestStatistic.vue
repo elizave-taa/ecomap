@@ -13,7 +13,7 @@ export default {
   <div class="point-num">
       <div class="description">
         <div class ="text">Пройдено тестов:</div>
-        <img src="src/assets/tests.svg" class="image">
+        <img src="/src/assets/tests.svg" class="image">
         <div class="count"> {{count}}/3 </div>
       </div>
     </div>

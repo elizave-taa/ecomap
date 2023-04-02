@@ -17,35 +17,35 @@ export default {
   <div class="line">
     <div>
       <span class="num">10</span>
-      <img src="src/assets/coins.svg" class="image">
+      <img src="/src/assets/coins.svg" class="image">
     </div>
     <span class="rank">Юный защитник природы</span>
   </div>
   <div class="line">
     <div>
       <span class="num">20</span>
-      <img src="src/assets/coins.svg" class="image">
+      <img src="/src/assets/coins.svg" class="image">
     </div>
     <span class="rank">Опытный эколог</span>
   </div>
   <div class="line">
     <div>
       <span class="num">40</span>
-      <img src="src/assets/coins.svg" class="image">
+      <img src="/src/assets/coins.svg" class="image">
     </div>
     <span class="rank">Ярый борец за экологию</span>
   </div>
   <div class="line">
     <div>
       <span class="num">80</span>
-      <img src="src/assets/coins.svg" class="image">
+      <img src="/src/assets/coins.svg" class="image">
     </div>
     <span class="rank">Грета Тунберг</span>
   </div>
   <div class="line">
     <div>
       <span class="num">100</span>
-      <img src="src/assets/coins.svg" class="image">
+      <img src="/src/assets/coins.svg" class="image">
     </div>
     <span class="rank">Вы - сама природа</span>
   </div>
