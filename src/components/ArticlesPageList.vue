@@ -21,7 +21,7 @@ export default {
   },
   methods: {
     getArticles() {
-      axios.get("http://80.90.190.25:5243/api/article", {
+      axios.get("article", {
         params: {
           page: this.page,
           limit: this.limit,

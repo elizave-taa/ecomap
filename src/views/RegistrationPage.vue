@@ -68,7 +68,7 @@ export default {
       if (this.password.length < 6 || this.password !== this.confirmPassword)
         this.wasError = true;
       else {
-        axios.post("http://80.90.190.25:5243/api/registration", this.regData).then((response) => {
+        axios.post("registration", this.regData).then((response) => {
           console.log(response.data)
           this.showModal1();
           // this.$router.push({name: 'welcome-page'})

@@ -17,7 +17,7 @@ export default {
   },
   methods: {
     getPoints() {
-      axios.get("http://80.90.190.25:5243/api/map", {
+      axios.get("map", {
         params: {
           isAccepted: false,
           allIncludes: false,
@@ -33,14 +33,14 @@ export default {
     },
 
     deletePoint(id) {
-      axios.delete(`http://80.90.190.25:5243/api/map/${id}`).then(() => {
+      axios.delete(`map/${id}`).then(() => {
         this.getPoints()
       })
     },
 
     acceptPoint(point) {
       point.isAccepted = true;
-      axios.put(`http://80.90.190.25:5243/api/map/${point.id}`, point).then(() => {
+      axios.put(`map/${point.id}`, point).then(() => {
         this.getPoints()
       })
     },

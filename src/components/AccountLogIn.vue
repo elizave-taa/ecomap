@@ -29,7 +29,7 @@ export default {
   },
   methods: {
       accLogin(){
-        axios.post("http://80.90.190.25:5243/api/login",this.loginData).then((response) =>
+        axios.post("login",this.loginData).then((response) =>
         {console.log(response);
           setCookie("jwt", response.data.token, {'max-age': 7*24*60*60});
           this.$router.push({name: 'profile'});

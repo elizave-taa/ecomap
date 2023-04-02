@@ -28,11 +28,11 @@ export default {
     },
 
     sendLike() {
-      axios.get(`http://80.90.190.25:5243/api/article/${this.id}/like`);
+      axios.get(`article/${this.id}/like`);
     },
 
     sendUnlike() {
-      axios.get(`http://80.90.190.25:5243/api/article/${this.id}/unlike`);
+      axios.get(`article/${this.id}/unlike`);
     },
   },
 }

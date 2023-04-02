@@ -94,7 +94,7 @@ export default {
     },
 
     sendImage(formData, i) {
-      axios.post("http://80.90.190.25:5243/api/images", formData, {
+      axios.post("images", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -116,7 +116,7 @@ export default {
         comment: this.comment,
       }
 
-      axios.post("http://80.90.190.25:5243/api/map", point).then(() => {
+      axios.post("map", point).then(() => {
         this.$refs['modal-1'].show();
         this.clearForm();
       });

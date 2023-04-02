@@ -15,6 +15,7 @@ export default {
   },
 
   created() {
+    axios.defaults.baseURL = 'https://msm-private.com/api/'
     axios.interceptors.request.use(
         (config) => {
           const token = getCookie("jwt");

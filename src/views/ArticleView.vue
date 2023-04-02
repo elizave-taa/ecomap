@@ -19,7 +19,7 @@ export default {
 
   methods: {
     getArticle() {
-      axios.get(`http://80.90.190.25:5243/api/article/${this.id}`).then(response => {
+      axios.get(`article/${this.id}`).then(response => {
         this.article = response.data
       })
     }

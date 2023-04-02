@@ -34,7 +34,7 @@ export default {
     },
 
     sendImage(formData) {
-      axios.post("http://80.90.190.25:5243/api/images", formData, {
+      axios.post("images", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -68,7 +68,7 @@ export default {
         template: this.template,
       }
 
-      axios.post("http://80.90.190.25:5243/api/article", payload).then(() => {
+      axios.post("article", payload).then(() => {
         this.$refs['modal-1'].show();
         this.clearForm();
       });

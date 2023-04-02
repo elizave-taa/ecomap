@@ -43,7 +43,7 @@ export default {
 
   methods: {
     getPoints(types) {
-      axios.get("http://80.90.190.25:5243/api/map", {
+      axios.get("map", {
         params: {
           isAccepted: true,
           allIncludes: this.checked2,
