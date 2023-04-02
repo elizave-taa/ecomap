@@ -2,11 +2,18 @@
 import {BDropdown, BDropdownItem, BContainer} from "bootstrap-vue"
 import{useUserStore} from "../PiniaStore.js";
 import {RouterLink} from "vue-router"
+import {getCookie} from "../helpers/cookie.js"
+import {deleteCookie} from "../helpers/cookie.js";
+
 export default {
   components: {BDropdown, BDropdownItem, RouterLink, BContainer},
+  created() {if (getCookie('jwt'))
+    this.isAuth = true;
+  },
   data(){
     return{
-      userStore: useUserStore()
+      userStore: useUserStore(),
+      isAuth: false
     }
   },
   computed: {
@@ -16,6 +23,14 @@ export default {
     userAdmin() { return this.user?.isAdmin },
     userAge() { return this.user?.age },
   },
+  methods:{
+    exit(){
+      deleteCookie('jwt');
+      this.$router.push({name:
+            'WelcomePage'});
+      this.isAuth = false;
+    }
+  }
 }
 </script>
 
@@ -26,7 +41,17 @@ export default {
     <router-link class="link" to="/we">О проекте</router-link>
     <router-link class="link" to="/articles">Статьи про экологию</router-link>
     <router-link class="link" to="/map">Смотреть карту</router-link>
-    <router-link class="link" to="/profile">Мой профиль</router-link>
+
+      <router-link v-if="$route.name == 'profile'" class="link" to="/profile">
+        <b-dropdown id="dropdown-1" text="Мой профиль" class="btn-exit">
+          <b-dropdown-item @click="exit()"> Выход </b-dropdown-item>
+        </b-dropdown>
+      </router-link>
+
+      <router-link class="link" v-else to="/">
+        Мой профиль
+      </router-link>
+
     <router-link v-if="userAdmin" class="link" to="/profile">Админ панель</router-link>
     </b-container>
 
@@ -80,6 +105,14 @@ export default {
 }
 .alt-logo{
   display: none;
+}
+.btn-exit:deep(button){
+  padding: 0!important;
+  background: none!important;
+  font-size: 15px;
+  font-weight: 400;
+  border: none!important;
+  box-shadow: none!important;
 }
 .link {
   font-family: Inter, sans-serif;

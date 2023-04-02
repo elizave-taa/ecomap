@@ -16,7 +16,6 @@ export default {
         (config) => {
           const token = getCookie("jwt");
           if (token != null) {
-            this.userStore.fetchUser();
             config.headers.authorization = token;
           }
           return config;
