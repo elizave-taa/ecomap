@@ -4,7 +4,7 @@ import KindsOfTrash from "/src/components/KindsOfTrash.vue";
 import ButtonGeneral from "/src/components/ButtonGeneral.vue";
 import TypeBadge from "../components/TypeBadge.vue";
 import {YandexMap, YandexMarker, YandexCollection} from 'vue-yandex-maps/dist/vue-yandex-maps.esm.js'
-import {BFormCheckbox, BSidebar, BAvatar} from "bootstrap-vue";
+import {BFormCheckbox, BSidebar, BAvatar, SidebarPlugin} from "bootstrap-vue";
 import axios from "axios";
 
 export default {
@@ -19,6 +19,7 @@ export default {
     YandexCollection,
     BSidebar,
     BAvatar,
+    SidebarPlugin
   },
   data() {
     return {
@@ -214,6 +215,16 @@ export default {
       </div>
     </b-sidebar>
   </div>
+  <!--<div class="side-bar">
+    <b-button aria-controls="id" aria-expanded="false">Переключить боковую панель</b-button>
+    <b-sidebar id="sidebar-1" title="Sidebar" shadow>
+      <div>
+        <p>
+          123456
+        </p>
+      </div>
+    </b-sidebar>
+  </div> -->
 </template>
 
 <style scoped>
@@ -313,5 +324,19 @@ p {
   gap: 8px;
   flex-wrap: wrap;
   margin-bottom: 10px;
+}
+
+@media (max-width: 1235px){
+.left-nav{
+  display: none;
+}
+  .map{
+    width: 100%;
+    height: 100%;
+  }
+  .ymap{
+    width: 100%;
+    height: 100%;
+  }
 }
 </style>

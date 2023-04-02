@@ -1,11 +1,20 @@
 <script>
-import { BContainer, BRow, BCol, BFormGroup, BFormInput, BFormSelect } from "bootstrap-vue"
+import { BContainer, BRow, BCol, BFormGroup, BFormInput, BFormSelect, BModal } from "bootstrap-vue"
 import ButtonGeneral from "../components/ButtonGeneral.vue"
 import axios from "axios";
+import {getCookie} from "../helpers/cookie.js";
 export default {
   components: {
-    BContainer, BRow, BCol, BFormGroup, BFormInput, BFormSelect, ButtonGeneral
+    BContainer,
+    BRow,
+    BCol,
+    BFormGroup,
+    BFormInput,
+    BFormSelect,
+    ButtonGeneral,
+    BModal,
   },
+
   data() {
     return {
       name: null,
@@ -24,13 +33,19 @@ export default {
       wasError: false
     }
   },
+
+  created() {
+    if (getCookie('jwt'))
+      this.$router.push({name: 'profile'})
+  },
+
   computed: {
     regData() {
       return {
         name: this.name,
         nickname: this.nickname,
         email: this.email,
-        lastname: this.lastname,
+        surname: this.lastname,
         age: this.age,
         gender: this.gender,
         password: this.password,
@@ -38,6 +53,7 @@ export default {
       }
     }
   },
+
   watch: {
     age() {
       if (!Number.isInteger(+this.age) || this.age < 0 || this.age > 111)
@@ -45,12 +61,16 @@ export default {
     },
   },
   methods: {
+    showModal1() {
+      this.$root.$emit('bv::show::modal', 'modal-1', '#btnShow')
+    },
     handleRegistration() {
       if (this.password.length < 6 || this.password !== this.confirmPassword)
         this.wasError = true;
       else {
         axios.post("http://80.90.190.25:5243/api/registration", this.regData).then((response) => {
           console.log(response.data)
+          this.showModal1();
         }).catch((error) => {
               console.log(error.response.data)
             }
@@ -71,7 +91,7 @@ export default {
           </button-general>
           <div class="need-block">
             <span class="need-circle"></span>
-            <p>Помечены необязательные поля</p>
+            <p>Необязательные поля</p>
           </div>
         </div>
         <div class="reg-form">
@@ -158,7 +178,7 @@ export default {
                 </b-form-group>
               </b-col>
               <b-col class="reg-col to-right-bottom">
-                <p class="mistake" v-if="wasError">Проверьте, что пароль длиннее 6 символов или что проверка пароля с ним совпадает</p>
+                <p class="mistake" v-if="wasError">Проверьте правильность пароля (он должен быть не менее 6 символов)</p>
                 <button-general class="reg-button" @click="handleRegistration">
                   Зарегистрироваться
                 </button-general>
@@ -169,6 +189,10 @@ export default {
       </div>
     </b-container>
   </div>
+  <b-modal id="modal-1" >
+    Поздравляем, мы зарегистрировались в приложении Ecomap и сделали свой первый шаг к улучшению мира!
+    Вот ваши первые <h4><b>10</b></h4> Eco-очков!
+  </b-modal>
 </template>
 
 <style scoped>
@@ -184,23 +208,27 @@ export default {
 .reg-page {
   font-family: Inter,sans-serif;
 }
+
 .reg-form {
   background-color: rgba(var(--c-primary-rgb), 0.75);
   border-radius: 8px;
   padding: 35px 0;
 }
+
 .reg-group {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 30px;
 }
+
 .reg-group:deep(label) {
   color: #fff;
   margin-bottom: 0;
   font-size: 14px;
   font-weight: 500;
 }
+
 .reg-input {
   background: none !important;
   border-radius: 6px;
@@ -209,31 +237,38 @@ export default {
   width: 200px;
   margin-left: 20px;
 }
+
 .reg-input:deep(option) {
   background-color: rgb(var(--c-button-rgb));
 }
+
 .reg-input:deep(option):hover {
   background-color: rgb(var(--c-button-rgb));
 }
+
 .reg-col {
   padding: 0 50px;
 }
+
 .reg-button {
   padding: 12px 22px;
   font-size: 18px;
   font-weight: 500;
 }
+
 .to-right-bottom {
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
 }
+
 .top-menu {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 10px;
 }
+
 .need-circle {
   height: 20px;
   width: 20px;
@@ -241,10 +276,12 @@ export default {
   display: inline-block;
   border-radius: 20px;
 }
+
 .need-block {
   display: flex;
   align-items: center;
 }
+
 .need-block p {
   margin-bottom: 0;
   margin-left: 10px;
@@ -252,35 +289,107 @@ export default {
   font-size: 14px;
   font-weight: 500;
 }
+
 .back-btn {
   font-size: 16px;
   padding: 6px 11px;
   line-height: 20px;
 }
+
 .custom-label {
   display: inline-flex;
   align-items: center;
   column-gap: 10px;
 }
+
 .reg-input[type="number"]::-webkit-outer-spin-button,
 .reg-input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
 }
+
 .reg-input[type="number"] {
   -moz-appearance: none;
   appearance: none;
 }
+
 .reg-input[type="number"]:hover,
 .reg-input[type="number"]:focus {
   -moz-appearance: none;
   appearance: none;
 }
+
 .reg-input[type="number"]::-webkit-inner-spin-button,
 .reg-input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
 }
-.mistake{
+
+.mistake {
   font-size: 16px;
   color: #981111;
+}
+
+@media (max-width: 600px) {
+  .reg-input {
+    width: 160px;
+    height: 20px;
+  }
+
+  .need-circle {
+    width: 12px;
+    height: 12px;
+  }
+
+  .reg-button {
+    margin-top: 25px;
+    font-size: 14px;
+    padding: 8px;
+  }
+}
+
+@media (max-width: 991px) {
+  .reg-button {
+    margin-top: 25px;
+  }
+}
+
+@media (max-width: 558px) {
+  .reg-input {
+    margin-left: 0;
+    width: 180px;
+    height: 22px;
+  }
+
+  .need-circle {
+    width: 12px;
+    height: 12px;
+  }
+
+  .reg-button {
+    margin-top: 25px;
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  .reg-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .back-btn {
+    font-size: 13px;
+  }
+
+  .need-block {
+    font-size: 13px;
+  }
+
+  .reg-form {
+    padding: 10px 0;
+  }
+
+  .rp-wrapper {
+    padding: 60px 20px;
+  }
 }
 </style>

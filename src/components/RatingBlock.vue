@@ -1,11 +1,18 @@
 <script>
+import{useUserStore} from "../PiniaStore.js";
 export default {
   name: "Rating",
   data() {
     return {
-      count: 0
+      userStore: useUserStore()
     }
-  }
+  },
+  computed: {
+    user() {
+      return this.userStore.user
+    },
+    userRate() { return this.user?.rate },
+  },
 }
 </script>
 
@@ -16,7 +23,8 @@ export default {
         <div class ="text">Набрано <br/> Eco-очков:</div>
       </div>
       <div class="coins">
-        <div class="count"> {{count}} </div>
+        <div v-if="userRate < 10" class="count"> {{userRate}} </div>
+        <div v-if="userRate >= 10" class="count-small"> {{userRate}} </div>
         <img src="src/assets/coins.svg" class="image">
       </div>
 
@@ -71,6 +79,13 @@ export default {
 
 .count{
   font-size: 100px;
+  line-height: 75px;
+  align-items: center;
+  color: #0b2e13;
+}
+
+.count-small{
+  font-size: 70px;
   line-height: 75px;
   align-items: center;
   color: #0b2e13;

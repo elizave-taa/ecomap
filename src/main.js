@@ -4,5 +4,7 @@ import './style.css'
 import App from './App.vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+import { createPinia } from 'pinia'
 
-createApp(App).use(router).mount('#app')
+const pinia = createPinia()
+createApp(App).use(router).use(pinia).mount('#app')

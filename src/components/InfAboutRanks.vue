@@ -1,7 +1,11 @@
 
 <script>
+import {BCol, BContainer, BFormGroup, BFormInput, BFormSelect, BRow, BTable} from "bootstrap-vue";
 export default {
-  name: "InfAboutRanks"
+  name: "InfAboutRanks",
+  components: { BTable },
+  data() {
+  }
 }
 </script>
 
@@ -11,44 +15,54 @@ export default {
   <div class="header">Немного о рейтинге пользователей:</div>
   <hr/>
   <div class="line">
-    <span class="num">10</span>
-    <img src="src/assets/coins.svg" class="image">
+    <div>
+      <span class="num">10</span>
+      <img src="src/assets/coins.svg" class="image">
+    </div>
     <span class="rank">Юный защитник природы</span>
   </div>
   <div class="line">
-    <span class="num">20</span>
-    <img src="src/assets/coins.svg" class="image">
-    <span class="rank">Юный защитник природы</span>
+    <div>
+      <span class="num">20</span>
+      <img src="src/assets/coins.svg" class="image">
+    </div>
+    <span class="rank">Опытный эколог</span>
   </div>
   <div class="line">
-    <span class="num">40</span>
-    <img src="src/assets/coins.svg" class="image">
-    <span class="rank">Юный защитник природы</span>
+    <div>
+      <span class="num">40</span>
+      <img src="src/assets/coins.svg" class="image">
+    </div>
+    <span class="rank">Ярый борец за экологию</span>
   </div>
   <div class="line">
-    <span class="num">80</span>
-    <img src="src/assets/coins.svg" class="image">
-    <span class="rank">Юный защитник природы</span>
+    <div>
+      <span class="num">80</span>
+      <img src="src/assets/coins.svg" class="image">
+    </div>
+    <span class="rank">Грета Тунберг</span>
   </div>
   <div class="line">
-    <span class="num">100</span>
-    <img src="src/assets/coins.svg" class="image">
-    <span class="rank">Юный защитник природы</span>
+    <div>
+      <span class="num">100</span>
+      <img src="src/assets/coins.svg" class="image">
+    </div>
+    <span class="rank">Вы - сама природа</span>
   </div>
   <hr/>
-  <div class="description">
-    Как получить Eco-очки?
-    Проходите тесты, взаимодействуйте с другими пользователями, предлагайте новые точки переработки мусора.
-  </div>
+  <div class="description">Как получить Eco-очки?
+    Предлагайте новые точки переработки мусора, проявляйте активность в приложении.</div>
 </div>
+
+
 </template>
 
 
 <style scoped>
 
 .form{
-  width: 530px;
-  height: 310px;
+  width: 390px;
+  height: 315px;
   box-shadow: 2px 2px 3px 0 rgba(0,0,0,0.3);
   background-color: #ffffff;
   border-radius: 8px;
@@ -56,7 +70,7 @@ export default {
 }
 
 .header{
-  font-size: 20px;
+  font-size: 17px;
   margin-bottom: 5px;
 }
 
@@ -74,15 +88,15 @@ export default {
 
 .num{
   line-height: 25px;
-  margin-right: 5px;
+  margin-right: 10px;
   font-weight: bold;
   color: #1c7430;
 }
 
 .line{
   display: flex;
-  justify-content: space-around;
-  width: 70%;
+  justify-content: space-between;
+  width: 77%;
   margin-bottom: 3px;
 }
 

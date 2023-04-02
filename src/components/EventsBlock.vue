@@ -5,6 +5,9 @@ export default {
     return {
       count: 0
     }
+  },
+  watch:{
+
   }
 }
 </script>
@@ -12,7 +15,8 @@ export default {
 <template>
   <div class="point-num">
     <div class="main-container">
-      <div class="count"> {{count}} </div>
+      <div v-if="count < 10" class="count"> {{count}} </div>
+      <div v-if="count >= 10" class="count-small"> {{count}} </div>
       <div class="description">
         <div class ="text">Мероприятий организовано</div>
       </div>
@@ -58,6 +62,13 @@ export default {
 
 .count{
   font-size: 120px;
+  line-height: 75px;
+  align-items: center;
+  color: #341a0c;
+}
+
+.count-small{
+  font-size: 85px;
   line-height: 75px;
   align-items: center;
   color: #341a0c;
