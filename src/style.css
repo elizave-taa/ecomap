@@ -20,4 +20,19 @@ body {
   --c-button-red-hover-rgb: 100, 0, 0;
   --c-button-red-active-rgb: 90, 0, 0;
   --c-button-red-border-rgb: 150, 80, 80;
+
+  --c-button-blue-rgb: 30, 30, 70;
+  --c-button-blue-hover-rgb: 30, 30, 60;
+  --c-button-blue-active-rgb: 20, 20, 50;
+  --c-button-blue-border-rgb: 130, 130, 160;
+
+  --c-button-yellow-rgb: 200, 120, 30;
+  --c-button-yellow-hover-rgb: 190, 110, 20;
+  --c-button-yellow-active-rgb: 180, 100, 10;
+  --c-button-yellow-border-rgb: 220, 140, 50;
+
+  --c-button-pink-rgb: 170, 50, 100;
+  --c-button-pink-hover-rgb: 160, 40, 90;
+  --c-button-pink-active-rgb: 150, 30, 80;
+  --c-button-pink-border-rgb: 200, 80, 130;
 }

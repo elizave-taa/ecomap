@@ -52,17 +52,32 @@ export default {
   --btn-text-color: #fff;
 }
 
+.button-general.blue {
+  --btn-color: rgb(var(--c-button-blue-rgb));
+  --btn-hover-color: rgb(var(--c-button-blue-hover-rgb));
+  --btn-active-color: rgb(var(--c-button-blue-active-rgb));
+  --btn-border-color: rgb(var(--c-button-blue-border-rgb));
+  --btn-text-color: #fff;
+}
+
+.button-general.yellow {
+  --btn-color: rgb(var(--c-button-yellow-rgb));
+  --btn-hover-color: rgb(var(--c-button-yellow-hover-rgb));
+  --btn-active-color: rgb(var(--c-button-yellow-active-rgb));
+  --btn-border-color: rgb(var(--c-button-yellow-border-rgb));
+  --btn-text-color: #fff;
+}
+
+.button-general.pink {
+  --btn-color: rgb(var(--c-button-pink-rgb));
+  --btn-hover-color: rgb(var(--c-button-pink-hover-rgb));
+  --btn-active-color: rgb(var(--c-button-pink-active-rgb));
+  --btn-border-color: rgb(var(--c-button-pink-border-rgb));
+  --btn-text-color: #fff;
+}
+
 .button-general.dark {
   background-color: rgba(61, 97, 68);
-}
-
-.button-general.blue {
-  background-color: #518590;
-}
-
-.button-general.blue:hover {
-  background-color: #3a6974;
-  cursor: pointer;
 }
 
 .button-general.limpid {
