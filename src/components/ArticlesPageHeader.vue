@@ -5,7 +5,9 @@ export default {
     SearchInput
   },
   data() {
-    return {}
+    return {
+      search: null,
+    }
   },
   methods: {},
 }
@@ -24,7 +26,7 @@ export default {
     </span>
   </div>
   <div class="ap-search-wrapper">
-    <search-input class="ap-search"/>
+    <search-input @search="(s) => $emit('search', s)" class="ap-search"/>
   </div>
 </header>
 </template>

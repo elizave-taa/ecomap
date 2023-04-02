@@ -9,16 +9,22 @@ export default {
     BContainer,
   },
   data() {
-    return {}
+    return {
+      search: null,
+    }
   },
-  methods: {},
+  methods: {
+    handleSearch(s) {
+      this.search = s;
+    },
+  },
 }
 </script>
 
 <template>
   <b-container class="ap-container">
-    <articles-page-header class="ap-header"/>
-    <articles-page-list/>
+    <articles-page-header @search="handleSearch" class="ap-header"/>
+    <articles-page-list :search="search"/>
   </b-container>
 </template>
 

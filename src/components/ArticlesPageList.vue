@@ -1,33 +1,60 @@
 <script>
 import ArticleCard from "./ArticleCard.vue";
 import ArticlesPaginator from "./ArticlesPaginator.vue";
+import axios from "axios";
 export default {
   components: {
     ArticleCard,
     ArticlesPaginator,
   },
-  data() {
-    return {}
+
+  props: {
+    search: String,
   },
-  methods: {},
+
+  data() {
+    return {
+      page: 1,
+      limit: 999,
+      articles: [],
+    }
+  },
+  methods: {
+    getArticles() {
+      axios.get("http://80.90.190.25:5243/api/article", {
+        headers: {
+          "authorization": "daa1321becebd9767f1b9bee75506c5b0b6190e029c1bf203654db830b8b7d55"
+        },
+        params: {
+          page: this.page,
+          limit: this.limit,
+          search: this.search,
+        }
+      }).then((response) => {
+        this.articles = response.data.data;
+      })
+    },
+  },
+
+  watch: {
+    search() {
+      this.getArticles()
+    }
+  },
+
+  mounted() {
+    this.getArticles()
+  }
 }
 </script>
 
 <template>
   <div class="ap-grid">
-    <article-card id="1" title="Экология человека и экологическая культура" :likes="8" image="https://pic.xenomorph.ru/2013-04/1365242838_16.jpg"/>
-    <article-card id="2" title="Экология человека и экологическая культура" :likes="8" image="https://pic.xenomorph.ru/2013-04/1365242838_16.jpg"/>
-    <article-card id="3" title="Экология человека и экологическая культура" :likes="8" image="https://pic.xenomorph.ru/2013-04/1365242838_16.jpg"/>
-    <article-card id="4" title="Экология человека и экологическая культура" :likes="8" image="https://pic.xenomorph.ru/2013-04/1365242838_16.jpg"/>
-    <article-card id="5" title="Экология человека и экологическая культура" :likes="8" image="https://pic.xenomorph.ru/2013-04/1365242838_16.jpg"/>
-    <article-card id="6" title="Экология человека и экологическая культура" :likes="8" image="https://pic.xenomorph.ru/2013-04/1365242838_16.jpg"/>
-    <article-card id="7" title="Экология человека и экологическая культура" :likes="8" image="https://pic.xenomorph.ru/2013-04/1365242838_16.jpg"/>
-    <article-card id="8" title="Экология человека и экологическая культура" :likes="8" image="https://pic.xenomorph.ru/2013-04/1365242838_16.jpg"/>
-    <article-card id="9" title="Экология человека и экологическая культура" :likes="8" image="https://pic.xenomorph.ru/2013-04/1365242838_16.jpg"/>
+    <article-card v-for="article in articles" :id="article.id" :title="article.title" :likes="article.countOfLikes" :image="article.image"/>
   </div>
-  <div>
-    <articles-paginator class="ap-paginator" :page-count="10" next-text=">" prev-text="<" />
-  </div>
+<!--  <div>-->
+<!--    <articles-paginator class="ap-paginator" :page-count="10" next-text=">" prev-text="<" />-->
+<!--  </div>-->
 </template>
 
 <style scoped>
