@@ -32,6 +32,10 @@ export default {
   background-size: cover;
   background-position: center;
   min-height: 100vh;
+  margin-top: -35px;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
 }
 
 .dp-form {

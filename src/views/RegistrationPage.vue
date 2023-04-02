@@ -177,7 +177,7 @@ export default {
   background-size: cover;
   background-position: center;
   min-height: 100vh;
-  margin-top: -37px;
+  margin-top: -35px;
   padding: 67px;
 }
 
