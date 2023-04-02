@@ -1,5 +1,5 @@
 <script>
-import { BContainer, BRow, BCol, BFormGroup, BFormInput, BFormSelect } from "bootstrap-vue";
+import { BContainer, BRow, BCol, BFormGroup, BFormInput, BFormSelect, BModal } from "bootstrap-vue";
 import axios from "axios";
 import {getCookie} from "../helpers/cookie.js";
 export default {
@@ -8,7 +8,7 @@ export default {
           'profile'})
   },
   components: {
-    BContainer, BRow, BCol, BFormGroup, BFormInput, BFormSelect
+    BContainer, BRow, BCol, BFormGroup, BFormInput, BFormSelect, BModal
   },
   data() {
     return {
@@ -178,9 +178,9 @@ export default {
       </div>
     </b-container>
   </div>
-  <b-modal id="modal-1" title="Выберите картинку для вашей новой аватарки" @cancel="cancel()" >
+  <b-modal id="modal-1" >
     Поздравляем, мы зарегистрировались в приложении Ecomap и сделали свой первый шаг к улучшению мира!
-    Вот ваши первые <h3><b>10</b></h3> Eco-очков!
+    Вот ваши первые <h4><b>10</b></h4> Eco-очков!
   </b-modal>
 </template>
 
