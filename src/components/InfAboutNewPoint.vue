@@ -185,8 +185,8 @@ export default {
       </b-row>
       <b-row>
         <b-col md="6" class="inf-col">
-          <div class="line">
-            <span class="point">Название точки</span>
+          <div class="line" style="margin-bottom: 10px">
+            <span class="point">Название<span class="need-circle"></span></span>
             <b-form-input class="input" v-model="title"></b-form-input>
           </div>
           <div class="line">
@@ -211,7 +211,7 @@ export default {
         </b-col>
         <b-col md="6" class="inf-col inf-col-flex">
           <div>
-            <div class="head-line">Добавьте фотографии</div>
+            <div class="head-line">Добавьте фотографии<span class="need-circle"></span></div>
             <div>
               <b-avatar
                   button
@@ -251,7 +251,7 @@ export default {
               <input id="file-input" type="file" style="display: none" name="name" ref="file4" @change="handleChange($event, 4)"/>
             </div>
             <div class="comment-block">
-              <div class="point">Комментарий</div>
+              <div class="point">Комментарий<span class="need-circle"></span></div>
               <b-form-textarea
                   v-model="comment"
                   class="input-comment"
@@ -309,12 +309,18 @@ export default {
   font-size: 25px;
   font-weight: 400;
   margin-bottom: 20px;
+  display: inline-flex;
+  align-items: center;
+  column-gap: 10px;
 }
 
 .point {
   font-size: 16px;
   color: #ffffff;
   line-height: 35px;
+  display: inline-flex;
+  align-items: center;
+  column-gap: 10px;
 }
 
 .input {
@@ -323,7 +329,6 @@ export default {
   width: 65%;
   font-size: 16px !important;
   height: 30px;
-  margin-bottom: 10px;
 }
 
 .input-comment {
@@ -347,6 +352,7 @@ export default {
 .line {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .line-image {
@@ -374,11 +380,21 @@ export default {
   grid-template-columns: 1fr 1fr;
   margin-bottom: 20px;
 }
+
 .comment-block {
   margin-top: 20px;
   margin-bottom: 15px;
 }
+
 .modal-button {
   padding: 10px 20px;
+}
+
+.need-circle {
+  height: 20px;
+  width: 20px;
+  background-color: rgb(var(--c-primary-lightest-rgb));
+  display: inline-block;
+  border-radius: 20px;
 }
 </style>

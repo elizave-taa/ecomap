@@ -16,6 +16,10 @@ export default {
       <button-general class="back-btn" @click="$router.go(-1)">
         Назад
       </button-general>
+      <div class="need-block">
+        <span class="need-circle"></span>
+        <p>Помечены необязательные поля</p>
+      </div>
     </div>
     <inf-about-new-point class="dp-form"/>
   </b-container>
@@ -28,8 +32,6 @@ export default {
   background-size: cover;
   background-position: center;
   min-height: 100vh;
-  margin-top: -37px;
-  padding: 67px;
 }
 
 .dp-form {
@@ -49,5 +51,27 @@ export default {
   align-items: center;
   margin-bottom: 10px;
   width: 100%;
+  justify-content: space-between;
+}
+
+.need-circle {
+  height: 20px;
+  width: 20px;
+  background-color: rgb(var(--c-primary-lightest-rgb));
+  display: inline-block;
+  border-radius: 20px;
+}
+
+.need-block {
+  display: flex;
+  align-items: center;
+}
+
+.need-block p {
+  margin-bottom: 0;
+  margin-left: 10px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
 }
 </style>
