@@ -2,13 +2,27 @@
 import GlobalHeader from "/src/components/GlobalHeader.vue";
 import KindsOfTrash from "/src/components/KindsOfTrash.vue";
 import ButtonGeneral from "/src/components/ButtonGeneral.vue";
-import { yandexMap, ymapMarker } from 'vue-yandex-maps'
-import {BFormCheckbox} from "bootstrap-vue";
+import TypeBadge from "../components/TypeBadge.vue";
+import {YandexMap, YandexMarker, YandexCollection} from 'vue-yandex-maps/dist/vue-yandex-maps.esm.js'
+import {BFormCheckbox, BSidebar, BAvatar} from "bootstrap-vue";
+import axios from "axios";
+
 export default {
-  components: {GlobalHeader, KindsOfTrash, ButtonGeneral, BFormCheckbox, yandexMap, ymapMarker},
+  components: {
+    GlobalHeader,
+    KindsOfTrash,
+    ButtonGeneral,
+    TypeBadge,
+    BFormCheckbox,
+    YandexMarker,
+    YandexMap,
+    YandexCollection,
+    BSidebar,
+    BAvatar,
+  },
   data() {
     return {
-      checked1: false,
+      checked1: true,
       checked2: false,
       settings: {
         apiKey: '2b56651c-9a27-46cb-8ec3-aaa9f5771ca2', // Индивидуальный ключ API
@@ -17,27 +31,144 @@ export default {
         debug: false, // Режим отладки
         version: '2.1' // Версия Я.Карт
       },
+      points: [],
+      collectionKey: 5555,
+      map: null,
+      types: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+      sidebarOpened: false,
+      pointClicked: null,
     }
-  }
+  },
+
+  methods: {
+    getPoints(types) {
+      axios.get("http://80.90.190.25:5243/api/map", {
+        headers: {
+          "authorization": "daa1321becebd9767f1b9bee75506c5b0b6190e029c1bf203654db830b8b7d55"
+        },
+        params: {
+          isAccepted: true,
+          allIncludes: this.checked2,
+          types: JSON.stringify(types),
+          x1: 0,
+          x2: 0,
+          y1: 0,
+          y2: 0,
+        }
+      }).then((response) => {
+        this.points = response.data.points;
+        this.$nextTick().then(() => {
+          this.collectionKey++;
+        })
+      })
+    },
+
+    getMarkerOptions(point) {
+      return {
+        iconImageHref: '/src/assets/map/' + point.icon,
+        iconLayout: "default#image",
+        iconImageOffset: [-13, -13],
+        iconImageSize: [30, 30]
+      }
+    },
+
+    getMarkerProperties(point) {
+      let {types} = point;
+      if (typeof types == "string")
+        types = JSON.parse(types);
+      if (!Array.isArray(types))
+        return {};
+      let hint = types.reduce((accumulator, currentValue) => {
+        return accumulator + ', ' + this.getTypeName(currentValue);
+      }, '')
+      hint = hint.slice(2);
+      return {hintContent: this.capitalizeFirstLetter(hint)};
+    },
+
+    getTypeName(type) {
+      type = +type;
+      switch (type) {
+        case 0:
+          return 'бумага';
+        case 1:
+          return 'стекло';
+        case 2:
+          return 'пластик';
+        case 3:
+          return 'одежда';
+        case 4:
+          return 'тетра пак';
+        case 5:
+          return 'батареи';
+        case 6:
+          return 'металл';
+        case 7:
+          return 'опасные отходы';
+        case 8:
+          return 'лампочки';
+        case 9:
+          return 'бытовая техника';
+        case 10:
+          return 'шины';
+        case 11:
+          return 'другое';
+        default:
+          return 'другое';
+      }
+    },
+
+    capitalizeFirstLetter(string) {
+      return string.charAt(0).toUpperCase() + string.slice(1);
+    },
+
+    handleMapCreate(map) {
+      this.map = map;
+    },
+
+    changeTypes(types) {
+      this.types = types;
+    },
+
+    openMarker(point) {
+      this.sidebarOpened = true;
+      this.pointClicked = point;
+    },
+
+  },
+  watch: {
+    types() {
+      this.getPoints(this.types);
+      if (this.types.length == 0)
+        this.checked1 = false;
+      else if (this.types.length == 12)
+        this.checked1 = true;
+    },
+
+    checked2() {
+      this.getPoints(this.types)
+    },
+  },
+  mounted() {
+    this.getPoints(this.types);
+  },
 }
 </script>
 
 <template>
   <div class="map-page">
-
     <div class="left-nav">
       <div class="choose-kind">
         <p>Какой вид мусора вы хотите выбросить?</p>
-        <kinds-of-trash/>
+        <kinds-of-trash @reload="changeTypes" :all="checked1"/>
         <div class="all-selected">
-            <div>
-              <b-form-checkbox v-model="checked1" name="check-button" switch>
-                <div class="show">Все точки</div>
-              </b-form-checkbox>
-              <b-form-checkbox v-model="checked2" name="check-button" switch>
-                <div class="show">Точки, которые принимают все выбранное</div>
-              </b-form-checkbox>
-            </div>
+          <div>
+            <b-form-checkbox v-model="checked1" name="check-button" switch>
+              <div class="show">Все точки</div>
+            </b-form-checkbox>
+            <b-form-checkbox v-model="checked2" name="check-button" switch>
+              <div class="show">Точки, которые принимают все выбранное</div>
+            </b-form-checkbox>
+          </div>
         </div>
       </div>
       <div class="mp-btn-wrapper">
@@ -49,10 +180,39 @@ export default {
       </div>
     </div>
     <div class="map">
-      <yandex-map class="ymap" :settings="settings" :coords="[47.24, 39.73]" zoom="12.4" >
-        <my-component slot="balloon"></my-component>
+      <yandex-map class="ymap" :settings="settings" :coordinates="[47.24, 39.73]" :zoom="13" @created="handleMapCreate">
+        <yandex-collection :key="collectionKey">
+          <yandex-marker v-for="point in points" :coordinates="[point.pointX, point.pointY]" :marker-id="point.id"
+                         :options="getMarkerOptions(point)" :properties="getMarkerProperties(point)" :key="point.id"
+                         @click="openMarker(point)">
+          </yandex-marker>
+        </yandex-collection>
       </yandex-map>
     </div>
+    <b-sidebar v-model="sidebarOpened" right width="340px">
+      <div v-if="pointClicked" class="mp-point">
+        <h5>
+          {{ pointClicked.title }}
+        </h5>
+        <h6 class="mp-address">
+          {{ pointClicked.address }}
+        </h6>
+        <div class="mp-icons">
+          <type-badge v-for="type in JSON.parse(pointClicked.types)" :point-id="pointClicked.id" :type="type"/>
+        </div>
+        <div class="mp-images">
+          <b-avatar
+              v-for="image in pointClicked.images"
+              size="8rem"
+              rounded="sm"
+              :src="image">
+          </b-avatar>
+        </div>
+        <p class="mp-comment">
+          Комментарий: {{ pointClicked.comment }}
+        </p>
+      </div>
+    </b-sidebar>
   </div>
 </template>
 
@@ -123,5 +283,35 @@ p {
 .ymap {
   width: 100%;
   height: 100%;
+}
+
+.mp-point {
+  padding: 10px 20px;
+  color: #000;
+}
+
+.mp-images {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin: 15px 0;
+}
+
+.mp-address {
+  margin: 15px 0;
+}
+
+.mp-comment {
+  margin: 0;
+  color: #000;
+  font-size: 15px;
+  text-align: left;
+}
+
+.mp-icons {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
 }
 </style>
