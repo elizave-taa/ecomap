@@ -112,7 +112,7 @@ export default {
         address: this.address,
         pointX: this.pointX,
         pointY: this.pointY,
-        types: this.types,
+        types: JSON.stringify(this.types),
         images: this.pointImages,
         comment: this.comment,
       }
