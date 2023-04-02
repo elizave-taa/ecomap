@@ -28,19 +28,11 @@ export default {
     },
 
     sendLike() {
-      axios.get(`http://80.90.190.25:5243/api/article/${this.id}/like`, {
-        headers: {
-          "authorization": "daa1321becebd9767f1b9bee75506c5b0b6190e029c1bf203654db830b8b7d55"
-        },
-      });
+      axios.get(`http://80.90.190.25:5243/api/article/${this.id}/like`);
     },
 
     sendUnlike() {
-      axios.get(`http://80.90.190.25:5243/api/article/${this.id}/unlike`, {
-        headers: {
-          "authorization": "daa1321becebd9767f1b9bee75506c5b0b6190e029c1bf203654db830b8b7d55"
-        },
-      });
+      axios.get(`http://80.90.190.25:5243/api/article/${this.id}/unlike`);
     },
   },
 }

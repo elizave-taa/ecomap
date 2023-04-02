@@ -18,9 +18,6 @@ export default {
   methods: {
     getPoints() {
       axios.get("http://80.90.190.25:5243/api/map", {
-        headers: {
-          "authorization": "daa1321becebd9767f1b9bee75506c5b0b6190e029c1bf203654db830b8b7d55"
-        },
         params: {
           isAccepted: false,
           allIncludes: false,
@@ -36,22 +33,14 @@ export default {
     },
 
     deletePoint(id) {
-      axios.delete(`http://80.90.190.25:5243/api/map/${id}`, {
-        headers: {
-          "authorization": "daa1321becebd9767f1b9bee75506c5b0b6190e029c1bf203654db830b8b7d55"
-        },
-      }).then(() => {
+      axios.delete(`http://80.90.190.25:5243/api/map/${id}`).then(() => {
         this.getPoints()
       })
     },
 
     acceptPoint(point) {
       point.isAccepted = true;
-      axios.put(`http://80.90.190.25:5243/api/map/${point.id}`, point, {
-        headers: {
-          "authorization": "daa1321becebd9767f1b9bee75506c5b0b6190e029c1bf203654db830b8b7d55"
-        },
-      }).then(() => {
+      axios.put(`http://80.90.190.25:5243/api/map/${point.id}`, point).then(() => {
         this.getPoints()
       })
     },

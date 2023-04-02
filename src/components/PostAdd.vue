@@ -37,7 +37,6 @@ export default {
       axios.post("http://80.90.190.25:5243/api/images", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
-          "authorization": "daa1321becebd9767f1b9bee75506c5b0b6190e029c1bf203654db830b8b7d55"
         },
       }).then((response) => {
         let link = response.data.link;
@@ -69,11 +68,7 @@ export default {
         template: this.template,
       }
 
-      axios.post("http://80.90.190.25:5243/api/article", payload, {
-        headers: {
-          "authorization": "daa1321becebd9767f1b9bee75506c5b0b6190e029c1bf203654db830b8b7d55"
-        },
-      }).then(() => {
+      axios.post("http://80.90.190.25:5243/api/article", payload).then(() => {
         this.$refs['modal-1'].show();
         this.clearForm();
       });

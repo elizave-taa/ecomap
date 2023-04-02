@@ -24,14 +24,14 @@ export default {
     user() {
       return this.userStore.user
     },
-    userAdmin() { return this.user?.isAdmin },
+    userAdmin() { return this.user?.is_admin },
     userAge() { return this.user?.age },
   },
 
   methods: {
     exit() {
       deleteCookie('jwt');
-      this.$router.push({ name: 'WelcomePage' });
+      this.$router.push({ name: 'welcome-page' });
       this.isAuth = false;
     }
   }

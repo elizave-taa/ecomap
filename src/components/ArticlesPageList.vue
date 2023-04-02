@@ -22,9 +22,6 @@ export default {
   methods: {
     getArticles() {
       axios.get("http://80.90.190.25:5243/api/article", {
-        headers: {
-          "authorization": "daa1321becebd9767f1b9bee75506c5b0b6190e029c1bf203654db830b8b7d55"
-        },
         params: {
           page: this.page,
           limit: this.limit,

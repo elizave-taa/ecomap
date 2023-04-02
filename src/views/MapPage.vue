@@ -44,9 +44,6 @@ export default {
   methods: {
     getPoints(types) {
       axios.get("http://80.90.190.25:5243/api/map", {
-        headers: {
-          "authorization": "daa1321becebd9767f1b9bee75506c5b0b6190e029c1bf203654db830b8b7d55"
-        },
         params: {
           isAccepted: true,
           allIncludes: this.checked2,
@@ -236,7 +233,7 @@ export default {
 
 .left-nav {
   font-family: Inter, sans-serif;
-  width: 25%;
+  width: 320px;
   height: 91vh;
   display: flex;
   flex-direction: column;
@@ -326,7 +323,7 @@ p {
   margin-bottom: 10px;
 }
 
-@media (max-width: 1235px){
+@media (max-width: 800px){
 .left-nav{
   display: none;
 }

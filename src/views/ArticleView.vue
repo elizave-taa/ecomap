@@ -19,11 +19,7 @@ export default {
 
   methods: {
     getArticle() {
-      axios.get(`http://80.90.190.25:5243/api/article/${this.id}`, {
-        headers: {
-          "authorization": "daa1321becebd9767f1b9bee75506c5b0b6190e029c1bf203654db830b8b7d55"
-        },
-      }).then(response => {
+      axios.get(`http://80.90.190.25:5243/api/article/${this.id}`).then(response => {
         this.article = response.data
       })
     }

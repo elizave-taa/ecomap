@@ -18,7 +18,7 @@ export default {
       </button-general>
       <div class="need-block">
         <span class="need-circle"></span>
-        <p>Помечены необязательные поля</p>
+        <p>Необязательные поля</p>
       </div>
     </div>
     <inf-about-new-point class="dp-form"/>
