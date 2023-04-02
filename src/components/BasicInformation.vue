@@ -3,8 +3,12 @@ import {BAvatar, BButton, BPopover, BFormFile, BModal, FormFilePlugin} from "boo
 import{useUserStore} from "../PiniaStore.js";
 import InfAboutRanks from "../components/InfAboutRanks.vue";
 import axios from "axios";
+import {getCookie, setCookie} from "../helpers/cookie.js";
 export default {
   components: {InfAboutRanks, BAvatar, BButton, BPopover, BFormFile, BModal, FormFilePlugin, axios},
+  created() {
+    this.images.img1 = this.userAvatar;
+  },
   data() {
     return {
       modalShow: false,
@@ -12,7 +16,7 @@ export default {
       rating: 0,
       rank: 'Юный защитник природы',
       images: {
-        img1: '/src/assets/user.svg',
+        img1: null,
       },
       userStore: useUserStore(),
       formData: null
@@ -24,7 +28,8 @@ export default {
     },
     userNickname() { return this.user?.nickname },
     userAge() { return this.user?.age },
-    userName() { return this.user?.name }
+    userName() { return this.user?.name },
+    userAvatar() {return this.user?.avatar}
   },
   watch: {
     rating() {
@@ -39,7 +44,8 @@ export default {
   },
   methods: {
     cancel(){
-      this.images[`img1`] = '/src/assets/user.svg';
+      this.images[`img1`] = null;
+      //this.userAvatar = '/src/assets/user.svg';
     },
     showModal1() {
       this.$root.$emit('bv::show::modal', 'modal-1', '#btnShow')
@@ -47,12 +53,25 @@ export default {
     showModal2() {
       this.$root.$emit('bv::show::modal', 'modal-2', '#btnShow')
     },
+    putImage(link){
+      axios.put("http://80.90.190.25:5243/api/profile", link, {
+        'Content-Type': 'multipart/form-data'
+      }).then((response) =>{
+        console.log(response.data)}).catch((error) => {
+        this.wasError = true;
+        console.log(error)});
+    },
     sendImage(formData) {
       if(this.formData != null) {
         axios.post("http://80.90.190.25:5243/api/upload_image", formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
+        }).then((response) => {
+          let link = response.data.link;
+          this.images[`img1`] = link;
+          //this.userAvatar = link;
+          this.putImage(link);
         });
       }
     },
@@ -61,6 +80,7 @@ export default {
       fr.onload = ((file) => {
         return (e) => {
           this.images[`img1`] = e.target.result;
+          //this.userAvatar = e.target.result;
         };
       })(file);
       fr.readAsDataURL(file);
@@ -94,7 +114,7 @@ export default {
               <b-button @click="showModal2()" class="edit-btn">Открыть фото</b-button>
               <b-button class="remove-btn" @click="cancel()">Удалить фото</b-button>
             </b-popover>
-            <b-modal id="modal-1" title="Выберите картинку для вашей новой аватарки" @cancel="cancel()" @ok="sendImage(this.formData)">
+            <b-modal id="modal-1" title="Выберите картинку для вашей новой аватарки"  @close="cancel()" @cancel="cancel()" @ok="sendImage(this.formData)">
               <b-form-file accept=".jpg, .png, .jpeg"
                            ref="file1"
                             @change="handleChange($event)"

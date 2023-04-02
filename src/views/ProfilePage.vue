@@ -28,7 +28,7 @@ export default {
           <div class="statistic"> <point-statistic/> </div>
           <div class="statistic"> <rating-block/> </div>
           <div class="statistic"> <test-statistic/> </div>
-          <div class="statistic"> <events-block/> </div>
+
         </div>
       </b-row>
       <b-row class="row">
@@ -72,20 +72,22 @@ export default {
   box-shadow: 2px 2px 3px 0 rgba(0,0,0,0.3);
   border-radius: 8px!important;
   width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 .blocks{
-  width: 54%;
+  width: 48%;
   height: 100%;
   display: flex;
   justify-content: space-between;
 }
 .statistic{
-  width: 23%;
+  width: 29%;
   height: 100%;
 }
 .statistic:hover{
   cursor: pointer;
-  width: 24%;
+  width: 30%;
   height: 102%;
 }
 </style>
