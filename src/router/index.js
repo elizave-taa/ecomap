@@ -9,6 +9,7 @@ import AboutUs from "../views/AboutUs.vue";
 import ProfilePage from "../views/ProfilePage.vue";
 import AdminPanel from "../views/AdminPanel.vue";
 import PostAdd from "../components/PostAdd.vue";
+import DataPointEdit from "../views/DataPointEdit.vue";
 
 const router = createRouter({
     history: createWebHistory("/ecomap/"),
@@ -43,6 +44,12 @@ const router = createRouter({
             path: '/point',
             name: 'new-point',
             component: DataPoint
+        },
+        {
+            path: '/point/:id',
+            name: 'edit-point',
+            component: DataPointEdit,
+            props: true
         },
         {
             path: '/we',

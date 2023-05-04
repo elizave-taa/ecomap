@@ -6,6 +6,7 @@ import TypeBadge from "../components/TypeBadge.vue";
 import {YandexMap, YandexMarker, YandexCollection} from 'vue-yandex-maps/dist/vue-yandex-maps.esm.js'
 import {BFormCheckbox, BSidebar, BAvatar, SidebarPlugin} from "bootstrap-vue";
 import axios from "axios";
+import {useUserStore} from "../PiniaStore.js";
 
 export default {
   components: {
@@ -38,6 +39,7 @@ export default {
       types: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
       sidebarOpened: false,
       pointClicked: null,
+      userStore: useUserStore(),
     }
   },
 
@@ -209,6 +211,10 @@ export default {
         <p class="mp-comment">
           Комментарий: {{ pointClicked.comment }}
         </p>
+        <div class="mp-admin">
+          <button-general class="mp-button" @click="editPoint(point)">Редактировать</button-general>
+          <button-general class="mp-button" variant="red" @click="deletePoint(point.id)">Удалить</button-general>
+        </div>
       </div>
     </b-sidebar>
   </div>
@@ -321,6 +327,17 @@ p {
   gap: 8px;
   flex-wrap: wrap;
   margin-bottom: 10px;
+}
+
+.mp-button {
+  padding: 8px 20px;
+}
+
+.mp-admin {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 30px;
 }
 
 @media (max-width: 800px){
