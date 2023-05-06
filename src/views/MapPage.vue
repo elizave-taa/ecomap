@@ -134,6 +134,18 @@ export default {
       this.pointClicked = point;
     },
 
+    editPoint({ id }) {
+      this.$router.push({name: 'edit-point', params: { id }})
+    },
+
+    deletePoint({ id }) {
+      axios.delete(`map/${id}`).then(() => {
+        this.getPoints(this.types);
+        this.pointClicked = null;
+        this.sidebarOpened = false;
+      })
+    },
+
   },
   watch: {
     types() {
@@ -211,9 +223,9 @@ export default {
         <p class="mp-comment">
           Комментарий: {{ pointClicked.comment }}
         </p>
-        <div class="mp-admin">
-          <button-general class="mp-button" @click="editPoint(point)">Редактировать</button-general>
-          <button-general class="mp-button" variant="red" @click="deletePoint(point.id)">Удалить</button-general>
+        <div class="mp-admin" v-if="userStore.user?.is_admin">
+          <button-general class="mp-button" @click="editPoint(pointClicked)">Редактировать</button-general>
+          <button-general class="mp-button" variant="red" @click="deletePoint(pointClicked)">Удалить</button-general>
         </div>
       </div>
     </b-sidebar>
@@ -341,9 +353,9 @@ p {
 }
 
 @media (max-width: 800px){
-.left-nav{
-  display: none;
-}
+  .left-nav{
+    display: none;
+  }
   .map{
     width: 100%;
     height: 100%;
