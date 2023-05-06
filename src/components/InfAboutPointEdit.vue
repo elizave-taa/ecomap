@@ -109,11 +109,21 @@ export default {
 
     loadPoint() {
       axios.get(`map/${this.id}`).then((response) => {
-        console.log(response.data);
+        const point = response.data;
+        if (!point) return;
+
+        this.title = point.title;
+        this.iconImageHref = point.iconImageHref;
+        this.address = point.address;
+        this.pointX = point.pointX;
+        this.pointY = point.pointY;
+        this.types = JSON.parse(point.types);
+        this.images = point.images;
+        this.comment = point.comment;
       });
     },
 
-    createPoint() {
+    editPoint() {
       let point = {
         title: this.title,
         iconImageHref: this.pointIcon,
@@ -125,7 +135,7 @@ export default {
         comment: this.comment,
       }
 
-      axios.post("map", point).then(() => {
+      axios.put(`map/${this.id}`, point).then(() => {
         this.$refs['modal-1'].show();
         this.clearForm();
       });
@@ -266,16 +276,15 @@ export default {
           </div>
 
           <div class="to-right-bottom">
-            <button-general class="inf-button" @click="createPoint">
-              Предложить свою точку
+            <button-general class="inf-button" @click="editPoint">
+              Редактировать
             </button-general>
           </div>
         </b-col>
       </b-row>
     </b-container>
-    <b-modal ref="modal-1" title="Спасибо за вашу помощь!" busy>
-      <p class="my-4">Мы рассмотрим вашу точку и пришлем ответ в течение 3 дней.
-        С любовью, EcoMap &#10084;</p>
+    <b-modal ref="modal-1" title="Успех" busy>
+      <p class="my-4">Точка отредактирована</p>
       <template #modal-footer>
         <button-general class="modal-button" @click="$refs['modal-1'].hide();">
           ОК
