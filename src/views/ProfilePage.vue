@@ -22,15 +22,22 @@ export default {
 <template>
   <div class="app">
     <b-container class="main_container">
-      <b-row class="row">
+      <div class="row">
       <basic-information/>
         <div class="blocks">
           <div class="statistic"> <point-statistic/> </div>
           <div class="statistic"> <rating-block/> </div>
           <div class="statistic"> <test-statistic/> </div>
-
         </div>
-      </b-row>
+      </div>
+      <div class="row-1">
+        <basic-information/>
+        <div class="blocks">
+          <div class="statistic"> <point-statistic/> </div>
+          <div class="statistic"> <rating-block/> </div>
+          <div class="statistic"> <test-statistic/> </div>
+        </div>
+      </div>
       <b-row class="row">
       <b-card class="second-row" >
         <b-tabs card align="center">
@@ -56,12 +63,12 @@ export default {
 }
 .main_container{
   width: 100%;
-  height: 95vh;
+  height: 200vh;
   padding-top: 30px;
   align-items: center;
 }
 .row{
-  width: 103%;
+  width: 100%;
   height: 35%;
   display: flex;
   justify-content: space-between;
@@ -89,5 +96,38 @@ export default {
   cursor: pointer;
   width: 30%;
   height: 102%;
+}
+.row-1{
+  display: none;
+}
+@media (max-width: 995px) {
+  .statistic{
+    width: 32%;
+  }
+  .statistic:hover{
+    width: 34%;
+  }
+  .blocks{
+    width: 52%;
+  }
+  .row{
+    height: 30%;
+  }
+  .row-1{
+    display: none;
+  }
+}
+@media (max-width: 768px) {
+  .row{
+    display: none;
+  }
+  .row-1{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  .blocks{
+    width: 100%;
+  }
 }
 </style>
