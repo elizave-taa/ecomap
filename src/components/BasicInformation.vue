@@ -34,11 +34,11 @@ export default {
     rating() {
       if (this.user?.rate <= 30)
         return "Юный защитник природы"
-      else if (this.user?.rate >= 50)
+      else if (this.user?.rate >= 50 && this.user?.rate < 90)
         return 'Опытный эколог';
-      else if (this.user?.rate >= 90)
+      else if (this.user?.rate >= 90 && this.user?.rate < 170)
         return 'Ярый борец за экологию';
-      else if (this.user?.rate >= 170)
+      else if (this.user?.rate >= 170 && this.user?.rate < 300)
         return 'Грета Тумберг';
       else if (this.user?.rate >= 300)
         return'Вы - сама природа';

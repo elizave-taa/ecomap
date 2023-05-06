@@ -26,7 +26,7 @@ export default {
 <div class="point-num">
     <div class="main-container">
       <div v-if="userPoints && userPoints.length < 10" class="count"> {{userPoints.length}} </div>
-      <div v-if="userPoints && userPoints.length >= 10" class="count-small"> {{userPoints.length}} </div>
+      <div v-if="userPoints && userPoints.length < 100 && userPoints.length >= 10" class="count-small"> {{userPoints.length}} </div>
       <div v-if="userPoints && userPoints.length >= 100" class="count-small-2"> {{userPoints.length}} </div>
       <div class="description">
         <b-button class="btn-points" id="my-button"><div class ="text">Предложенных точек сбора</div></b-button>
