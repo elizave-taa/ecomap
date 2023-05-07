@@ -1,11 +1,14 @@
 <script>
 import {BAvatar, BButton, BPopover, BFormFile, BModal, FormFilePlugin} from "bootstrap-vue"
-import{useUserStore} from "../PiniaStore.js";
+import {useUserStore} from "../PiniaStore.js";
 import InfAboutRanks from "../components/InfAboutRanks.vue";
 import axios from "axios";
 import {getCookie, setCookie} from "../helpers/cookie.js";
 export default {
   components: {InfAboutRanks, BAvatar, BButton, BPopover, BFormFile, BModal, FormFilePlugin, axios},
+  props: {
+    prefix: Number,
+  },
   data() {
     return {
       modalShow: false,
@@ -95,7 +98,7 @@ export default {
 <template>
         <div class="left">
           <div class="avatar">
-            <b-button id="popover-3" class="avatar-btn">
+            <b-button :id="prefix + 'popover-3'" class="avatar-btn">
                 <b-avatar
                     rounded="sm"
                     size="8em"
@@ -105,7 +108,7 @@ export default {
             </b-button>
             <b-popover
                 placement="bottom"
-                target="popover-3"
+                :target="prefix + 'popover-3'"
                 triggers="focus">
               <b-button @click="showModal1()" class="edit-btn">Изменить фото</b-button>
               <b-button @click="showModal2()" class="edit-btn">Открыть фото</b-button>

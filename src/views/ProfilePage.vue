@@ -46,7 +46,7 @@ export default {
   <div class="app">
     <b-container class="main_container">
       <div class="row">
-      <basic-information/>
+      <basic-information prefix="1"/>
         <div class="blocks">
           <div class="statistic"> <point-statistic/> </div>
           <div class="statistic"> <rating-block/> </div>
@@ -54,7 +54,7 @@ export default {
         </div>
       </div>
       <div class="row-1">
-        <basic-information/>
+        <basic-information prefix="2"/>
         <div class="blocks">
           <div class="statistic"> <point-statistic/> </div>
           <div class="statistic"> <rating-block/> </div>
