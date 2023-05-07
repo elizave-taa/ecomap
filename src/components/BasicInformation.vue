@@ -141,14 +141,16 @@ export default {
               <div class="user-name"> @{{userNickname}}</div>
               <img  class="logo" src="/src/assets/more-information.svg">
             </div>
-                <b-button id="popover-2" class="rank-btn">
+                <b-button :id="prefix + 'popover-2'" class="rank-btn">
                   <div class="rank">{{rating()}}</div>
                 </b-button>
                 <b-popover
                     placement="bottom"
-                    target="popover-2"
+                    :target="prefix + 'popover-2'"
                     triggers="hover focus"
-                > <inf-about-ranks/> </b-popover>
+                    show
+                    custom-class="shadow-popper"
+                > <inf-about-ranks /> </b-popover>
               <div class="status">
                 {{userName}}, {{userAge}} лет
               </div>
@@ -164,6 +166,7 @@ export default {
 </template>
 
 <style scoped>
+
   .about-me{
     height: 85%;
     width: 60%;

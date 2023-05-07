@@ -12,6 +12,7 @@ export default {
 
 <template>
 <div class="form">
+    <div class="form__content">
   <div class="header">Немного о рейтинге пользователей:</div>
   <hr/>
   <div class="line">
@@ -52,6 +53,7 @@ export default {
   <hr/>
   <div class="description">Как получить Eco-очки?
     Предлагайте новые точки переработки мусора, проявляйте активность в приложении.</div>
+    </div>
 </div>
 
 
@@ -59,14 +61,8 @@ export default {
 
 
 <style scoped>
-
-.form{
-  width: 390px;
-  height: 315px;
-  box-shadow: 2px 2px 3px 0 rgba(0,0,0,0.3);
-  background-color: #ffffff;
-  border-radius: 8px;
-  padding: 10px;
+.form {
+    width: 390px;
 }
 
 .header{
@@ -104,4 +100,23 @@ export default {
   font-size: 14px;
 }
 
+</style>
+
+<style>
+.shadow-popper {
+    box-sizing: border-box;
+    max-width: 410px !important;
+    height: 335px;
+    box-shadow: 2px 2px 3px 0 rgba(0,0,0,0.3);
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 10px;
+    overflow-x: auto;
+}
+
+@media (max-width: 600px) {
+  .shadow-popper {
+      max-width: 250px !important;
+  }
+}
 </style>
