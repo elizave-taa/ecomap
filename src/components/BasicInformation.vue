@@ -6,9 +6,6 @@ import axios from "axios";
 import {getCookie, setCookie} from "../helpers/cookie.js";
 export default {
   components: {InfAboutRanks, BAvatar, BButton, BPopover, BFormFile, BModal, FormFilePlugin, axios},
-  created() {
-    this.images.img1 = this.userAvatar;
-  },
   data() {
     return {
       modalShow: false,
@@ -28,7 +25,8 @@ export default {
     userNickname() { return this.user?.nickname },
     userAge() { return this.user?.age },
     userName() { return this.user?.name },
-    userAvatar() {return this.user?.avatar}
+    userAvatar() {
+      this.images.img1 = this.user?.avatar}
   },
   methods: {
     rating() {
@@ -113,14 +111,13 @@ export default {
               <b-button @click="showModal2()" class="edit-btn">Открыть фото</b-button>
               <b-button class="remove-btn" @click="cancel()">Удалить фото</b-button>
             </b-popover>
-
             <b-modal id="modal-1" title="Выберите картинку для вашей новой аватарки"  @close="cancel()" @cancel="cancel()" @ok="sendImage(this.formData)">
               <b-form-file accept=".jpg, .png, .jpeg"
                            ref="file1"
                             @change="handleChange($event)"
               ></b-form-file>
             </b-modal>
-            <b-modal id="modal-2" centered class="modal-window" ok-only >
+            <b-modal hide-footer hide-header id="modal-2" centered class="modal-window" ok-only >
               <b-avatar
                   rounded="sm"
                   size="20em"
@@ -137,7 +134,10 @@ export default {
             </div>
           </div>
           <div class="about-me">
+            <div class="user-name-inf">
               <div class="user-name"> @{{userNickname}}</div>
+              <img  class="logo" src="/src/assets/more-information.svg">
+            </div>
                 <b-button id="popover-2" class="rank-btn">
                   <div class="rank">{{rating()}}</div>
                 </b-button>
@@ -169,7 +169,7 @@ export default {
     display: flex;
     justify-content: space-around;
     width: 43%;
-    height: 100%;
+    height: 210px;
     box-shadow: 2px 2px 3px 0 rgba(0,0,0,0.3);
     background-color: #ffffff;
     align-items: center;
@@ -201,12 +201,17 @@ export default {
     justify-content: space-around;
     height: 85%;
 }
+  .user-name-inf{
+    margin-right: 2px;
+    display: flex;
+  }
   .friends_likes-2{
     display: none;
   }
   .user-name{
   font-size: 30px;
-    margin-right: 15px;
+    margin-right: 6px;
+    display: flex;
 }
   .rank{
 color: #1c7430;
@@ -245,7 +250,7 @@ font-size: 15px;
   }
   @media (max-width: 995px) {
   .user-name{
-    font-size: 23px;
+    font-size: 19px;
   }
   .about-me{
     width: 50%;
@@ -254,6 +259,7 @@ font-size: 15px;
     font-size: 15px;
   }
   .left{
+    width: 45%;
     max-height: 200px;
   }
   }

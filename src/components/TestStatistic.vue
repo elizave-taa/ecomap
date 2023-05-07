@@ -38,7 +38,7 @@ export default {
             <div class="count"> {{count}}/3</div>
           </b-button>
         </div>
-        <b-modal ref="modal-1"  size="lg" centred hide-footer hide-header class="modal-window">
+        <b-modal ref="modal-1"  size="lg" centered hide-footer hide-header class="modal-window">
           <div v-if="!pickedTest">
             <div class="image-container">
               <img alt="ecomap" class="logo" src="/src/assets/test.jpg" />
@@ -67,7 +67,7 @@ export default {
   background-color: #ffffff;
   border-radius: 8px;
   box-shadow: 2px 2px 3px 0 rgba(0,0,0,0.3);
-  height: 100%;
+  height: 210px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -126,6 +126,7 @@ export default {
   width: 80%;
   border: none;
   border-radius: 8px;
+  text-align: left;
 }
 .test-list:focus,
 .test-list:hover{
@@ -148,6 +149,12 @@ export default {
   .description{
     height: 70%;
   }
+  .head{
+    font-size: 23px;
+  }
+  .test-list{
+    font-size: 13px;
+  }
 }
 @media (max-width: 768px) {
   .point-num{
@@ -162,6 +169,34 @@ export default {
   }
   .image{
     display: none;
+  }
+}
+@media (max-width: 580px){
+  .centered{
+    width: 300px;
+    height: 60px;
+    font-size: 12px;
+  }
+  .head{
+    font-size: 20px;
+  }
+  .test-list{
+    width: 90%;
+  }
+}
+@media (max-width: 580px){
+  .centered{
+    width: 250px;
+    height: 45px;
+    font-size: 10px;
+  }
+  .head {
+    font-size: 15px;
+    margin-bottom: 5px;
+  }
+  .test-list{
+    font-size: 12px;
+    width: 95%;
   }
 }
 </style>

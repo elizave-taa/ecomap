@@ -51,7 +51,7 @@ export default {
   background-color: #ffffff;
   border-radius: 8px;
   box-shadow: 2px 2px 3px 0 rgba(0,0,0,0.3);
-  height: 100%;
+  height: 210px;
   display: flex;
   flex-direction: column;
   justify-content: center;

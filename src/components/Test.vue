@@ -69,7 +69,7 @@ export default {
         {{ testData.title }}
       </h4>
       <button class="button" @click="$emit('close')">
-        Закрыть тест
+        Закрыть
       </button>
     </div>
     <div class="page">
@@ -77,7 +77,7 @@ export default {
       <div v-if="!isFinal">
         <div class="question">
           <div class="count-q">{{currentQuestion.index}}/{{testData.countQuestions}}</div>
-          <div>Вопрос: {{ currentQuestion.question }}</div>
+          <div class="text">Вопрос: {{ currentQuestion.question }}</div>
         </div>
         <div
             class="answer"
@@ -165,5 +165,39 @@ export default {
   background-color: #accbb5;
   border-radius: 8px;
   padding: 10px;
+}
+@media (max-width: 995px) {
+  .heading{
+    font-size: 20px;
+  }
+  .button{
+    line-height: 25px;
+    font-size: 16px;
+  }
+}
+@media (max-width: 600px) {
+  .heading{
+    font-size: 18px;
+    line-height: 25px;
+  }
+  .text{
+    font-size: 16px;
+  }
+  .explanation{
+    font-size: 14px;
+  }
+}
+@media (max-width: 450px){
+  .test{
+    padding: 15px;
+    margin: 4px;
+  }
+  .heading{
+    font-size: 15px;
+    line-height: 20px;
+  }
+  .text{
+    font-size: 14px;
+  }
 }
 </style>
