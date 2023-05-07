@@ -75,7 +75,10 @@ export default {
     <div class="page">
 
       <div v-if="!isFinal">
-        <div class="question">Вопрос: {{ currentQuestion.question }}</div>
+        <div class="question">
+          <div class="count-q">{{currentQuestion.index}}/{{testData.countQuestions}}</div>
+          <div>Вопрос: {{ currentQuestion.question }}</div>
+        </div>
         <div
             class="answer"
             :class="getAnswerClass(index)"

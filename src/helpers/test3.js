@@ -1,8 +1,10 @@
 export default {
     id: 3,
     title: "Раздельный сбор отходов\n",
+    countQuestions: 7,
     questions: [
         {
+            index : 1,
             question: "Что является решением проблемы большого количества мусора?",
             explanation: "",
             answers: [
@@ -23,6 +25,7 @@ export default {
             ]
         },
         {
+            index : 2,
             question: "Выберите вариант ответа, где представлены только органические отходы:",
             explanation: "",
             answers: [
@@ -45,6 +48,7 @@ export default {
             ]
         },
         {
+            index : 3,
             question: "Чем плохо то, что разные виды отходов выбрасывают вместе?",
             explanation: "",
             answers: [
@@ -63,6 +67,7 @@ export default {
             ]
         },
         {
+            index : 4,
             question: "Что такое пластик?",
             explanation: "",
             answers: [
@@ -85,6 +90,7 @@ export default {
             ]
         },
         {
+            index : 5,
             question: "Чем замечательно стекло как вторсырьё?",
             explanation: "",
             answers: [
@@ -107,6 +113,7 @@ export default {
             ]
         },
         {
+            index : 6,
             question: "Почему целые бутылки и банки принимают отдельно от разбитых?",
             explanation: "",
             answers: [
@@ -129,6 +136,7 @@ export default {
             ]
         },
         {
+            index : 7,
             question: "Как разделяют битое стекло и почему?",
             explanation: "",
             answers: [
