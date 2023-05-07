@@ -86,4 +86,24 @@ export default {
   background-color: rgb(var(--c-primary-light-rgb)) !important;
   cursor: default !important;
 }
+@media (max-width: 515px) {
+  .adp-left {
+    border-radius: 0;
+    box-shadow: none;
+    padding: 6px 15px;
+    font-size: 14px;
+  }
+
+  .adp-right {
+    border-radius: 0;
+    box-shadow: none;
+    padding: 6px 15px;
+    font-size: 14px;
+  }
+}
+@media (max-width: 384px) {
+  .adp-tabs {
+    box-shadow: none;
+  }
+}
 </style>

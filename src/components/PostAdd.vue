@@ -102,7 +102,7 @@ export default {
                       label="Изображение"
                   >
                     <b-avatar
-                        size="10rem"
+                        size="9rem"
                         rounded="sm"
                         :src="image"
                         class="pa-image"
@@ -266,5 +266,43 @@ export default {
 
 .modal-button {
   padding: 10px 20px;
+}
+@media (max-width: 995px) {
+  .pa-color-green,
+  .pa-color-blue,
+  .pa-color-yellow,
+  .pa-color-pink {
+    width: 70px;
+    height: 70px;
+    cursor: pointer;
+  }
+}
+@media (max-width: 768px) {
+  .pa-color-green,
+  .pa-color-blue,
+  .pa-color-yellow,
+  .pa-color-pink {
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+  }
+  .pa-colors {
+    gap: 10px;
+  }
+}
+@media (max-width: 515px) {
+  .pa-row{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+  .pa-color-green,
+  .pa-color-blue,
+  .pa-color-yellow,
+  .pa-color-pink {
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+  }
 }
 </style>
