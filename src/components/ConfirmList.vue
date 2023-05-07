@@ -44,6 +44,10 @@ export default {
         this.getPoints()
       })
     },
+
+    editPoint(point) {
+      this.$router.push({name: 'edit-point', params: {id: point.id}})
+    }
   },
 
   mounted() {
@@ -77,6 +81,7 @@ export default {
     </p>
     <div class="cl-actions">
       <button-general class="cl-button" @click="acceptPoint(point)">Принять</button-general>
+      <button-general class="cl-button" @click="editPoint(point)">Редактировать</button-general>
       <button-general class="cl-button" variant="red" @click="deletePoint(point.id)">Отклонить</button-general>
     </div>
   </div>

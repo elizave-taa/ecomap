@@ -1,5 +1,4 @@
 <script>
-import { useUserStore } from "../PiniaStore.js";
 import {
   BFormInput,
   BFormGroup,
@@ -30,6 +29,9 @@ export default {
     BCol,
     BContainer,
     BModal,
+  },
+  props: {
+    id: [String, Number]
   },
   data() {
     return {
@@ -87,10 +89,6 @@ export default {
     pointImages() {
       return Object.values(this.images).filter((img) => img != '/src/assets/add_photo.svg');
     },
-    user() {
-      return this.userStore.user
-    },
-    userName() { return this.user?.name }
   },
 
   methods: {
@@ -109,7 +107,23 @@ export default {
       });
     },
 
-    createPoint() {
+    loadPoint() {
+      axios.get(`map/${this.id}`).then((response) => {
+        const point = response.data;
+        if (!point) return;
+
+        this.title = point.title;
+        this.iconImageHref = point.iconImageHref;
+        this.address = point.address;
+        this.pointX = point.pointX;
+        this.pointY = point.pointY;
+        this.types = JSON.parse(point.types);
+        this.images = point.images;
+        this.comment = point.comment;
+      });
+    },
+
+    editPoint() {
       let point = {
         title: this.title,
         iconImageHref: this.pointIcon,
@@ -121,15 +135,12 @@ export default {
         comment: this.comment,
       }
 
-      axios.post("map", point).then(() => {
+      axios.put(`map/${this.id}`, point).then(() => {
         this.$refs['modal-1'].show();
         this.clearForm();
       });
     },
-    hideModal(){
-      this.$refs['modal-1'].hide();
-      this.$router.push({name: 'map-page'});
-    },
+
     clearForm() {
       this.title = null;
       this.address = null;
@@ -155,7 +166,6 @@ export default {
     }
   },
 
-
   async mounted() {
     await loadYmap({
       apiKey: '2b56651c-9a27-46cb-8ec3-aaa9f5771ca2', // Индивидуальный ключ API
@@ -175,6 +185,7 @@ export default {
         this.pointY = coords[1];
       });
     });
+    this.loadPoint()
   }
 }
 </script>
@@ -216,7 +227,7 @@ export default {
         <b-col md="6" class="inf-col inf-col-flex">
           <div>
             <div class="head-line">Добавьте фотографии<span class="need-circle"></span></div>
-            <div class="images">
+            <div>
               <b-avatar
                   button
                   @click="addPhoto(1)"
@@ -265,18 +276,17 @@ export default {
           </div>
 
           <div class="to-right-bottom">
-            <button-general class="inf-button" @click="createPoint">
-              Предложить свою точку
+            <button-general class="inf-button" @click="editPoint">
+              Редактировать
             </button-general>
           </div>
         </b-col>
       </b-row>
     </b-container>
-    <b-modal ref="modal-1" title="Спасибо за вашу помощь!" busy>
-      <p class="my-4">{{userName()}}, мы рассмотрим вашу точку и пришлем ответ в течение 3 дней.
-        С любовью, EcoMap &#10084;</p>
+    <b-modal ref="modal-1" title="Успех" busy>
+      <p class="my-4">Точка отредактирована</p>
       <template #modal-footer>
-        <button-general class="modal-button" @click="hideModal()">
+        <button-general class="modal-button" @click="$refs['modal-1'].hide();">
           ОК
         </button-general>
       </template>

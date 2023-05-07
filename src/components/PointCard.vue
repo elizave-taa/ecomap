@@ -1,17 +1,21 @@
 <script>
 import {BCard } from "bootstrap-vue";
+import TypeBadge from "./TypeBadge.vue";
 
 export default {
   components: {
-    BCard
+    BCard, TypeBadge
   },
   name: "PointCard",
+    props: {
+      point: Object,
+    },
   data() {
     return {
-      title: "",
-      types: [],
-      address: "",
-      comment: ""
+      title: this.point.title,
+      types: this.point.types,
+      address: this.point.address,
+      comment: this.point.comment
     }
   },
 }
@@ -21,7 +25,12 @@ export default {
   <div class="card">
     <h4 class="ac-title">
       Название точки: {{ title }} <br/>
-      Виды мусора:
+      <div>
+          Виды мусора:
+          <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+          <type-badge v-for="type in types" :point-id="point.id" :type="type" />
+          </div>
+      </div>
       <br/>
       Адрес: {{address}} <br/>
       Комментарий: {{ comment }}

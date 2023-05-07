@@ -48,9 +48,9 @@ export default {
       <router-link class="link" to="/map">Смотреть карту</router-link>
 
       <router-link v-if="$route.name == 'profile'" class="link" to="/profile">
-        <b-dropdown id="dropdown-1" text="Мой профиль" class="btn-exit">
+        <b-dropdown id="dropdown-1" text="Мой профиль" class="btn-exit" right>
+          <b-dropdown-item @click="$router.push({ name: 'profile-edit' })"> Редактировать профиль </b-dropdown-item>
           <b-dropdown-item @click="exit()"> Выход </b-dropdown-item>
-          <b-dropdown-item @click="exit()"> Редактировать профиль </b-dropdown-item>
         </b-dropdown>
       </router-link>
 
@@ -75,8 +75,8 @@ export default {
       </router-link>
       <router-link v-if="$route.name == 'profile'" to="/profile">
         <b-dropdown id="dropdown-right" right class="btn-exit-2">
-          <b-dropdown-item @click="exit()"> Выход </b-dropdown-item>
-          <b-dropdown-item @click="exit()"> Редактировать профиль </b-dropdown-item>
+            <b-dropdown-item @click="$router.push({ name: 'profile-edit' })"> Редактировать профиль </b-dropdown-item>
+            <b-dropdown-item @click="exit()"> Выход </b-dropdown-item>
         </b-dropdown>
       </router-link>
       <router-link v-if="userAdmin" to="/admin">

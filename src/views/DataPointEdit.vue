@@ -1,11 +1,14 @@
 <script>
 import GlobalHeader from "../components/GlobalHeader.vue";
 import ButtonGeneral from "../components/ButtonGeneral.vue";
-import InfAboutNewPoint from "../components/InfAboutNewPoint.vue";
+import InfAboutPointEdit from "../components/InfAboutPointEdit.vue";
 import { BContainer } from "bootstrap-vue"
 export default {
   name: "DataPoint",
-  components: { GlobalHeader, ButtonGeneral, InfAboutNewPoint, BContainer }
+  components: { GlobalHeader, ButtonGeneral, InfAboutPointEdit, BContainer },
+  props: {
+    id: [String, Number]
+  },
 }
 </script>
 
@@ -21,7 +24,7 @@ export default {
         <p>Необязательные поля</p>
       </div>
     </div>
-    <inf-about-new-point class="dp-form"/>
+    <inf-about-point-edit class="dp-form" :id="id"/>
   </b-container>
 </div>
 </template>

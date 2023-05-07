@@ -3,6 +3,7 @@ import { BContainer, BRow, BCol, BFormGroup, BFormInput, BFormSelect, BModal } f
 import ButtonGeneral from "../components/ButtonGeneral.vue"
 import axios from "axios";
 import {getCookie} from "../helpers/cookie.js";
+import {useUserStore} from "../PiniaStore.js";
 export default {
     components: {
         BContainer,
@@ -17,30 +18,33 @@ export default {
 
     data() {
         return {
+            userStore: useUserStore(),
             name: null,
             nickname: null,
             email: null,
             lastname: null,
             age: null,
             gender: null,
-            password: null,
-            confirmPassword: null,
             genders: [
                 { value: 1, text: 'Мужской' },
                 { value: 2, text: 'Женский' },
                 { value: 3, text: 'Другой' }
             ],
-            wasError: false
+            wasError: false,
         }
     },
 
     created() {
-        if (getCookie('jwt'))
-            this.$router.push({name: 'profile'})
+        if (!getCookie('jwt'))
+            this.$router.push({name: 'welcome-page'})
+    },
+
+    mounted() {
+        this.fillData();
     },
 
     computed: {
-        regData() {
+        profileData() {
             return {
                 name: this.name,
                 nickname: this.nickname,
@@ -86,9 +90,26 @@ export default {
             if (this.password.length < 6) return "Минимум 6 символов";
 
             return "Пароль обязателен для заполнения"
+        },
+        user() {
+            return this.userStore.user;
+        }
+    },
+    watch: {
+        user() {
+            this.fillData();
         }
     },
     methods: {
+        fillData() {
+            this.name = this.userStore.user?.name;
+            this.nickname = this.userStore.user?.nickname;
+            this.email = this.userStore.user?.email;
+            this.lastname = this.userStore.user?.surname;
+            this.age = this.userStore.user?.age;
+            this.gender = this.userStore.user?.gender;
+        },
+
         showModal1() {
             this.$root.$emit('bv::show::modal', 'modal-1', '#btnShow')
         },
@@ -100,16 +121,15 @@ export default {
             if (!this.nickname) { this.nickname = ""; isBroken = true; }
             if (!this.email || !this.isMail(this.email)) { this.email = ""; isBroken = true; }
             if (!this.gender || ![1,2,3].includes(this.gender)) { this.gender = ""; isBroken = true; }
-            if (!this.password || this.password.length < 6) { this.password = ""; isBroken = true; }
-            if (!this.confirmPassword || this.password !== this.confirmPassword) { this.confirmPassword = ""; isBroken = true; }
 
             return !isBroken;
         },
-        handleRegistration() {
+        handleEditing() {
             if (!this.checkValidation()) return;
 
-            axios.post("registration", this.regData).then((response) => {
+            axios.put("profile", { params: this.profileData, ...this.profileData }).then((response) => {
                 this.showModal1();
+                this.userStore.fetchUser();
 // this.$router.push({name: 'welcome-page'})
             });
         },
@@ -217,29 +237,10 @@ export default {
                         </b-row>
                         <b-row class="mt-5">
                             <b-col class="reg-col">
-                                <b-form-group
-                                        class="reg-group"
-                                        label="Пароль"
-                                        label-for="input-password"
-                                        :state="validatePassword"
-                                        :invalid-feedback="invalidPasswordFeedback"
-                                >
-                                    <b-form-input class="reg-input" id="input-password" v-model="password" type="password"/>
-                                </b-form-group>
-                                <b-form-group
-                                        class="reg-group mb-0"
-                                        label="Подтверждение пароля"
-                                        label-for="input-confirm-password"
-                                        :state="password === confirmPassword"
-                                        invalid-feedback="Пароли не совпадают"
-                                >
-                                    <b-form-input class="reg-input" id="input-confirm-password" v-model="confirmPassword" type="password"/>
-                                </b-form-group>
                             </b-col>
                             <b-col class="reg-col to-right-bottom">
-                                <p class="mistake" v-if="wasError">Проверьте правильность пароля (он должен быть не менее 6 символов)</p>
-                                <button-general class="reg-button" @click="handleRegistration">
-                                    Зарегистрироваться
+                                <button-general class="reg-button" @click="handleEditing">
+                                    Сохранить
                                 </button-general>
                             </b-col>
                         </b-row>
@@ -249,8 +250,7 @@ export default {
         </b-container>
     </div>
     <b-modal id="modal-1">
-        Поздравляем, мы зарегистрировались в приложении Ecomap и сделали свой первый шаг к улучшению мира!
-        Вот ваши первые <h4><b>10</b></h4> Eco-очков!
+        Успешное редактирование профиля
     </b-modal>
 </template>
 

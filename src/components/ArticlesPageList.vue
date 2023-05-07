@@ -2,6 +2,7 @@
 import ArticleCard from "./ArticleCard.vue";
 import ArticlesPaginator from "./ArticlesPaginator.vue";
 import axios from "axios";
+
 export default {
   components: {
     ArticleCard,
@@ -46,12 +47,13 @@ export default {
 </script>
 
 <template>
-  <div class="ap-grid">
-    <article-card v-for="article in articles" :id="article.id" :title="article.title" :likes="article.countOfLikes" :image="article.image"/>
+  <div className="ap-grid">
+    <article-card v-for="article in articles" :id="article.id" :title="article.title" :likes="article.countOfLikes"
+                  :image="article.image" :was-liked="article.is_liked"/>
   </div>
-<!--  <div>-->
-<!--    <articles-paginator class="ap-paginator" :page-count="10" next-text=">" prev-text="<" />-->
-<!--  </div>-->
+  <!--  <div>-->
+  <!--    <articles-paginator class="ap-paginator" :page-count="10" next-text=">" prev-text="<" />-->
+  <!--  </div>-->
 </template>
 
 <style scoped>
