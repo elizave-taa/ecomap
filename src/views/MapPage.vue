@@ -43,6 +43,7 @@ export default {
       sidebar1Opened: false,
       pointClicked: null,
       userStore: useUserStore(),
+      favourites: [],
     }
   },
 
@@ -186,6 +187,34 @@ export default {
       })
     },
 
+      loadFavs() {
+        axios.get("profile/favs", { params: {
+                search: null,
+                limit: 999,
+                page: 1,
+                allIncludes: false,
+                types: JSON.stringify([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]),
+                isAccepted: true,
+                x1: 0,
+                x2: 0,
+                y1: 0,
+                y2: 0, } }).then((response) => {
+            this.favourites = response.data;
+        })
+      },
+
+      addInFav(id) {
+        axios.get("map/fav/" + id).then(() => {
+            this.loadFavs();
+        })
+      },
+
+      removeFromFav(id) {
+          axios.get("map/unfav/" + id).then(() => {
+              this.loadFavs();
+          })
+      },
+
   },
   watch: {
     types() {
@@ -202,6 +231,7 @@ export default {
   },
   mounted() {
     this.getPoints(this.types);
+    this.loadFavs();
   },
 }
 </script>
@@ -263,6 +293,14 @@ export default {
         <p class="mp-comment">
           Комментарий: {{ pointClicked.comment }}
         </p>
+          <div style="margin-top: 10px;">
+              <button-general @click="addInFav(pointClicked.id)" class="mp-button" v-if="!favourites.some((p) => +p.id === +pointClicked.id)">
+                  Добавить в избранное
+              </button-general>
+              <button-general @click="removeFromFav(pointClicked.id)" class="mp-button" v-else>
+                  Удалить из избранных
+              </button-general>
+          </div>
         <div class="mp-admin" v-if="userStore.user?.is_admin">
           <button-general class="mp-button" @click="editPoint(pointClicked)">Редактировать</button-general>
           <button-general class="mp-button" variant="red" @click="deletePoint(pointClicked)">Удалить</button-general>
