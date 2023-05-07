@@ -95,7 +95,7 @@ export default {
                 <div class="title">Любимые статьи</div>
               </template>
               <div class="ap-grid">
-                <article-card v-for="article in articles" :id="article.id" :title="article.title" :likes="article.countOfLikes" :image="article.image"/>
+                <article-card v-for="article in articles" :id="article.id" :title="article.title" :likes="article.countOfLikes" :image="article.image" no-like />
               </div>
             </b-tab>
           </b-tabs>
