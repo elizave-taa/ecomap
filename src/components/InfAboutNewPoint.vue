@@ -180,7 +180,7 @@ export default {
 </script>
 
 <template>
-  <div>
+  <div class="point-form">
     <b-container>
       <b-row>
         <b-col cols="12" class="inf-col">
@@ -216,7 +216,7 @@ export default {
         <b-col md="6" class="inf-col inf-col-flex">
           <div>
             <div class="head-line">Добавьте фотографии<span class="need-circle"></span></div>
-            <div>
+            <div class="images">
               <b-avatar
                   button
                   @click="addPhoto(1)"
@@ -400,5 +400,28 @@ export default {
   background-color: rgb(var(--c-primary-lightest-rgb));
   display: inline-block;
   border-radius: 20px;
+}
+
+@media (max-width: 500px) {
+    .line {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+
+    .input {
+        width: 100%;
+    }
+
+    .images {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .images > * {
+        margin: 0 !important;
+    }
 }
 </style>

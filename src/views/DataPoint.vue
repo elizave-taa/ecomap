@@ -38,6 +38,12 @@ export default {
   box-sizing: border-box;
 }
 
+@media (max-width: 1000px) {
+    .dp-wrapper {
+        padding-top: 60px;
+    }
+}
+
 .dp-form {
   background-color: rgba(var(--c-primary-rgb), 0.75);
   border-radius: 8px;
