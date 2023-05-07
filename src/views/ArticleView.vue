@@ -189,4 +189,20 @@ export default {
 .av-back {
   padding: 5px 10px;
 }
+@media(max-width: 1350px) {
+  .av-image{
+    display: none;
+  }
+  .av-content {
+    width: 100%;
+  }
+}
+@media(max-width: 500px) {
+  .av-article {
+    margin-left: 20px;
+  }
+  .av-title {
+    margin-left: 20px;
+  }
+}
 </style>
