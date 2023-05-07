@@ -103,5 +103,44 @@ export default {
 .description{
   font-size: 14px;
 }
+@media(max-width: 420px){
+  .form{
+    width: 330px;
+    height: 400px;
+    box-shadow: 2px 2px 3px 0 rgba(0,0,0,0.3);
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 8px;
+  }
+  .header{
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+  .image{
+    width: 15px;
+    height: 15px;
+    margin-right: 5px;
+  }
+  .rank{
+    line-height: 20px;
+    margin-right: 5px;
+    color: #1c7430;
+  }
+  .num{
+    line-height: 25px;
+    margin-right: 10px;
+    font-weight: bold;
+    color: #1c7430;
+  }
+  .line{
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    margin-bottom: 3px;
+  }
+  .description{
+    font-size: 13px;
+  }
+}
 
 </style>
