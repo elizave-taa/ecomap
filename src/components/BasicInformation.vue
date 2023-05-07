@@ -6,14 +6,10 @@ import axios from "axios";
 import {getCookie, setCookie} from "../helpers/cookie.js";
 export default {
   components: {InfAboutRanks, BAvatar, BButton, BPopover, BFormFile, BModal, FormFilePlugin, axios},
-  created() {
-    this.images.img1 = this.userAvatar;
-  },
   data() {
     return {
       modalShow: false,
       friends_counter: 0,
-      rating: 0,
       rank: 'Юный защитник природы',
       images: {
         img1: null,
@@ -29,20 +25,22 @@ export default {
     userNickname() { return this.user?.nickname },
     userAge() { return this.user?.age },
     userName() { return this.user?.name },
-    userAvatar() {return this.user?.avatar}
-  },
-  watch: {
-    rating() {
-      if (this.user?.rate >= 20)
-        this.rank = 'Опытный эколог';
-      else if (this.user?.rate >= 40)
-        this.rank = 'Ярый борец за экологию';
-      else if (this.user?.rate >= 80)
-        this.rank = 'Грета Тумберг';
-      else this.rank = 'Вы - сама природа';
-    },
+    userAvatar() {
+      this.images.img1 = this.user?.avatar}
   },
   methods: {
+    rating() {
+      if (this.user?.rate <= 30)
+        return "Юный защитник природы"
+      else if (this.user?.rate >= 50 && this.user?.rate < 90)
+        return 'Опытный эколог';
+      else if (this.user?.rate >= 90 && this.user?.rate < 170)
+        return 'Ярый борец за экологию';
+      else if (this.user?.rate >= 170 && this.user?.rate < 300)
+        return 'Грета Тумберг';
+      else if (this.user?.rate >= 300)
+        return'Вы - сама природа';
+    },
     cancel(){
       this.images[`img1`] = null;
       //this.userAvatar = '/src/assets/user.svg';
@@ -119,7 +117,7 @@ export default {
                             @change="handleChange($event)"
               ></b-form-file>
             </b-modal>
-            <b-modal id="modal-2" centered class="modal-window" ok-only >
+            <b-modal hide-footer hide-header id="modal-2" centered class="modal-window" ok-only >
               <b-avatar
                   rounded="sm"
                   size="20em"
@@ -136,9 +134,12 @@ export default {
             </div>
           </div>
           <div class="about-me">
+            <div class="user-name-inf">
               <div class="user-name"> @{{userNickname}}</div>
+              <img  class="logo" src="/src/assets/more-information.svg">
+            </div>
                 <b-button id="popover-2" class="rank-btn">
-                  <div class="rank">{{rank}}</div>
+                  <div class="rank">{{rating()}}</div>
                 </b-button>
                 <b-popover
                     placement="bottom"
@@ -146,10 +147,17 @@ export default {
                     triggers="hover focus"
                 > <inf-about-ranks/> </b-popover>
               <div class="status">
-                {{userName}} {{userAge}}
+                {{userName}}, {{userAge}} лет
               </div>
+            <div class="friends_likes-2">
+              <div class="friends">
+                <div class="counter">{{friends_counter}}</div>
+                <svg width="30" height="22" viewBox="0 0 640 512">
+                  <path fill="currentColor" d="M192 256c61.9 0 112-50.1 112-112S253.9 32 192 32S80 82.1 80 144s50.1 112 112 112zm76.8 32h-8.3c-20.8 10-43.9 16-68.5 16s-47.6-6-68.5-16h-8.3C51.6 288 0 339.6 0 403.2V432c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48v-28.8c0-63.6-51.6-115.2-115.2-115.2zM480 256c53 0 96-43 96-96s-43-96-96-96s-96 43-96 96s43 96 96 96zm48 32h-3.8c-13.9 4.8-28.6 8-44.2 8s-30.3-3.2-44.2-8H432c-20.4 0-39.2 5.9-55.7 15.4c24.4 26.3 39.7 61.2 39.7 99.8v38.4c0 2.2-.5 4.3-.6 6.4H592c26.5 0 48-21.5 48-48c0-61.9-50.1-112-112-112z"/></svg>
+              </div>
+            </div>
           </div>
-        </div>
+          </div>
 </template>
 
 <style scoped>
@@ -161,7 +169,7 @@ export default {
     display: flex;
     justify-content: space-around;
     width: 43%;
-    height: 100%;
+    height: 210px;
     box-shadow: 2px 2px 3px 0 rgba(0,0,0,0.3);
     background-color: #ffffff;
     align-items: center;
@@ -185,7 +193,7 @@ export default {
   width: 140px;
 }
   .line-image{
-    padding: 0px;
+    padding: 0;
   }
   .avatar{
     display: flex;
@@ -193,9 +201,17 @@ export default {
     justify-content: space-around;
     height: 85%;
 }
+  .user-name-inf{
+    margin-right: 2px;
+    display: flex;
+  }
+  .friends_likes-2{
+    display: none;
+  }
   .user-name{
   font-size: 30px;
-    margin-right: 15px;
+    margin-right: 6px;
+    display: flex;
 }
   .rank{
 color: #1c7430;
@@ -221,19 +237,6 @@ font-size: 15px;
   .friends{
     display: flex;
 }
-  .line-name{
-    display: flex;
-    line-height: 40px;
-  }
-  .friends:hover{
-    cursor: pointer;
-  }
-  .likes:hover{
-    cursor: pointer;
-  }
-  .likes{
-    display: flex;
-}
   .rank-btn,
   .rank-btn:hover,
   .rank-btn:focus{
@@ -244,5 +247,48 @@ font-size: 15px;
     box-shadow: none!important;
     margin-right: 3px;
     height: 20px!important;
+  }
+  @media (max-width: 995px) {
+  .user-name{
+    font-size: 19px;
+  }
+  .about-me{
+    width: 50%;
+  }
+  .rank{
+    font-size: 15px;
+  }
+  .left{
+    width: 45%;
+    max-height: 200px;
+  }
+  }
+  @media (max-width: 768px) {
+    .left{
+      height: 150px;
+      width: 100%;
+      margin-bottom: 15px;
+    }
+    .user-name{
+      font-size: 23px;
+    }
+    .about-me{
+      width: 50%;
+      height: 90%;
+    }
+    .rank{
+      font-size: 15px;
+    }
+    .friends_likes{
+      display: none;
+    }
+    .friends_likes-2{
+      display: flex;
+    }
+    .status{
+      font-size: 15px;
+      margin-top: 5px;
+      margin-bottom: 15px;
+    }
   }
 </style>

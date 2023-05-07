@@ -24,7 +24,8 @@ export default {
       </div>
       <div class="coins">
         <div v-if="userRate < 10" class="count"> {{userRate}} </div>
-        <div v-if="userRate >= 10" class="count-small"> {{userRate}} </div>
+        <div v-if="userRate < 100 && userRate >= 10" class="count-small"> {{userRate}} </div>
+        <div v-if="userRate >= 100" class="count-small-2"> {{userRate}} </div>
         <img src="/src/assets/coins.svg" class="image">
       </div>
 
@@ -38,7 +39,7 @@ export default {
   background-color: #ffffff;
   border-radius: 8px;
   box-shadow: 2px 2px 3px 0 rgba(0,0,0,0.3);
-  height: 100%;
+  height: 210px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -59,7 +60,6 @@ export default {
   display: flex;
   width: 100%;
   justify-content: space-around;
-
 }
 
 .text{
@@ -76,19 +76,72 @@ export default {
   width: 35px;
   height: 35px;
 }
-
 .count{
   font-size: 100px;
   line-height: 75px;
   align-items: center;
   color: #0b2e13;
 }
-
 .count-small{
   font-size: 70px;
   line-height: 75px;
   align-items: center;
   color: #0b2e13;
 }
-
+.count-small-2{
+  font-size: 48px;
+  line-height: 75px;
+  align-items: center;
+  color: #0b2e13;
+}
+@media (max-width: 995px) {
+  .point-num{
+    max-height: 200px;
+  }
+  .description{
+    margin-top: 10px;
+  }
+  .text{
+    line-height: 20px;
+    font-size: 18px;
+  }
+  .image{
+    width: 27px;
+    height: 27px;
+  }
+  .count{
+    font-size: 60px;
+    line-height: 75px;
+    align-items: center;
+    color: #0b2e13;
+  }
+  .count-small{
+    font-size: 60px;
+    line-height: 75px;
+    align-items: center;
+    color: #0b2e13;
+  }
+  .count-small-2{
+    font-size: 45px;
+  }
+}
+@media (max-width: 768px) {
+  .point-num{
+    height: 170px;
+  }
+  .count{
+    font-size: 80px;
+  }
+  .count-small{
+    font-size: 50px;
+  }
+  .count-small-2{
+    font-size: 55px;
+  }
+  .text{
+    font-size: 15px;
+    align-items: center;
+    text-align: center;
+  }
+}
 </style>

@@ -93,4 +93,16 @@ export default {
   text-decoration: none !important;
   cursor: default !important;
 }
+@media (max-width: 1050px){
+  .ap-grid{
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 576px){
+  .ap-grid{
+    grid-template-columns: 1fr;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+}
 </style>

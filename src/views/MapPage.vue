@@ -3,10 +3,12 @@ import GlobalHeader from "/src/components/GlobalHeader.vue";
 import KindsOfTrash from "/src/components/KindsOfTrash.vue";
 import ButtonGeneral from "/src/components/ButtonGeneral.vue";
 import TypeBadge from "../components/TypeBadge.vue";
-import {YandexMap, YandexMarker, YandexCollection} from 'vue-yandex-maps/dist/vue-yandex-maps.esm.js'
-import {BFormCheckbox, BSidebar, BAvatar, SidebarPlugin} from "bootstrap-vue";
+import {YandexMap, YandexMarker, YandexCollection, loadYmap} from 'vue-yandex-maps/dist/vue-yandex-maps.esm.js'
+import {BFormCheckbox, BSidebar, BAvatar, SidebarPlugin, BButton} from "bootstrap-vue";
 import axios from "axios";
 import {useUserStore} from "../PiniaStore.js";
+
+let mapInstance = null;
 
 export default {
   components: {
@@ -38,6 +40,7 @@ export default {
       map: null,
       types: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
       sidebarOpened: false,
+      sidebar1Opened: false,
       pointClicked: null,
       userStore: useUserStore(),
     }
@@ -121,8 +124,45 @@ export default {
       return string.charAt(0).toUpperCase() + string.slice(1);
     },
 
-    handleMapCreate(map) {
-      this.map = map;
+    async handleMapCreate(map) {
+      mapInstance = map;
+
+      await loadYmap();
+
+      const sidebarBtn = new ymaps.control.Button({
+        data: {
+          content: 'Выбрать категорию'
+        },
+        options: {
+          layout: ymaps.templateLayoutFactory.createClass(
+              "<button class='mobile-sidebar-button'>" +
+              "{{ data.content }}" +
+              "</button>"
+          ),
+          maxWidth: 150
+        },
+      });
+      const sidebarBtn1 = new ymaps.control.Button({
+        data: {
+          content: 'Предложить точку'
+        },
+        options: {
+          layout: ymaps.templateLayoutFactory.createClass(
+              "<button class='mobile-sidebar-button'>" +
+              "{{ data.content }}" +
+              "</button>"
+          ),
+          maxWidth: 150
+        },
+      });
+      sidebarBtn1.events.add('click', () => {
+        this.$router.push({name: 'new-point'})
+      });
+      sidebarBtn.events.add('click', () => {
+        this.sidebar1Opened = true
+      });
+      mapInstance.controls.add(sidebarBtn, { float: 'none', position: { bottom: 80, left: 18 } });
+      mapInstance.controls.add(sidebarBtn1, { float: 'none', position: { bottom: 80, right: 18 } });
     },
 
     changeTypes(types) {
@@ -229,17 +269,25 @@ export default {
         </div>
       </div>
     </b-sidebar>
-  </div>
-  <!--<div class="side-bar">
-    <b-button aria-controls="id" aria-expanded="false">Переключить боковую панель</b-button>
-    <b-sidebar id="sidebar-1" title="Sidebar" shadow>
-      <div>
-        <p>
-          123456
-        </p>
+
+    <b-sidebar v-model="sidebar1Opened" left width="340px">
+      <div class="choose-kind">
+        <p>Какой вид мусора вы хотите выбросить?</p>
+        <kinds-of-trash @reload="changeTypes" :all="checked1"/>
+        <div class="all-selected">
+          <div>
+            <b-form-checkbox v-model="checked1" name="check-button" switch>
+              <div class="show">Все точки</div>
+            </b-form-checkbox>
+            <b-form-checkbox v-model="checked2" name="check-button" switch>
+              <div class="show">Точки, которые принимают все выбранное</div>
+            </b-form-checkbox>
+          </div>
+        </div>
+        <b-button @click="sidebar1Opened = !sidebar1Opened" class="ready-btn">Готово</b-button>
       </div>
     </b-sidebar>
-  </div> -->
+  </div>
 </template>
 
 <style scoped>
@@ -341,6 +389,15 @@ p {
   margin-bottom: 10px;
 }
 
+.ready-btn {
+  background-color: #668D6E;
+  padding: 0 20px 0 20px;
+  border-radius: 8px;
+  color: #ffffff;
+  margin-top: 30px;
+  line-height: 30px;
+}
+
 .mp-button {
   padding: 8px 20px;
 }
@@ -352,17 +409,37 @@ p {
   margin-top: 30px;
 }
 
-@media (max-width: 800px){
-  .left-nav{
+@media (max-width: 930px){
+  .left-nav {
     display: none;
   }
-  .map{
+  .map {
     width: 100%;
     height: 100%;
   }
-  .ymap{
+  .ymap {
     width: 100%;
     height: 100%;
+  }
+}
+</style>
+
+<style>
+.mobile-sidebar-button {
+  border-radius: 8px!important;
+  background-color: #668D6E!important;
+  border: none!important;
+  color: #ffffff;
+  line-height: 30px;
+  display: none;
+}
+
+@media (max-width: 930px) {
+  .mobile-sidebar-button {
+    border-radius: 8px !important;
+    background-color: #668D6E !important;
+    border: none !important;
+    display: flex;
   }
 }
 </style>

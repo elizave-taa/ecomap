@@ -26,16 +26,18 @@ export default {
 <div class="point-num">
     <div class="main-container">
       <div v-if="userPoints && userPoints.length < 10" class="count"> {{userPoints.length}} </div>
-      <div v-if="userPoints && userPoints.length >= 10" class="count-small"> {{userPoints.length}} </div>
+      <div v-if="userPoints && userPoints.length < 100 && userPoints.length >= 10" class="count-small"> {{userPoints.length}} </div>
+      <div v-if="userPoints && userPoints.length >= 100" class="count-small-2"> {{userPoints.length}} </div>
       <div class="description">
         <b-button class="btn-points" id="my-button"><div class ="text">Предложенных точек сбора</div></b-button>
-        <b-popover triggers="hover focus" target="my-button" custom-class="my-popover-class">
+        <b-popover triggers="hover focus" class="popover" target="my-button">
           <template #title>Точки пользователя  {{userName}}</template>
-          <div v-if="!userPoints || userPoints.length == 0">Пока не предложено ни одной точки</div>
+          <div v-if="!userPoints">Пока не предложено ни одной точки</div>
           <div v-else>
             <ol v-for="item in userPoints" >
               <p>Название:  {{ item.title }} </p>
               <p>Адрес:  {{ item.address }} </p>
+              <hr/>
             </ol>
           </div>
         </b-popover>
@@ -49,7 +51,7 @@ export default {
   background-color: #ffffff;
   border-radius: 8px;
   box-shadow: 2px 2px 3px 0 rgba(0,0,0,0.3);
-  height: 100%;
+  height: 210px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -68,6 +70,14 @@ export default {
   display: flex;
   width: 100%;
   justify-content: space-around;
+}
+.my-popover-class{
+
+}
+.popover{
+  height: 200px!important;
+  background-color: #341a0c!important;
+  color: #981111;
 }
 .text{
   width: 70%;
@@ -99,5 +109,43 @@ export default {
   border: none!important;
   padding: 0!important;
   font-weight: 500;
+}
+@media (max-width: 995px) {
+  .point-num{
+    max-height: 200px;
+  }
+  .count{
+    font-size: 90px;
+  }
+  .count-small{
+    font-size: 70px;
+  }
+  .count-small-2{
+    font-size: 55px;
+  }
+  .text{
+    font-size: 13px;
+    align-items: center;
+    text-align: center;
+  }
+}
+@media (max-width: 768px) {
+  .point-num{
+    height: 170px;
+  }
+  .count{
+    font-size: 90px;
+  }
+  .count-small{
+    font-size: 70px;
+  }
+  .count-small-2{
+    font-size: 55px;
+  }
+  .text{
+    font-size: 12px;
+    align-items: center;
+    text-align: center;
+  }
 }
 </style>

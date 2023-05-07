@@ -1,4 +1,5 @@
 <script>
+import { useUserStore } from "../PiniaStore.js";
 import {
   BFormInput,
   BFormGroup,
@@ -86,6 +87,10 @@ export default {
     pointImages() {
       return Object.values(this.images).filter((img) => img != '/src/assets/add_photo.svg');
     },
+    user() {
+      return this.userStore.user
+    },
+    userName() { return this.user?.name }
   },
 
   methods: {
@@ -121,7 +126,10 @@ export default {
         this.clearForm();
       });
     },
-
+    hideModal(){
+      this.$refs['modal-1'].hide();
+      this.$router.push({name: 'map-page'});
+    },
     clearForm() {
       this.title = null;
       this.address = null;
@@ -146,6 +154,7 @@ export default {
       this.sendImage(formData, i);
     }
   },
+
 
   async mounted() {
     await loadYmap({
@@ -264,10 +273,10 @@ export default {
       </b-row>
     </b-container>
     <b-modal ref="modal-1" title="Спасибо за вашу помощь!" busy>
-      <p class="my-4">Мы рассмотрим вашу точку и пришлем ответ в течение 3 дней.
+      <p class="my-4">{{userName()}}, мы рассмотрим вашу точку и пришлем ответ в течение 3 дней.
         С любовью, EcoMap &#10084;</p>
       <template #modal-footer>
-        <button-general class="modal-button" @click="$refs['modal-1'].hide();">
+        <button-general class="modal-button" @click="hideModal()">
           ОК
         </button-general>
       </template>

@@ -1,12 +1,12 @@
 <script>
-import { BDropdown, BDropdownItem, BContainer } from "bootstrap-vue"
+import { BDropdown, BDropdownItem, BContainer, BIcon } from "bootstrap-vue"
 import { useUserStore } from "../PiniaStore.js";
 import { RouterLink } from "vue-router"
 import { getCookie } from "../helpers/cookie.js"
 import { deleteCookie } from "../helpers/cookie.js";
 
 export default {
-  components: { BDropdown, BDropdownItem, RouterLink, BContainer },
+  components: { BDropdown, BDropdownItem, RouterLink, BContainer, BIcon },
   data() {
     return {
       transparentRoutes: ['registration', 'new-point'],
@@ -50,10 +50,11 @@ export default {
       <router-link v-if="$route.name == 'profile'" class="link" to="/profile">
         <b-dropdown id="dropdown-1" text="Мой профиль" class="btn-exit">
           <b-dropdown-item @click="exit()"> Выход </b-dropdown-item>
+          <b-dropdown-item @click="exit()"> Редактировать профиль </b-dropdown-item>
         </b-dropdown>
       </router-link>
 
-      <router-link class="link" v-else to="/">
+      <router-link class="link" v-else to="/profile">
         Мой профиль
       </router-link>
 
@@ -69,10 +70,16 @@ export default {
       <router-link to="/map">
         <img alt="карта" class="alt-logo" src="/src/assets/map-page.svg" />
       </router-link>
-      <router-link to="/profile">
-        <img alt="профиль" class="logo-user" src="/src/assets/user.svg" />
+      <router-link v-if="$route.name != 'profile'" to="/profile">
+        <img alt="карта" class="alt-logo" src="/src/assets/user.svg" />
       </router-link>
-      <router-link v-if="userAdmin" to="/profile">
+      <router-link v-if="$route.name == 'profile'" to="/profile">
+        <b-dropdown id="dropdown-right" right class="btn-exit-2">
+          <b-dropdown-item @click="exit()"> Выход </b-dropdown-item>
+          <b-dropdown-item @click="exit()"> Редактировать профиль </b-dropdown-item>
+        </b-dropdown>
+      </router-link>
+      <router-link v-if="userAdmin" to="/admin">
         <img alt="админ панель" class="logo-user" src="/src/assets/admin.svg" />
       </router-link>
     </b-container>
@@ -81,7 +88,7 @@ export default {
 
 <style scoped>
 .global-header {
-  padding: 6px 0px;
+  padding: 6px 0;
   background-color: rgb(var(--c-primary-rgb));
   position: relative;
   z-index: 10;
@@ -139,7 +146,6 @@ export default {
   }
   .global-header {
     height: 100%;
-    background-color: rgba(82, 115, 89, 0.75);
     position: relative;
     z-index: 10;
   }
@@ -158,6 +164,18 @@ export default {
   }
   .logo{
     display: none;
+  }
+  .btn-exit-2:deep(button){
+    background-image: url('/src/assets/user.svg')!important;
+    background-color: transparent!important;
+    width: 25px;
+    height: 25px;
+    border: none;
+  }
+  .btn-exit-2:deep(button):hover,
+  .btn-exit-2:deep(button):focus{
+    box-shadow: none!important;
+    border: none!important;
   }
 }
 </style>
