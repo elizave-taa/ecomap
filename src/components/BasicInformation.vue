@@ -148,7 +148,6 @@ export default {
                     placement="bottom"
                     :target="prefix + 'popover-2'"
                     triggers="hover focus"
-                    show
                     custom-class="shadow-popper"
                 > <inf-about-ranks /> </b-popover>
               <div class="status">
