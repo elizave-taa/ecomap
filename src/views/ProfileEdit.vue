@@ -90,6 +90,14 @@ export default {
             if (this.password.length < 6) return "Минимум 6 символов";
 
             return "Пароль обязателен для заполнения"
+        },
+        user() {
+            return this.userStore.user;
+        }
+    },
+    watch: {
+        user() {
+            this.fillData();
         }
     },
     methods: {
@@ -121,6 +129,7 @@ export default {
 
             axios.put("profile", { params: this.profileData, ...this.profileData }).then((response) => {
                 this.showModal1();
+                this.userStore.fetchUser();
 // this.$router.push({name: 'welcome-page'})
             });
         },
