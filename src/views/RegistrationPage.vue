@@ -96,7 +96,7 @@ export default {
             let isBroken = false;
             if (!this.name) { this.name = ""; isBroken = true; }
             if (!this.lastname) { this.lastname = ""; isBroken = true; }
-            if (this.age === null || this.age < 0) { this.age = ""; isBroken = true; }
+            if (!this.age || this.age < 0) { this.age = ""; isBroken = true; }
             if (!this.nickname) { this.nickname = ""; isBroken = true; }
             if (!this.email || !this.isMail(this.email)) { this.email = ""; isBroken = true; }
             if (!this.gender || ![1,2,3].includes(this.gender)) { this.gender = ""; isBroken = true; }
@@ -111,6 +111,8 @@ export default {
             axios.post("registration", this.regData).then((response) => {
                 this.showModal1();
 // this.$router.push({name: 'welcome-page'})
+            }).catch(() => {
+                this.wasError = true;
             });
         },
         isMail(email) {
@@ -237,7 +239,7 @@ export default {
                                 </b-form-group>
                             </b-col>
                             <b-col class="reg-col to-right-bottom">
-                                <p class="mistake" v-if="wasError">Проверьте правильность пароля (он должен быть не менее 6 символов)</p>
+                                <p class="mistake" v-if="wasError">Никнейм или почта уже зарегистрированы</p>
                                 <button-general class="reg-button" @click="handleRegistration">
                                     Зарегистрироваться
                                 </button-general>
