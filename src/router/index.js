@@ -10,6 +10,7 @@ import ProfilePage from "../views/ProfilePage.vue";
 import AdminPanel from "../views/AdminPanel.vue";
 import PostAdd from "../components/PostAdd.vue";
 import DataPointEdit from "../views/DataPointEdit.vue";
+import ProfileEdit from "../views/ProfileEdit.vue";
 
 const router = createRouter({
     history: createWebHistory("/ecomap/"),
@@ -71,6 +72,11 @@ const router = createRouter({
             name: 'post-add',
             component: PostAdd
         },
+        {
+            path: '/profile/edit',
+            name: 'profile-edit',
+            component: ProfileEdit
+        }
     ]
 })
 
