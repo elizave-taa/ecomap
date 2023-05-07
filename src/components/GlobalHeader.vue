@@ -79,7 +79,7 @@ export default {
           <b-dropdown-item @click="exit()"> Редактировать профиль </b-dropdown-item>
         </b-dropdown>
       </router-link>
-      <router-link v-if="userAdmin">
+      <router-link v-if="userAdmin" to="/admin">
         <img alt="админ панель" class="logo-user" src="/src/assets/admin.svg" />
       </router-link>
     </b-container>
