@@ -199,7 +199,7 @@ export default {
                 x2: 0,
                 y1: 0,
                 y2: 0, } }).then((response) => {
-            this.favourites = response.data;
+            this.favourites = response.data.points;
         })
       },
 

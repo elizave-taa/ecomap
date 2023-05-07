@@ -20,6 +20,7 @@ export default {
       limit: 999,
       articles: [],
       points: [],
+        favourites: [],
     }
   },
   computed: {
@@ -35,9 +36,25 @@ export default {
         this.articles = response.data.data;
       })
     },
+      loadFavs() {
+          axios.get("profile/favs", { params: {
+                  search: null,
+                  limit: 999,
+                  page: 1,
+                  allIncludes: false,
+                  types: JSON.stringify([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]),
+                  isAccepted: true,
+                  x1: 0,
+                  x2: 0,
+                  y1: 0,
+                  y2: 0, } }).then((response) => {
+              this.favourites = response.data.points;
+          })
+      },
   },
   mounted() {
-    this.getArticles()
+    this.getArticles();
+    this.loadFavs();
   }
 }
 </script>
@@ -70,9 +87,7 @@ export default {
                 <div class="title">Избранные точки</div>
               </template>
               <div class="ap-grid">
-                <point-card></point-card>
-                <point-card></point-card>
-                <point-card></point-card>
+                <point-card v-for="point in favourites" :point="point"></point-card>
               </div>
             </b-tab>
             <b-tab class="tab-title">
